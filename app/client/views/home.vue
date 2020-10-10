@@ -1,5 +1,5 @@
 <template>
-  <div class="home"></div>
+  <div class="home"><h1>Coming Soon</h1></div>
 </template>
 
 <script>
@@ -8,4 +8,12 @@
   };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+  @import '../scss/mixins/_flex.scss';
+  .home {
+    @include flex(column);
+    h1 {
+      margin-top: 64px;
+    }
+  }
+</style>
