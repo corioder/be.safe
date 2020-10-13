@@ -3,9 +3,12 @@
 </template>
 
 <script>
-  export default {
-    name: 'home',
-  };
+export default {
+  name: "home",
+  components: {
+    cselect
+  }
+};
 </script>
 
 <style lang="scss" scoped></style>
