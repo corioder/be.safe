@@ -1,19 +1,23 @@
 <template>
-  <div class="home"><h1>Coming Soon</h1></div>
+  <div class="home"><logo text="safe" /></div>
 </template>
 
 <script>
-  export default {
-    name: 'home',
-  };
+import logo from "../components/logo.vue";
+export default {
+  name: "home",
+  components: {
+    logo,
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-  @import '../scss/mixins/_flex.scss';
-  .home {
-    @include flex(column);
-    h1 {
-      margin-top: 64px;
-    }
+@import "../scss/mixins/_flex.scss";
+.home {
+  @include flex(column);
+  h1 {
+    margin-top: 64px;
   }
+}
 </style>
