@@ -1,26 +1,26 @@
-const path = require("path");
+const path = require('path');
 
-const { DefinePlugin } = require("webpack");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const { DefinePlugin } = require('webpack');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-const { VueLoaderPlugin } = require("vue-loader");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { VueLoaderPlugin } = require('vue-loader');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const WebpackBar = require("webpackbar");
+const WebpackBar = require('webpackbar');
 
 module.exports = (env = {}) => ({
-  context: path.resolve(__dirname, "src"),
-  mode: "development",
-  stats: "minimal",
+  context: path.resolve(__dirname, 'src'),
+  mode: 'development',
+  stats: 'minimal',
 
   entry: {
-    app: path.resolve(__dirname, "app/client/index.js"),
+    app: path.resolve(__dirname, 'app/client/index.js'),
   },
 
   output: {
-    path: path.resolve(__dirname, "dev"),
-    filename: "index.js",
+    path: path.resolve(__dirname, 'dev'),
+    filename: 'index.js',
     publicPath: process.env.BASE_URL,
   },
 
@@ -28,7 +28,7 @@ module.exports = (env = {}) => ({
     rules: [
       {
         test: /\.vue$/,
-        loader: "vue-loader",
+        loader: 'vue-loader',
         options: {
           hotReload: true,
         },
@@ -36,7 +36,7 @@ module.exports = (env = {}) => ({
       {
         test: /\.js$/,
         exclude: [/node_modules\/(webpack|html-webpack-plugin)/, /node_modules\/core-js.*/],
-        loader: "babel-loader",
+        loader: 'babel-loader',
         options: { cacheDirectory: true },
       },
       {
@@ -46,15 +46,15 @@ module.exports = (env = {}) => ({
             loader: MiniCssExtractPlugin.loader,
             options: { hmr: !env.production },
           },
-          "css-loader",
+          'css-loader',
 
           {
-            loader: "postcss-loader",
+            loader: 'postcss-loader',
             options: {
               postcssOptions: {
                 plugins: [
-                  require("postcss-import")(),
-                  require("postcss-preset-env")({
+                  require('postcss-import')(),
+                  require('postcss-preset-env')({
                     stage: 0,
                   }),
                 ],
@@ -62,7 +62,7 @@ module.exports = (env = {}) => ({
             },
           },
 
-          "sass-loader",
+          'sass-loader',
         ],
       },
     ],
@@ -70,10 +70,10 @@ module.exports = (env = {}) => ({
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, "app/client/public/index.html"),
+      template: path.resolve(__dirname, 'app/client/public/index.html'),
     }),
     new MiniCssExtractPlugin({
-      filename: "[name].css",
+      filename: '[name].css',
     }),
     new WebpackBar(),
     new VueLoaderPlugin(),
@@ -85,9 +85,9 @@ module.exports = (env = {}) => ({
   ],
 
   optimization: {
-    runtimeChunk: "single",
+    runtimeChunk: 'single',
     splitChunks: {
-      chunks: "all",
+      chunks: 'all',
       maxInitialRequests: Infinity,
       minSize: 0,
       cacheGroups: {
@@ -95,26 +95,27 @@ module.exports = (env = {}) => ({
           test: /[\\/]node_modules[\\/](.*?)([\\/]|$)/,
           name: (module) => {
             const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
-            if (packageName[0] == ".") return `z${packageName.replace("@", "")}`;
-            else return `z.${packageName.replace("@", "")}`;
+            if (packageName[0] == '.') return `z${packageName.replace('@', '')}`;
+            else return `z.${packageName.replace('@', '')}`;
           },
         },
       },
     },
   },
 
-  devtool: "source-map",
+  devtool: 'source-map',
   devServer: {
-    contentBase: path.join(__dirname, "src/public"),
-    publicPath: "/",
-    index: "./index.html",
+    contentBase: path.join(__dirname, 'src/public'),
+    publicPath: '/',
+    index: './index.html',
     hot: true,
     writeToDisk: true,
-    clientLogLevel: "error",
+    clientLogLevel: 'error',
     overlay: {
       warnings: true,
       errors: true,
     },
     historyApiFallback: true,
+    host: '10.0.1.50',
   },
 });
