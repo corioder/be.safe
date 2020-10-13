@@ -1,5 +1,5 @@
 {
-  "name": "film",
+  "name": "be.safe",
   "scripts": {
     "start": "npm run serve",
     "serve": "webpack-dev-server --config ./webpack.dev.js",

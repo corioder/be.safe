@@ -1,14 +1,23 @@
 <template>
-  <div class="home"></div>
+  <div class="home"><logo text="safe" /></div>
 </template>
 
 <script>
+import logo from "../components/logo.vue";
 export default {
   name: "home",
   components: {
-    cselect
-  }
+    logo,
+  },
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@import "../scss/mixins/_flex.scss";
+.home {
+  @include flex(column);
+  h1 {
+    margin-top: 64px;
+  }
+}
+</style>
