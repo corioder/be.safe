@@ -5,16 +5,24 @@
         <span class="inner"></span>
       </span>
     </button>
-    <div class="menu"></div>
+    <div class="menu">
+      <router-link v-for="to in $store.state.links" :to="to.link" tag="button" class="link" :key="`${to.name}Link`">
+        {{ to.name }}
+      </router-link>
+    </div>
   </nav>
 </template>
 
 <script>
+  import logo from '../components/logo.vue';
   export default {
     name: 'navigation',
     methods: {
       toggle() {
         document.querySelector('.hamburger').classList.toggle('hamburger--active');
+      },
+      components: {
+        logo,
       },
     },
   };
@@ -22,6 +30,7 @@
 
 <style lang="scss" scoped>
   @import '../scss/vars/_colors.scss';
+  @import '../scss/mixins/_flex.scss';
   @mixin line() {
     width: 100%;
     height: 5px;
@@ -82,6 +91,18 @@
     top: 11px;
   }
 
+  .menu {
+    width: 140px;
+    min-height: calc(100vh - 0.1px);
+    background-color: $richBlack;
+    position: absolute;
+    top: -10px;
+    right: -12px;
+    transform: translateX(100%);
+    @include flex(column, flex-start);
+    transition: transform 0.2s 0.2s;
+  }
+
   //////////////////////////////////////
   .hamburger--active {
     transform: translateX(-140px);
@@ -98,16 +119,7 @@
   .hamburger--active .inner::after {
     transform: translateY(-11px) rotate(-90deg);
   }
-  .menu {
-    width: 140px;
-    min-height: 100vh;
-    background-color: $richBlack;
-    position: absolute;
-    top: -10px;
-    right: -12px;
-    transform: translateX(100%);
-    transition: transform 0.2s 0.2s;
-  }
+
   .hamburger--active ~ .menu {
     transform: translateX(0);
   }

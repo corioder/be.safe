@@ -10,14 +10,24 @@ const routes = [
     name: 'home',
     component: home,
   },
-  // {
-  //   path: '/about',
-  //   name: 'About',
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
-  // },
+  {
+    path: '/aware',
+    name: 'aware',
+    // route level code-splitting
+    // this generates a separate chunk (aware.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "aware" */ './views/aware.vue'),
+  },
+  {
+    path: '/informed',
+    name: 'informed',
+    component: () => import(/* webpackChunkName: "informed" */ './views/informed.vue'),
+  },
+  {
+    path: '/proactive',
+    name: 'proactive',
+    component: () => import(/* webpackChunkName: "proactive" */ './views/proactive.vue'),
+  },
 ];
 
 const router = new VueRouter({
