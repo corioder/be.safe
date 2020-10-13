@@ -2,19 +2,20 @@
   <div class="home">
     <header>
       <div class="logoContainer"><logo text="safe" /></div>
-      <nav><hamburger /></nav>
+      <navigation />
     </header>
   </div>
 </template>
 
 <script>
   import logo from '../components/logo.vue';
-  import hamburger from '../components/hamburger.vue';
+  import navigation from '../components/navigation.vue';
+
   export default {
     name: 'home',
     components: {
       logo,
-      hamburger,
+      navigation,
     },
   };
 </script>
@@ -32,12 +33,7 @@
         left: 12px;
         top: 12px;
       }
-      nav {
-        position: absolute;
-        top: 10px;
-        right: 12px;
-      }
     }
-    @include flex(column);
+    // @include flex(column);
   }
 </style>

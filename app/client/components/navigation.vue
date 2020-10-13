@@ -1,14 +1,17 @@
 <template>
-  <button class="hamburger" @click="toggle">
-    <span class="box">
-      <span class="inner"></span>
-    </span>
-  </button>
+  <nav>
+    <button class="hamburger" @click="toggle">
+      <span class="box">
+        <span class="inner"></span>
+      </span>
+    </button>
+    <div class="menu"></div>
+  </nav>
 </template>
 
 <script>
   export default {
-    name: 'hamburger',
+    name: 'navigation',
     methods: {
       toggle() {
         document.querySelector('.hamburger').classList.toggle('hamburger--active');
@@ -25,6 +28,12 @@
     border-radius: 5px;
     background-color: $richBlack;
     position: absolute;
+  }
+
+  nav {
+    position: absolute;
+    top: 10px;
+    right: 12px;
   }
 
   .hamburger {
@@ -62,7 +71,7 @@
 
     content: '';
     left: 0;
-    transition: transform 0.2s 0.2s ease-in-out;
+    transition: transform 0.2s 0.2s;
   }
 
   .inner::before {
@@ -74,6 +83,9 @@
   }
 
   //////////////////////////////////////
+  .hamburger--active {
+    transform: translateX(-140px);
+  }
 
   .hamburger--active .inner {
     transform: rotate(45deg);
@@ -85,5 +97,18 @@
 
   .hamburger--active .inner::after {
     transform: translateY(-11px) rotate(-90deg);
+  }
+  .menu {
+    width: 140px;
+    min-height: 100vh;
+    background-color: $richBlack;
+    position: absolute;
+    top: -10px;
+    right: -12px;
+    transform: translateX(100%);
+    transition: transform 0.2s 0.2s;
+  }
+  .hamburger--active ~ .menu {
+    transform: translateX(0);
   }
 </style>
