@@ -6,23 +6,37 @@
       </span>
     </button>
     <div class="menu">
-      <router-link v-for="to in $store.state.links" :to="to.link" tag="button" class="link" :key="`${to.name}Link`">
-        {{ to.name }}
-      </router-link>
+      <div class="linkContainer">
+        <router-link
+          v-for="to in $store.state.links"
+          :to="to.path"
+          tag="button"
+          class="link"
+          :class="{ 'link--active': $route.name == to.component }"
+          :key="`${to.component}Link`"
+          @click.native="toggle"
+        >
+          <!-- <img
+            :src="
+              $route.name == to.component
+                ? require(`../assets/icons/${to.component}--richBlack.svg`)
+                : require(`../assets/icons/${to.component}--babyPowder.svg`)
+            "
+            alt=""
+          /> -->
+          {{ to.component }}
+        </router-link>
+      </div>
     </div>
   </nav>
 </template>
 
 <script>
-  import logo from '../components/logo.vue';
   export default {
     name: 'navigation',
     methods: {
       toggle() {
         document.querySelector('.hamburger').classList.toggle('hamburger--active');
-      },
-      components: {
-        logo,
       },
     },
   };
@@ -99,8 +113,31 @@
     top: -10px;
     right: -12px;
     transform: translateX(100%);
-    @include flex(column, flex-start);
     transition: transform 0.2s 0.2s;
+  }
+
+  .linkContainer {
+    margin-top: 18px;
+    margin-left: 12px;
+    margin-right: 12px;
+    width: 100%;
+    @include flex(column, flex-start);
+  }
+  .link {
+    margin: 0;
+    padding: 6px;
+    border: none;
+    border-radius: 5px;
+    width: calc(100% - 2 * 12px);
+    background-color: transparent;
+    color: $babyPowder;
+    font-size: 16px;
+    text-align: left;
+    transition: transform 0.2s ease-in-out;
+  }
+  img {
+    width: 20px;
+    height: 20px;
   }
 
   //////////////////////////////////////
@@ -122,5 +159,16 @@
 
   .hamburger--active ~ .menu {
     transform: translateX(0);
+  }
+
+  .link--active {
+    background-color: $babyPowder;
+    color: $richBlack;
+  }
+  .link:focus {
+    border: 1px $babyPowder solid;
+  }
+  .link:hover {
+    transform: scale(1.05);
   }
 </style>

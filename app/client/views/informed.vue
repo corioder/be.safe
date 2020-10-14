@@ -1,10 +1,5 @@
 <template>
-  <div class="informed">
-    <header>
-      <div class="logoContainer"><logo text="informed" /></div>
-      <navigation />
-    </header>
-  </div>
+  <div class="informed"></div>
 </template>
 
 <script>
@@ -20,20 +15,4 @@
   };
 </script>
 
-<style lang="scss" scoped>
-  @import '../scss/mixins/_flex.scss';
-  .informed {
-    header {
-      position: fixed;
-      left: 0;
-      top: 0;
-      width: 100vw;
-      .logoContainer {
-        position: relative;
-        left: 12px;
-        top: 12px;
-      }
-    }
-    // @include flex(column);
-  }
-</style>
+<style lang="scss" scoped></style>

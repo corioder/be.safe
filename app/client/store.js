@@ -6,10 +6,10 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     links: [
-      { name: 'home', link: '/' },
-      { name: 'aware', link: '/aware' },
-      { name: 'informed', link: '/informed' },
-      { name: 'proactive', link: '/proactive' },
+      { component: 'home', path: '/' },
+      { component: 'aware', path: '/aware' },
+      { component: 'informed', path: '/informed' },
+      { component: 'proactive', path: '/proactive' },
     ],
   },
   mutations: {},
