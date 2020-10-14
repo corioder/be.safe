@@ -24,7 +24,9 @@
             "
             alt=""
           />
-          {{ to.component }}
+          <span>
+            {{ to.component }}
+          </span>
         </router-link>
       </div>
     </div>
@@ -134,10 +136,17 @@
     font-size: 16px;
     text-align: left;
     transition: transform 0.2s ease-in-out;
-  }
-  img {
-    width: 20px;
-    height: 20px;
+    position: relative;
+    img {
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      top: 7px;
+      left: 3px;
+    }
+    span {
+      margin-left: 32px;
+    }
   }
 
   //////////////////////////////////////

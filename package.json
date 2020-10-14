@@ -8,11 +8,14 @@
   "devDependencies": {
     "@babel/core": "^7.10.4",
     "@babel/preset-env": "^7.10.4",
+    "apexcharts": "^3.22.0",
     "babel-loader": "^8.1.0",
     "babel-minify-webpack-plugin": "^0.3.1",
     "clean-webpack-plugin": "^3.0.0",
     "core-js": "^3.6.5",
     "css-loader": "^3.6.0",
+    "dotenv": "^8.2.0",
+    "file-loader": "^6.1.1",
     "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.14.1",
@@ -24,6 +27,7 @@
     "style-loader": "^1.2.1",
     "svgo-loader": "^2.2.1",
     "vue": "^2.6.12",
+    "vue-apexcharts": "^1.6.0",
     "vue-loader": "^15.9.3",
     "vue-router": "^3.4.6",
     "vue-template-compiler": "^2.6.12",
@@ -31,8 +35,6 @@
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0",
-    "webpackbar": "^4.0.0",
-    "dotenv": "^8.2.0",
-    "file-loader": "^6.1.1"
+    "webpackbar": "^4.0.0"
   }
 }
