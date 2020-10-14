@@ -11,19 +11,26 @@ const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 const WebpackBar = require("webpackbar");
 
+let fileLoaderIndex = -1;
 module.exports = (env = {}) => ({
   context: path.resolve(__dirname, "src"),
   mode: "production",
 
   entry: {
-    app: path.resolve(__dirname, "app/client/index.js"),
+    app: path.resolve(__dirname, "app/client/index.js")
+  },
+
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "app/client")
+    }
   },
 
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "[id].js",
     publicPath: "/",
-    jsonpFunction: "a",
+    jsonpFunction: "a"
   },
 
   module: {
@@ -32,21 +39,20 @@ module.exports = (env = {}) => ({
         test: /\.vue$/,
         loader: "vue-loader",
         options: {
-          optimizeSSR: true,
-        },
+          optimizeSSR: true
+        }
       },
       {
         test: /\.js$/,
         exclude: [/node_modules\/(webpack|html-webpack-plugin)/, /node_modules\/core-js.*/],
-        loader: "babel-loader",
-        options: { cacheDirectory: true },
+        loader: "babel-loader"
       },
       {
         test: /\.s[ac]ss$|\.css$/,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
-            options: { hmr: !env.production },
+            options: { hmr: !env.production }
           },
           "css-loader",
 
@@ -57,17 +63,49 @@ module.exports = (env = {}) => ({
                 plugins: [
                   require("postcss-import")(),
                   require("postcss-preset-env")({
-                    stage: 0,
-                  }),
-                ],
-              },
-            },
+                    stage: 0
+                  })
+                ]
+              }
+            }
           },
 
-          "sass-loader",
-        ],
+          "sass-loader"
+        ]
       },
-    ],
+      {
+        test: /\.svg$/i,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              outputPath: "assets",
+              name: () => {
+                fileLoaderIndex++;
+                return `${fileLoaderIndex}.[ext]`;
+              },
+              esModule: false
+            }
+          },
+          {
+            loader: "svgo-loader",
+          }
+        ]
+      },
+
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        loader: "file-loader",
+        options: {
+          outputPath: "assets",
+          name: () => {
+            fileLoaderIndex++;
+            return `${fileLoaderIndex}.[ext]`;
+          },
+          esModule: false
+        }
+      }
+    ]
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -79,11 +117,11 @@ module.exports = (env = {}) => ({
         removeRedundantAttributes: true,
         removeScriptTypeAttributes: true,
         removeStyleLinkTypeAttributes: true,
-        useShortDoctype: true,
-      },
+        useShortDoctype: true
+      }
     }),
     new MiniCssExtractPlugin({
-      filename: "[name].css",
+      filename: "[id].css"
     }),
     new OptimizeCssAssetsPlugin(),
     new WebpackBar(),
@@ -91,9 +129,9 @@ module.exports = (env = {}) => ({
     new DefinePlugin({
       __VUE_OPTIONS_API__: true,
       __VUE_PROD_DEVTOOLS__: false,
-      __IS_DEV__: false,
+      __IS_DEV__: false
     }),
-    new MinifyPlugin(null, { sourceMap: false }),
+    new MinifyPlugin(null, { sourceMap: false })
   ],
 
   optimization: {
@@ -105,14 +143,12 @@ module.exports = (env = {}) => ({
       cacheGroups: {
         vendor: {
           test: /[\\/]node_modules[\\/](.*?)([\\/]|$)/,
-          name: (module) => {
-            if (env.production) {
-              const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
-              return packageName;
-            }
-          },
-        },
-      },
-    },
-  },
+          name: module => {
+            const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
+            return packageName;
+          }
+        }
+      }
+    }
+  }
 });

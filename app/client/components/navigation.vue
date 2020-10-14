@@ -16,14 +16,14 @@
           :key="`${to.component}Link`"
           @click.native="toggle"
         >
-          <!-- <img
+          <img
             :src="
               $route.name == to.component
                 ? require(`../assets/icons/${to.component}--richBlack.svg`)
                 : require(`../assets/icons/${to.component}--babyPowder.svg`)
             "
             alt=""
-          /> -->
+          />
           {{ to.component }}
         </router-link>
       </div>
