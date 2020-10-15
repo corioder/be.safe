@@ -10,13 +10,33 @@ export default new Vuex.Store({
       { component: 'informed', path: '/informed' },
       { component: 'proactive', path: '/proactive' },
     ],
-    urls: {
-      API: 'http://10.0.1.50:8080/',
+    APIS: {
+      API: 'http://localhost:8080/',
       STRAPI: '',
       TWITTER: '',
     },
+    data:{
+      perday:[],
+      common:{},
+      testsperday:{},
+      today:{},
+      yesterday:{},
+    }
   },
-  mutations: {},
-  actions: {},
+  mutations: {
+    
+  },
+  actions: {
+    getData({commit, state},path){
+      fetch(state.urls.API + path)
+      .then((response) => response.json())
+      .then((data) => {
+        this.$store.state.data.today = data[data.length - 1];
+        this.$store.state.data.yesterday = data[data.length - 2];
+      })
+      // .then((data) => console.log(data))
+      .catch((error) => console.error(error));
+  }
+},
   modules: {},
 });

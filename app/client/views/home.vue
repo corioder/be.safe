@@ -1,11 +1,17 @@
 <template>
-  <div class="home"></div>
+  <div class="home">
+    <boxes />
+  </div>
 </template>
 
 <script>
-  export default {
-    name: 'home',
-  };
+import boxes from "../components/boxes.vue";
+export default {
+  name: "home",
+  components: {
+    boxes,
+  },
+};
 </script>
 
 <style lang="scss" scoped></style>
