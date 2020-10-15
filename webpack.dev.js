@@ -1,30 +1,25 @@
+const common = require("./webpack.common.js");
+
 require("dotenv").config();
 const path = require("path");
 
 const { DefinePlugin } = require("webpack");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-
 const { VueLoaderPlugin } = require("vue-loader");
+
+const ManifestPlugin = require("webpack-manifest-plugin");
+const WorkboxPlugin = require("workbox-webpack-plugin");
+
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const WebpackBar = require("webpackbar");
 
 module.exports = (env = {}) => ({
-  context: path.resolve(__dirname, "src"),
+  ...common,
   mode: "development",
   devtool: "source-map",
   stats: "minimal",
-
-  entry: {
-    app: path.resolve(__dirname, "app/client/index.js")
-  },
-
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "app/client")
-    }
-  },
 
   output: {
     path: path.resolve(__dirname, "dev"),
@@ -43,7 +38,7 @@ module.exports = (env = {}) => ({
       },
       {
         test: /\.js$/,
-        exclude: [/node_modules\/(webpack|html-webpack-plugin)/, /node_modules\/core-js.*/],
+        exclude: [/node_modules\/(webpack|html-webpack-plugin)/, /node_modules\/core-js.*/, /service-worker\.js/],
         loader: "babel-loader",
         options: { cacheDirectory: true }
       },
@@ -98,6 +93,21 @@ module.exports = (env = {}) => ({
       __VUE_OPTIONS_API__: true,
       __VUE_PROD_DEVTOOLS__: false,
       __IS_DEV__: true
+    }),
+    new WorkboxPlugin.GenerateSW({
+      runtimeCaching: [
+        {
+          handler: "CacheFirst",
+          urlPattern: /http:\/\/localhost:8081/,
+          options: {
+            cacheName: "API",
+            expiration: {
+              // half hour
+              maxAgeSeconds: 60 * 30
+            }
+          }
+        }
+      ]
     })
   ],
 
@@ -128,7 +138,7 @@ module.exports = (env = {}) => ({
     writeToDisk: true,
     clientLogLevel: "error",
     overlay: {
-      warnings: true,
+      warnings: false,
       errors: true
     },
     historyApiFallback: true,

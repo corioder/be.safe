@@ -1,9 +1,14 @@
+const common = require("./webpack.common.js");
+
 const path = require("path");
 
 const { DefinePlugin } = require("webpack");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-
 const { VueLoaderPlugin } = require("vue-loader");
+
+const ManifestPlugin = require("webpack-manifest-plugin");
+const WorkboxPlugin = require("workbox-webpack-plugin");
+
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const MinifyPlugin = require("babel-minify-webpack-plugin");
@@ -13,18 +18,8 @@ const WebpackBar = require("webpackbar");
 
 let fileLoaderIndex = -1;
 module.exports = (env = {}) => ({
-  context: path.resolve(__dirname, "src"),
+  ...common,
   mode: "production",
-
-  entry: {
-    app: path.resolve(__dirname, "app/client/index.js")
-  },
-
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "app/client")
-    }
-  },
 
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -88,7 +83,7 @@ module.exports = (env = {}) => ({
             }
           },
           {
-            loader: "svgo-loader",
+            loader: "svgo-loader"
           }
         ]
       },
@@ -131,6 +126,10 @@ module.exports = (env = {}) => ({
       __VUE_PROD_DEVTOOLS__: false,
       __IS_DEV__: false
     }),
+    new WorkboxPlugin.GenerateSW(),
+    // new ManifestPlugin({
+    //   seed: { assets: {}, brands: {} }
+    // })
     new MinifyPlugin(null, { sourceMap: false })
   ],
 
