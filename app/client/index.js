@@ -12,6 +12,17 @@ if ("serviceWorker" in navigator) {
   });
 }
 
+const testObject = {
+  // a: {
+  //   b: {
+  //     c: 2
+  //   }
+  // }
+};
+
+
+console.log(testObject?.a?.b)
+
 new Vue({
   router,
   store,

@@ -4,7 +4,28 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"sync"
 )
+
+var validEnpoints = [...]string{"countryperday", "common", "perday", "polandDeaths", "prognosis", "provinces", "testsperday"}
+
+type cache struct {
+	mu   sync.RWMutex
+	data map[string][]byte
+}
+
+var globalCache *cache
+
+func init() {
+	globalCache = &cache{
+		mu:   sync.RWMutex{},
+		data: make(map[string][]byte),
+	}
+}
+
+func getData(r *http.Request) ([]byte, error) {
+	return make([]byte, 0), nil
+}
 
 // UWAGA WIĘKSZOŚĆ JEST NIE PO KOLEI
 
