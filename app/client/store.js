@@ -3,67 +3,56 @@ import Vuex from 'vuex';
 
 const CATEGORIES = [
   {
-    name: 'Potwierdzone przypadki',
     amount: undefined,
     amountOfNew: undefined,
     percentChange: undefined,
   },
   {
-    name: 'Aktywne przypadki',
     amount: undefined,
     amountOfNew: undefined,
     percentChange: undefined,
   },
   {
-    name: 'Zgony',
     amount: undefined,
     amountOfNew: undefined,
     percentChange: undefined,
   },
   {
-    name: 'Liczba wyzdrowiałych',
     amount: undefined,
     amountOfNew: undefined,
     percentChange: undefined,
   },
   {
-    name: 'Kwarantanna',
     amount: undefined,
     amountOfNew: undefined,
     percentChange: undefined,
   },
   {
-    name: 'Nadzór epidemologiczny',
     amount: undefined,
     amountOfNew: undefined,
     percentChange: undefined,
   },
   {
-    name: 'Liczba testów',
     amount: undefined,
     amountOfNew: undefined,
     percentChange: undefined,
   },
   {
-    name: 'Przetestowane osoby',
     amount: undefined,
     amountOfNew: undefined,
     percentChange: undefined,
   },
   {
-    name: 'Liczba testów negatywnych',
     amount: undefined,
     amountOfNew: undefined,
     percentChange: undefined,
   },
   {
-    name: 'Liczba hospitalizowanych',
     amount: undefined,
     amountOfNew: undefined,
     percentChange: undefined,
   },
   {
-    name: 'Zajęte respiratory',
     amount: undefined,
     amountOfNew: undefined,
     percentChange: undefined,
@@ -119,46 +108,57 @@ export default new Vuex.Store({
     CATEGORIES(state, payload) {
       const type = [
         {
+          name: 'Potwierdzone przypadki',
           isPositive: false,
           displayOnHomepage: true,
         },
         {
+          name: 'Aktywne przypadki',
           isPositive: false,
           displayOnHomepage: true,
         },
         {
+          name: 'Zgony',
           isPositive: false,
           displayOnHomepage: true,
         },
         {
+          name: 'Liczba wyzdrowiałych',
           isPositive: true,
           displayOnHomepage: true,
         },
         {
+          name: 'Kwarantanna',
           isPositive: false,
           displayOnHomepage: false,
         },
         {
+          name: 'Nadzór epidemologiczny',
           isPositive: false,
           displayOnHomepage: false,
         },
         {
+          name: 'Liczba testów',
           isPositive: true,
           displayOnHomepage: true,
         },
         {
+          name: 'Przetestowane osoby',
           isPositive: true,
           displayOnHomepage: false,
         },
         {
+          name: 'Liczba testów negatywnych',
           isPositive: true,
           displayOnHomepage: false,
         },
         {
+          name: 'Liczba hospitalizowanych',
           isPositive: false,
           displayOnHomepage: false,
         },
         {
+          name: 'Zajęte respiratory',
           isPositive: false,
           displayOnHomepage: false,
         },
