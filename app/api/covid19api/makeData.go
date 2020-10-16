@@ -14,46 +14,36 @@ import (
 	"github.com/andybalholm/brotli"
 )
 
-// TODO: create responde for computed
-var computedEnpoints = [...]string{"activeperday"}
-var validEnpoints = [...]string{"countryperday", "common", "perday", "polandDeaths", "prognosis", "provinces", "testsperday"}
 
 const apiUrl = "https://api-korona-wirus.pl"
 const apiKey = "27881261-6dbc-4867-a13d-a4f8541dc193"
 
 func makeDataFunc(key string, info interface{}) (interface{}, error) {
-	r, ok := info.(*http.Request)
-	if !ok {
-		return nil, errors.New("Wrong data type for info.(*http.Request)")
-	}
-	path := r.URL.Path[1:]
+	path := key
 
 	for _, validEnpoint := range validEnpoints {
 		if validEnpoint == path {
-			return fetchData(r, path)
+			return fetchData(path)
 		}
 	}
 
 	for _, computedEnpoint := range computedEnpoints {
 		if computedEnpoint == path {
-			return computeData(r, path)
+			return computeData(path)
 		}
 	}
 
 	return nil, fmt.Errorf("Undefined enpoint: %s", path)
 }
 
-func fetchData(r *http.Request, path string) (cachedData, error) {
-	req, err := http.NewRequest("GET", apiUrl+r.URL.Path+"?apiKey="+apiKey, nil)
+func fetchData(path string) (cachedData, error) {
+	req, err := http.NewRequest("GET", apiUrl+"/"+path+"?apiKey="+apiKey, nil)
 	if err != nil {
 		return nilCachedData, err
 	}
 
 	req.Header.Set("origin", "https://koronawirus-w-polsce.pl")
 	req.Header.Set("Accept-Encoding", "br")
-	// for key, value := range r.Header {
-	// 	req.Header[key] = value
-	// }
 
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
@@ -77,24 +67,7 @@ func fetchData(r *http.Request, path string) (cachedData, error) {
 	}
 	resp.Body.Close()
 
-	responseHeaders := make(http.Header)
-	// TODO: compression
-	// useBr := false
-	// if strings.Contains(r.Header.Get("Accept-Encoding"), "br") {
-	// useBr = true
-	// responseWriterHeaders.Set("Content-Encoding", "br")
-	// }
-
-	// if useBr {
-	// 	pr, pw := io.Pipe()
-	// 	brotli.NewWriter(pw)
-	// 	data, err = ioutil.ReadAll(pr)
-	// 	if err != nil {
-	// 		return nil, nil, err
-	// 	}
-	// }
-
-	return cachedData{d: data, headers: responseHeaders}, nil
+	return cachedData{d: data}, nil
 }
 
 const dayMonthYearCorrect = "02.01.2006"

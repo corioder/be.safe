@@ -1,7 +1,6 @@
 package cache
 
 import (
-	"fmt"
 	"sync"
 	"time"
 )
@@ -37,12 +36,12 @@ func (c *Cache) GetData(key string, info interface{}) (interface{}, error) {
 	c.mu.RUnlock()
 
 	if !ok {
-		fmt.Println("not cache, first hit")
+		// fmt.Println("not cache, first hit")
 		return c.makeDataAndAddToCache(key, info)
 	}
 
 	if time.Since(cached.addedTime) > c.expirationTime {
-		fmt.Println("not cache, expired")
+		// fmt.Println("not cache, expired")
 		return c.makeDataAndAddToCache(key, info)
 	}
 
