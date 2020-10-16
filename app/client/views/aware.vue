@@ -6,11 +6,13 @@
 
 <script>
   import boxes from '../components/boxes.vue';
+  import chart from '../components/chart.vue';
 
   export default {
     name: 'aware',
     components: {
       boxes,
+      chart,
     },
   };
 </script>
