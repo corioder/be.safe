@@ -39,7 +39,7 @@ module.exports = (env = {}) => ({
       },
       {
         test: /\.js$/,
-        exclude: [/node_modules\/(webpack|html-webpack-plugin)/, /node_modules\/core-js.*/],
+        exclude: [/node_modules\/(webpack|html-webpack-plugin)/, /node_modules\/core-js.*/s],
         loader: "babel-loader"
       },
       {
@@ -126,10 +126,21 @@ module.exports = (env = {}) => ({
       __VUE_PROD_DEVTOOLS__: false,
       __IS_DEV__: false
     }),
-    new WorkboxPlugin.GenerateSW(),
-    // new ManifestPlugin({
-    //   seed: { assets: {}, brands: {} }
-    // })
+    new WorkboxPlugin.GenerateSW({
+      runtimeCaching: [
+        {
+          handler: "CacheFirst",
+          urlPattern: /http:\/\/localhost:8081/,
+          options: {
+            cacheName: "API",
+            expiration: {
+              // half hour
+              maxAgeSeconds: 60 * 30
+            }
+          }
+        }
+      ]
+    }),
     new MinifyPlugin(null, { sourceMap: false })
   ],
 

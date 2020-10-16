@@ -1,13 +1,8 @@
-package main
-
-import (
-	"fmt"
-	"io/ioutil"
-	"net/http"
-)
+// tylko poglądowe
 
 // UWAGA WIĘKSZOŚĆ JEST NIE PO KOLEI
 
+// dzień.miesiąc.rok
 // countryperday - historia codzienna na świecie:
 // [
 // 	{
@@ -25,6 +20,7 @@ import (
 // 	"poland": "31931"
 // 	},
 
+// rok.miesiąc.dzień godzina:minuta:sekunda
 // common - to co jest w tej chwili:
 // [
 //	 {
@@ -36,6 +32,7 @@ import (
 //	 }
 // ]
 
+// rok.miesiąc.dzień godzina:minuta:sekunda
 // perday - historia codzienna w polsce:
 // 	{
 // 	"_id": "13.10.2020",
@@ -54,6 +51,7 @@ import (
 // 	}
 // ]
 
+// dzień.miesiąc.rok
 // polandDeaths - śmierci w polsce, bardzo dokładnie:
 // 	{
 // 	"_id": "5f8032879f203d4e7c3bd770",
@@ -65,6 +63,7 @@ import (
 // 	}
 // ]
 
+// dzień.miesiąc.rok
 // prognosis - prognozy w zachorowaniach:
 // 	{
 // 	"_id": "5f843eb1bb0b923ea44e3df5",
@@ -74,6 +73,7 @@ import (
 // 	}
 // ]
 
+// rok.miesiąc.dzień godzina:minuta:sekunda
 // provinces - potwierdzenia oraz śmierci w wojewódcach:
 // [
 // 	{
@@ -89,6 +89,8 @@ import (
 // 	"time_stamp": "2020-10-13T19:40:08+02:00"
 // 	},
 
+
+// dzień.miesiąc.rok
 // testsperday - testy dziennie w krajach, już trochę outdeted:
 // 	{
 // 	"_id": "5ed0daccb74a53199c057dd0",
@@ -113,52 +115,3 @@ import (
 // 	"poland": ""
 // 	}
 // ]
-
-const apiUrl = "https://api-korona-wirus.pl"
-const apiKey = "27881261-6dbc-4867-a13d-a4f8541dc193"
-
-func apiBinds(rw http.ResponseWriter, r *http.Request) {
-	defer func() {
-		err := recover()
-		if err != nil {
-			fmt.Println("recoverd from error: ", err)
-		}
-	}()
-
-	if r.URL.Path == "/inform" || r.URL.Path == "/favicon.ico" {
-		rw.WriteHeader(http.StatusNotFound)
-		return
-	}
-
-	req, err := http.NewRequest("GET", apiUrl+r.URL.Path+"?apiKey="+apiKey, nil)
-	if err != nil {
-		rw.WriteHeader(http.StatusInternalServerError)
-		return
-	}
-
-	req.Header.Set("Accept-Encoding", r.Header.Get("Accept-Encoding"))
-	req.Header.Set("origin", "https://koronawirus-w-polsce.pl")
-
-	resp, err := http.DefaultClient.Do(req)
-	if err != nil {
-		rw.WriteHeader(http.StatusInternalServerError)
-		return
-	}
-
-	defer resp.Body.Close()
-	data, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		rw.WriteHeader(http.StatusInternalServerError)
-		return
-	}
-
-	rw.Header().Set("Content-Encoding", resp.Header.Get("Content-Encoding"))
-	rw.Header().Set("Access-Control-Allow-Origin", "*")
-	rw.Header().Set("Content-Type", "application/json; charset=utf-8")
-
-	_, err = rw.Write(data)
-	if err != nil {
-		rw.WriteHeader(http.StatusInternalServerError)
-		return
-	}
-}
