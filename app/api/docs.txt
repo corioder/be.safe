@@ -1,3 +1,5 @@
+// tylko poglądowe
+
 // UWAGA WIĘKSZOŚĆ JEST NIE PO KOLEI
 
 // dzień.miesiąc.rok
