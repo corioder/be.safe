@@ -4,35 +4,9 @@ import (
 	"net/http"
 )
 
+//!sortowanie : pierwsze najstarsze
+
 // UWAGA WIĘKSZOŚĆ JEST NIE PO KOLEI
-
-// countryperday - historia codzienna na świecie:
-// [
-// 	{
-// 	"_id": "5f71b1df6cd9144c48d1b8b4",
-// 	"date": "21.06.2020",
-// 	"day": "100",
-// 	"italy": "233997",
-// 	"germany": "186516",
-// 	"usa": "2028208",
-// 	"france": "154188",
-// 	"spain": "289046",
-// 	"uk": "269318",
-// 	"south_korea": "11441",
-// 	"czech": "10406",
-// 	"poland": "31931"
-// 	},
-
-// common - to co jest w tej chwili:
-// [
-//	 {
-//	 "_id": "common",
-//	 "lastUpdate": "2020-10-13T17:20:02.018Z",
-//	 "totalConfirmed": 37795152,
-//	 "totalDeaths": 1080606,
-//	 "totalRecovered": 26270220
-//	 }
-// ]
 
 // perday - historia codzienna w polsce:
 // 	{
@@ -52,27 +26,20 @@ import (
 // 	}
 // ]
 
-// polandDeaths - śmierci w polsce, bardzo dokładnie:
-// 	{
-// 	"_id": "5f8032879f203d4e7c3bd770",
-// 	"no": "2922",
-// 	"age": "65",
-// 	"sex": "M",
-// 	"date": "9.10.2020",
-// 	"province": "Pomorskie"
-// 	}
+
+// common - to co jest w tej chwili:
+// [
+//	 {
+//	 "_id": "common",
+//	 "lastUpdate": "2020-10-13T17:20:02.018Z",
+//	 "totalConfirmed": 37795152,
+//	 "totalDeaths": 1080606,
+//	 "totalRecovered": 26270220
+//	 }
 // ]
 
-// prognosis - prognozy w zachorowaniach:
-// 	{
-// 	"_id": "5f843eb1bb0b923ea44e3df5",
-// 	"date": "22.10.2020",
-// 	"reported": "",
-// 	"prognosis": "191248.4"
-// 	}
-// ]
 
-// provinces - potwierdzenia oraz śmierci w wojewódcach:
+// provinces - potwierdzenia oraz śmierci w województwach:
 // [
 // 	{
 // 	"_id": "Dolnośląskie",
@@ -87,6 +54,49 @@ import (
 // 	"time_stamp": "2020-10-13T19:40:08+02:00"
 // 	},
 
+
+// countryperday - historia codzienna na świecie:
+// [
+// 	{
+// 	"_id": "5f71b1df6cd9144c48d1b8b4",
+// 	"date": "21.06.2020",
+// 	"day": "100",
+// 	"italy": "233997",
+// 	"germany": "186516",
+// 	"usa": "2028208",
+// 	"france": "154188",
+// 	"spain": "289046",
+// 	"uk": "269318",
+// 	"south_korea": "11441",
+// 	"czech": "10406",
+// 	"poland": "31931"
+// 	},
+
+
+// prognosis - prognozy w zachorowaniach:
+// 	{
+// 	"_id": "5f843eb1bb0b923ea44e3df5",
+// 	"date": "22.10.2020",
+// 	"reported": "",
+// 	"prognosis": "191248.4"
+// 	}
+// ]
+
+/*
+ // polandDeaths - śmierci w polsce, bardzo dokładnie:
+// 	{
+// 	"_id": "5f8032879f203d4e7c3bd770",
+// 	"no": "2922",
+// 	"age": "65",
+// 	"sex": "M",
+// 	"date": "9.10.2020",
+// 	"province": "Pomorskie"
+// 	}
+// ] 
+*/
+
+
+/* 
 // testsperday - testy dziennie w krajach, już trochę outdeted:
 // 	{
 // 	"_id": "5ed0daccb74a53199c057dd0",
@@ -111,6 +121,7 @@ import (
 // 	"poland": ""
 // 	}
 // ]
+ */
 
 const apiUrl = "https://api-korona-wirus.pl"
 const apiKey = "27881261-6dbc-4867-a13d-a4f8541dc193"
