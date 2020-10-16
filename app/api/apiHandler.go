@@ -36,6 +36,7 @@ func apiBinds(rw http.ResponseWriter, r *http.Request) {
 			rw.Header().Add(key, elem)
 		}
 	}
+	rw.Header().Set("Access-Control-Allow-Origin", "*")
 
 	_, err = rw.Write(data)
 	if err != nil {
