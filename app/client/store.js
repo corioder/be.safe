@@ -80,7 +80,7 @@ export default new Vuex.Store({
       { component: 'proactive', path: '/proactive' },
     ],
     APIS: {
-      API: 'http://10.0.1.50:8081/',
+      API: 'http://localhost:8081/',
       STRAPI: '',
       TWITTER: '',
     },
