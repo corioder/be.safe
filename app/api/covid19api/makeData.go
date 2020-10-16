@@ -1,4 +1,4 @@
-package main
+package covid19api
 
 import (
 	"encoding/json"
@@ -9,96 +9,44 @@ import (
 	"net/http"
 	"sort"
 	"strconv"
-	"sync"
 	"time"
 
 	"github.com/andybalholm/brotli"
 )
 
-var validEnpoints = [...]string{"countryperday", "common", "perday", "polandDeaths", "prognosis", "provinces", "testsperday"}
-
 // TODO: create responde for computed
 var computedEnpoints = [...]string{"activeperday"}
-
-type cache struct {
-	mu   sync.RWMutex
-	data map[string]cacheData
-}
-
-type cacheData struct {
-	data      []byte
-	headers   http.Header
-	addedTime time.Time
-}
-
-func newCache() *cache {
-	return &cache{
-		mu:   sync.RWMutex{},
-		data: make(map[string]cacheData),
-	}
-}
-
-func (c *cache) GetData(r *http.Request) ([]byte, http.Header, error) {
-	path := r.URL.Path[1:]
-
-	for _, validEnpoint := range validEnpoints {
-		if path == validEnpoint {
-			return c.getCachedIfPossible(r, path)
-		}
-	}
-
-	return make([]byte, 0), nil, nil
-}
-
-func (c *cache) getCachedIfPossible(r *http.Request, path string) ([]byte, http.Header, error) {
-	c.mu.RLock()
-	data, ok := c.data[path]
-	c.mu.RUnlock()
-	if !ok {
-		data, headers, err := c.fetchData(r, path)
-		if err != nil {
-			return nil, nil, err
-		}
-
-		c.mu.Lock()
-		c.data[path] = cacheData{
-			data:      data,
-			headers:   headers,
-			addedTime: time.Now(),
-		}
-		c.mu.Unlock()
-
-		return data, headers, nil
-	}
-
-	if time.Since(data.addedTime) > time.Hour/2 {
-		// data expired
-		data, headers, err := c.fetchData(r, path)
-		if err != nil {
-			return nil, nil, err
-		}
-
-		c.mu.Lock()
-		c.data[path] = cacheData{
-			data:      data,
-			headers:   headers,
-			addedTime: time.Now(),
-		}
-		c.mu.Unlock()
-
-		return c.fetchData(r, path)
-	}
-
-	return data.data, data.headers, nil
-}
+var validEnpoints = [...]string{"countryperday", "common", "perday", "polandDeaths", "prognosis", "provinces", "testsperday"}
 
 const apiUrl = "https://api-korona-wirus.pl"
 const apiKey = "27881261-6dbc-4867-a13d-a4f8541dc193"
 
-func (c *cache) fetchData(r *http.Request, path string) ([]byte, http.Header, error) {
+func makeDataFunc(key string, info interface{}) (interface{}, error) {
+	r, ok := info.(*http.Request)
+	if !ok {
+		return nil, errors.New("Wrong data type for info.(*http.Request)")
+	}
+	path := r.URL.Path[1:]
+
+	for _, validEnpoint := range validEnpoints {
+		if validEnpoint == path {
+			return fetchData(r, path)
+		}
+	}
+
+	for _, computedEnpoint := range computedEnpoints {
+		if computedEnpoint == path {
+			return computeData(r, path)
+		}
+	}
+
+	return nil, fmt.Errorf("Undefined enpoint: %s", path)
+}
+
+func fetchData(r *http.Request, path string) (cachedData, error) {
 	req, err := http.NewRequest("GET", apiUrl+r.URL.Path+"?apiKey="+apiKey, nil)
 	if err != nil {
-		return nil, nil, err
+		return nilCachedData, err
 	}
 
 	req.Header.Set("origin", "https://koronawirus-w-polsce.pl")
@@ -109,28 +57,27 @@ func (c *cache) fetchData(r *http.Request, path string) ([]byte, http.Header, er
 
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
-		return nil, nil, err
+		return nilCachedData, err
 	}
 
 	if resp.StatusCode != http.StatusOK {
-		return nil, nil, fmt.Errorf("Unexpected status code" + resp.Status)
+		return nilCachedData, fmt.Errorf("Unexpected status code" + resp.Status)
 	}
 
 	var reader io.Reader
-
 	if resp.Header.Get("Content-Encoding") == "br" {
 		reader = brotli.NewReader(resp.Body)
 	} else {
 		reader = resp.Body
 	}
 
-	data, err := c.reciveAndSortData(reader, path)
+	data, err := reciveAndSortData(reader, path)
 	if err != nil {
-		return nil, nil, err
+		return nilCachedData, err
 	}
 	resp.Body.Close()
 
-	responseWriterHeaders := make(http.Header)
+	responseHeaders := make(http.Header)
 	// TODO: compression
 	// useBr := false
 	// if strings.Contains(r.Header.Get("Accept-Encoding"), "br") {
@@ -147,18 +94,16 @@ func (c *cache) fetchData(r *http.Request, path string) ([]byte, http.Header, er
 	// 	}
 	// }
 
-	return data, responseWriterHeaders, nil
+	return cachedData{d: data, headers: responseHeaders}, nil
 }
 
 const dayMonthYearCorrect = "02.01.2006"
 const exactTimeCorrect = "15:04:05"
 
 const dayMonthYear = "_2.01.2006"
-
-// 2020-10-16T12:30:09+02:00
 const yearMonthDayTime = "2006-01-02T15:04:05.999Z"
 
-func (c *cache) reciveAndSortData(body io.Reader, path string) ([]byte, error) {
+func reciveAndSortData(body io.Reader, path string) ([]byte, error) {
 	data, err := ioutil.ReadAll(body)
 	if err != nil {
 		return nil, err
@@ -187,7 +132,7 @@ func (c *cache) reciveAndSortData(body io.Reader, path string) ([]byte, error) {
 		for i := 0; i < len(d); i++ {
 			date, ok := d[i]["date"].(string)
 			if !ok {
-				return nil, errors.New("wrong type for data")
+				return nil, errors.New(`Wrong data type for d[i]["date"].(string)`)
 			}
 
 			t, err := time.Parse(dayMonthYear, date)
@@ -198,34 +143,30 @@ func (c *cache) reciveAndSortData(body io.Reader, path string) ([]byte, error) {
 			d[i]["date"] = t.Format(dayMonthYearCorrect)
 		}
 
-	case "common", "perday", "provinces":
-
+	case "perday":
 		// sort
-		if path == "perday" {
-			sort.Sort(sortByDate{
-				data:        d,
-				datePattern: yearMonthDayTime,
-			})
-		}
+		sort.Sort(sortByDate{
+			data:        d,
+			datePattern: yearMonthDayTime,
+		})
 
 		// normalize dates
-		if path == "perday" {
-			for i := 0; i < len(d); i++ {
-				date, ok := d[i]["date"].(string)
-				if !ok {
-					return nil, errors.New("wrong type for data")
-				}
-
-				t, err := time.Parse(yearMonthDayTime, date)
-				if err != nil {
-					return nil, err
-				}
-
-				d[i]["date"] = t.Format(dayMonthYearCorrect)
+		for i := 0; i < len(d); i++ {
+			date, ok := d[i]["date"].(string)
+			if !ok {
+				return nil, errors.New("wrong type for data")
 			}
-			break
+
+			t, err := time.Parse(yearMonthDayTime, date)
+			if err != nil {
+				return nil, err
+			}
+
+			d[i]["date"] = t.Format(dayMonthYearCorrect)
 		}
 
+	case "common", "provinces":
+		// normalize dates
 		var key string
 		var parseString string
 		if path == "common" {
