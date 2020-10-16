@@ -1,0 +1,7 @@
+countryperday - date:           21.06.2020
+common -        lastUpdate:     2020-10-15T11:10:02.086Z
+perday -        date:           2020-03-04T22:00:00.000Z
+polandDeaths -  date:           12.03.2020
+prognosis -     date:           16.09.2020
+provinces -     time_stamp:     2020-10-15T13:10:07+02:00
+testsperday -   date:           14.03.2020

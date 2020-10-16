@@ -129,6 +129,14 @@ import (
 func main() {
 	// TODO: mayby add cache
 
+	// a := time.Now()
+
+	// time.Sleep(time.Second)
+
+	// fmt.Println(time.Since(a))
+	// time.Second
+
+
 	http.HandleFunc("/", apiBinds)
 
 	port := os.Getenv("PORT")

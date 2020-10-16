@@ -38,7 +38,7 @@ module.exports = (env = {}) => ({
       },
       {
         test: /\.js$/,
-        exclude: [/node_modules\/(webpack|html-webpack-plugin)/, /node_modules\/core-js.*/, /service-worker\.js/],
+        exclude: [/node_modules\/(webpack|html-webpack-plugin)/, /node_modules\/core-js.*/s],
         loader: "babel-loader",
         options: { cacheDirectory: true }
       },
