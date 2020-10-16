@@ -80,7 +80,7 @@ export default new Vuex.Store({
       { component: 'proactive', path: '/proactive' },
     ],
     APIS: {
-      API: 'http://localhost:8081/',
+      API: 'http://10.0.1.50:8081/',
       STRAPI: '',
       TWITTER: '',
     },
@@ -94,13 +94,15 @@ export default new Vuex.Store({
       prognosis: {},
     },
     categories: [],
+    chartData: {
+      confirmed: {},
+    },
   },
   mutations: {
     PERDAY(state, payload) {
       state.data.perday = payload;
       state.data.today = payload[payload.length - 1];
       state.data.yesterday = payload[payload.length - 2];
-      console.log(payload[payload.length - 1]);
     },
     COMMON(state, payload) {
       state.data.common = payload;
@@ -168,6 +170,19 @@ export default new Vuex.Store({
       }
       state.categories = categories;
     },
+    CHARTDATA(state, payload) {
+      const getDataForChart = (chartType) => {
+        const dataForChart = { data: [], dates: [] };
+        for (let i in payload) {
+          dataForChart.data.push(payload[i][chartType]);
+          dataForChart.dates.push(payload[i].date);
+        }
+        console.log(dataForChart);
+
+        return dataForChart;
+      };
+      state.chartData.confirmed = getDataForChart('confirmed');
+    },
   },
   actions: {
     async fetchData({ commit, state }) {
@@ -175,6 +190,7 @@ export default new Vuex.Store({
         const response = await fetch(state.APIS.API + 'perday');
         const data = await response.json();
         commit('PERDAY', data);
+        commit('CHARTDATA', data);
       } catch (error) {
         throw error;
       }

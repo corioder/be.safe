@@ -1,19 +1,19 @@
 <template>
   <div class="aware">
     <!-- <boxes /> -->
-    <chart />
+    <charts />
   </div>
 </template>
 
 <script>
   import boxes from '../components/boxes.vue';
-  import chart from '../components/chart.vue';
+  import charts from '../components/charts.vue';
 
   export default {
     name: 'aware',
     components: {
       boxes,
-      chart,
+      charts,
     },
   };
 </script>

@@ -59,6 +59,7 @@
     position: absolute;
     top: 10px;
     right: 12px;
+    z-index: 999;
   }
 
   .hamburger {
