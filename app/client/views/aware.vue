@@ -1,32 +1,24 @@
 <template>
   <div class="aware">
-    <div v-for="day in perday" :key="day._id">{{ day.confirmed }}</div>
+    <boxes />
   </div>
 </template>
 
 <script>
-export default {
-  name: 'aware',
-  data() {
-    return {
-      perday: [],
-    };
-  },
-  mounted() {
-    fetch(this.$store.state.urls.API + 'perday')
-      .then((response) => response.json())
-      .then((data) => (this.perday = data))
-      .then(() => (this.today = this.perday[this.perday.length - 1]))
-      .then(() => console.log(this.perday))
-      .catch((error) => console.error(error));
-  },
-};
+  import boxes from '../components/boxes.vue';
+
+  export default {
+    name: 'aware',
+    components: {
+      boxes,
+    },
+  };
 </script>
 
 <style lang="scss" scoped>
-@import '../scss/mixins/_flex.scss';
-.aware {
-  @include flex(column);
-  width: calc(100vw - 25px);
-}
+  @import '../scss/mixins/_flex.scss';
+  .aware {
+    @include flex(column);
+    width: 100vw;
+  }
 </style>
