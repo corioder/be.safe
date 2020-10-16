@@ -13,8 +13,7 @@ var validEnpoints = [...]string{"countryperday", "common", "perday", "polandDeat
 var globalCache *cache.Cache
 
 func init() {
-	// globalCache = cache.NewCache(time.Hour/2, makeDataFunc)
-	globalCache = cache.NewCache(time.Microsecond, makeDataFunc)
+	globalCache = cache.NewCache(time.Hour/2, makeDataFunc)
 }
 
 var nilCachedData cachedData
@@ -24,12 +23,12 @@ type cachedData struct {
 }
 
 func Covid19ApiHandler(rw http.ResponseWriter, r *http.Request) {
-	// defer func() {
-	// 	err := recover()
-	// 	if err != nil {
-	// 		fmt.Println("recoverd from error:", err)
-	// 	}
-	// }()
+	defer func() {
+		err := recover()
+		if err != nil {
+			fmt.Println("recoverd from error:", err)
+		}
+	}()
 
 	if r.URL.Path == "/inform" || r.URL.Path == "/favicon.ico" {
 		rw.WriteHeader(http.StatusNotFound)

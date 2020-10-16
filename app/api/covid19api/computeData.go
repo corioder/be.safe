@@ -7,73 +7,6 @@ import (
 	"strconv"
 )
 
-// {
-// 	name: '',
-// 	amount: undefined,
-// 	amountOfNew: undefined,
-// 	percentChange: undefined,
-// },
-// {
-// 	name: '',
-// 	amount: undefined,
-// 	amountOfNew: undefined,
-// 	percentChange: undefined,
-// },
-// {
-// 	name: ',
-// 	amount: undefined,
-// 	amountOfNew: undefined,
-// 	percentChange: undefined,
-// },
-// {
-// 	name: '',
-// 	amount: undefined,
-// 	amountOfNew: undefined,
-// 	percentChange: undefined,
-// },
-// {
-// 	name: ',
-// 	amount: undefined,
-// 	amountOfNew: undefined,
-// 	percentChange: undefined,
-// },
-// {
-// 	name: '',
-// 	amount: undefined,
-// 	amountOfNew: undefined,
-// 	percentChange: undefined,
-// },
-// {
-// 	name: '',
-// 	amount: undefined,
-// 	amountOfNew: undefined,
-// 	percentChange: undefined,
-// },
-// {
-// 	name: '',
-// 	amount: undefined,
-// 	amountOfNew: undefined,
-// 	percentChange: undefined,
-// },
-// {
-// 	name: 'Liczba ',
-// 	amount: undefined,
-// 	amountOfNew: undefined,
-// 	percentChange: undefined,
-// },
-// {
-// 	name: '',
-// 	amount: undefined,
-// 	amountOfNew: undefined,
-// 	percentChange: undefined,
-// },
-// {
-// 	name: '',
-// 	amount: undefined,
-// 	amountOfNew: undefined,
-// 	percentChange: undefined,
-// },
-
 func computeData(path string) (cachedData, error) {
 	switch path {
 	case "categories":
@@ -83,24 +16,6 @@ func computeData(path string) (cachedData, error) {
 
 	return cachedData{}, nil
 }
-
-// 	amount: undefined
-// 	amountOfNew: undefined
-// 	percentChange: undefined
-
-// Potwierdzone przypadki
-// Aktywne przypadki
-// Zgony
-// Liczba wyzdrowiałych
-// Kwarantanna
-// Nadzór epidemologiczny
-// Liczba testów
-// Przetestowane osoby
-// testów negatywnych
-// Liczba hospitalizowanych
-// Zajęte respiratory
-
-// !pierwsze najstarsze
 
 var getCategoriesDataEntries = [...]string{"confirmed", "active_cases", "deaths", "recovered", "quarantine", "supervision", "tests", "people_tested", "negative_tests", "hospitalized", "respirators"}
 
