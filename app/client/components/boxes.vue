@@ -25,7 +25,6 @@
     created() {
       if (this.$route.name == 'aware') this.isHome = false;
       else this.isHome = true;
-      console.log(this.$route.name);
     },
   };
 </script>

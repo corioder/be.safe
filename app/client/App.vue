@@ -19,6 +19,7 @@
     },
     created() {
       this.$store.dispatch('fetchData');
+      this.$store.dispatch('fetchArticles');
     },
   };
 </script>
@@ -28,11 +29,11 @@
   @import './scss/vars/_colors.scss';
   * {
     font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
     box-sizing: border-box;
   }
-  html{
-    background-color:$babyPowder;
-    font-weight: 400;
+  html {
+    background-color: $babyPowder;
   }
 
   header {

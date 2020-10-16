@@ -81,7 +81,7 @@ export default new Vuex.Store({
     ],
     APIS: {
       API: 'http://localhost:8081/',
-      STRAPI: '',
+      STRAPI: 'https://besafedb.herokuapp.com',
       TWITTER: '',
     },
     data: {
@@ -94,13 +94,13 @@ export default new Vuex.Store({
       prognosis: {},
     },
     categories: [],
+    articles: [],
   },
   mutations: {
     PERDAY(state, payload) {
       state.data.perday = payload;
       state.data.today = payload[payload.length - 1];
       state.data.yesterday = payload[payload.length - 2];
-      console.log(payload[payload.length - 1]);
     },
     COMMON(state, payload) {
       state.data.common = payload;
@@ -168,6 +168,9 @@ export default new Vuex.Store({
       }
       state.categories = categories;
     },
+    ARTICLES(state, payload) {
+      state.articles = payload;
+    },
   },
   actions: {
     async fetchData({ commit, state }) {
@@ -208,6 +211,15 @@ export default new Vuex.Store({
       }
 
       commit('CATEGORIES', CATEGORIES);
+    },
+    async fetchArticles({ commit, state }) {
+      try {
+        const response = await fetch(state.APIS.STRAPI + '/articles');
+        const data = await response.json();
+        commit('ARTICLES', data);
+      } catch (error) {
+        throw error;
+      }
     },
   },
   getters: {
