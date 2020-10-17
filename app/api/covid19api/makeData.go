@@ -12,8 +12,8 @@ import (
 	"time"
 
 	"github.com/andybalholm/brotli"
+	"github.com/corioder/be.safe/api/utils"
 )
-
 
 const apiUrl = "https://api-korona-wirus.pl"
 const apiKey = "27881261-6dbc-4867-a13d-a4f8541dc193"
@@ -124,10 +124,11 @@ func reciveAndSortData(body io.Reader, path string) ([]byte, error) {
 		})
 
 		// normalize dates
+		// and compute active cases = confirmed - deaths - recovered
 		for i := 0; i < len(d); i++ {
 			date, ok := d[i]["date"].(string)
 			if !ok {
-				return nil, errors.New("wrong type for data")
+				return nil, errors.New(`Wrong type for d[i]["date"].(string)`)
 			}
 
 			t, err := time.Parse(yearMonthDayTime, date)
@@ -136,6 +137,20 @@ func reciveAndSortData(body io.Reader, path string) ([]byte, error) {
 			}
 
 			d[i]["date"] = t.Format(dayMonthYearCorrect)
+
+			confirmed, err := utils.ConvertToFloat64(d[i]["confirmed"])
+			if err != nil {
+				return nil, err
+			}
+			deaths, err := utils.ConvertToFloat64(d[i]["deaths"])
+			if err != nil {
+				return nil, err
+			}
+			recovered, err := utils.ConvertToFloat64(d[i]["recovered"])
+			if err != nil {
+				return nil, err
+			}
+			d[i]["active"] = confirmed - deaths - recovered
 		}
 
 	case "common", "provinces":

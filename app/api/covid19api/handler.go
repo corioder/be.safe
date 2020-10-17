@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/corioder/be.safe/api/cache"
+	"github.com/corioder/be.safe/api/utils"
 )
 
 var computedEnpoints = [...]string{"categories"}
@@ -30,12 +31,7 @@ func Covid19ApiHandler(rw http.ResponseWriter, r *http.Request) {
 		}
 	}()
 
-	if r.URL.Path == "/inform" || r.URL.Path == "/favicon.ico" {
-		rw.WriteHeader(http.StatusNotFound)
-		return
-	}
-
-	cData, err := globalCache.GetData(r.URL.Path[1:], nil)
+	cData, err := globalCache.GetData(utils.LastPathComponnet(r.URL.Path), nil)
 	if err != nil {
 		fmt.Println(err)
 		rw.WriteHeader(http.StatusInternalServerError)
