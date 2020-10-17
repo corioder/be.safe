@@ -17,9 +17,6 @@
       logo,
       navigation,
     },
-    created() {
-      this.$store.dispatch('fetchData');
-    },
   };
 </script>
 

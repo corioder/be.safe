@@ -70,7 +70,7 @@ export default new Vuex.Store({
       { component: 'proactive', path: '/proactive' },
     ],
     APIS: {
-      API: 'http://10.0.1.50:8081/',
+      API: 'http://localhost:8081/',
       STRAPI: '',
       TWITTER: '',
     },
@@ -80,7 +80,7 @@ export default new Vuex.Store({
       yesterday: {},
       common: {},
       provinces: {},
-      countryperday: {},
+      ctountryperday: {},
       prognosis: {},
     },
     categories: [],
@@ -176,10 +176,10 @@ export default new Vuex.Store({
       const getDataForChart = (chartType) => {
         const dataForChart = { data: [], dates: [], color: colorByName(chartType) };
         for (let i in payload) {
-          dataForChart.data.push(payload[i][chartType]);
+          dataForChart.data.push(Number(payload[i][chartType]));
           dataForChart.dates.push(payload[i].date);
         }
-        console.log(dataForChart);
+        // console.log(dataForChart);
 
         return dataForChart;
       };

@@ -94,21 +94,21 @@ module.exports = (env = {}) => ({
       __VUE_PROD_DEVTOOLS__: false,
       __IS_DEV__: true
     }),
-    new WorkboxPlugin.GenerateSW({
-      runtimeCaching: [
-        {
-          handler: "CacheFirst",
-          urlPattern: /http:\/\/localhost:8081/,
-          options: {
-            cacheName: "API",
-            expiration: {
-              // half hour
-              maxAgeSeconds: 60 * 30
-            }
-          }
-        }
-      ]
-    })
+    // new WorkboxPlugin.GenerateSW({
+    //   runtimeCaching: [
+    //     {
+    //       handler: "CacheFirst",
+    //       urlPattern: /http:\/\/localhost:8081/,
+    //       options: {
+    //         cacheName: "API",
+    //         expiration: {
+    //           // half hour
+    //           maxAgeSeconds: 60 * 30
+    //         }
+    //       }
+    //     }
+    //   ]
+    // })
   ],
 
   optimization: {
