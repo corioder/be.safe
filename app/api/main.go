@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	http.HandleFunc("/", covid19api.Covid19ApiHandler)
+	http.HandleFunc("/api/", covid19api.Covid19ApiHandler)
 
 	port := os.Getenv("PORT")
 	if port == "" {
