@@ -1,7 +1,9 @@
-const common = require("./webpack.common.js");
-
 require("dotenv").config();
+const package = require("./package.json");
+
 const path = require("path");
+
+const common = require("./webpack.common.js");
 
 const { DefinePlugin } = require("webpack");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
@@ -90,24 +92,13 @@ module.exports = (env = {}) => ({
     new WebpackBar(),
     new VueLoaderPlugin(),
     new DefinePlugin({
+      __IS_DEV__: true,
+      __API__:     `"${process.env.API || package.defaults.API}"`,
+      __STRAPI__:  `"${process.env.STRAPI || package.defaults.STRAPI}"`,
+      __TWITTER__: `"${process.env.TWITTER || package.defaults.TWITTER}"`,
+
       __VUE_OPTIONS_API__: true,
-      __VUE_PROD_DEVTOOLS__: false,
-      __IS_DEV__: true
-    }),
-    new WorkboxPlugin.GenerateSW({
-      runtimeCaching: [
-        {
-          handler: "CacheFirst",
-          urlPattern: /http:\/\/localhost:8081/,
-          options: {
-            cacheName: "API",
-            expiration: {
-              // half hour
-              maxAgeSeconds: 60 * 30
-            }
-          }
-        }
-      ]
+      __VUE_PROD_DEVTOOLS__: false
     })
   ],
 
