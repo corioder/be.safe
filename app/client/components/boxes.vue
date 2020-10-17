@@ -31,9 +31,13 @@
 
 <style lang="scss" scoped>
   @import '../scss/mixins/_flex.scss';
+  @import '../scss/mixins/_grid.scss';
   .boxes {
     // width: 100vw;
     margin: 0;
     @include flex(column);
+    div {
+      @include grid(1);
+    }
   }
 </style>

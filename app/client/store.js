@@ -50,56 +50,67 @@ export default new Vuex.Store({
           name: 'Potwierdzone przypadki',
           isPositive: false,
           displayOnHomepage: true,
+          todayName: 'confirmed',
         },
         {
           name: 'Aktywne przypadki',
           isPositive: false,
           displayOnHomepage: true,
+          todayName: 'active',
         },
         {
           name: 'Zgony',
           isPositive: false,
           displayOnHomepage: true,
+          todayName: 'deaths',
         },
         {
           name: 'Liczba wyzdrowiałych',
           isPositive: true,
           displayOnHomepage: true,
+          todayName: 'recovered',
         },
         {
           name: 'Kwarantanna',
           isPositive: false,
           displayOnHomepage: false,
+          todayName: 'quarantine',
         },
         {
           name: 'Nadzór epidemologiczny',
           isPositive: false,
           displayOnHomepage: false,
+          todayName: 'supervision',
         },
         {
           name: 'Liczba testów',
           isPositive: true,
           displayOnHomepage: true,
+          todayName: 'tests',
         },
         {
           name: 'Przetestowane osoby',
           isPositive: true,
           displayOnHomepage: false,
+          todayName: 'people_tested',
         },
         {
           name: 'Liczba testów negatywnych',
           isPositive: true,
           displayOnHomepage: false,
+          todayName: 'negative_tests',
         },
         {
           name: 'Liczba hospitalizowanych',
           isPositive: false,
           displayOnHomepage: false,
+          todayName: 'hospitalized',
         },
         {
           name: 'Zajęte respiratory',
           isPositive: false,
           displayOnHomepage: false,
+          todayName: 'respirators',
         },
       ];
       let categories = payload;
@@ -107,7 +118,10 @@ export default new Vuex.Store({
         categories[i].isPositive = type[i].isPositive;
         categories[i].displayOnHomepage = type[i].displayOnHomepage;
         categories[i].name = type[i].name;
+        categories[i].amount = state.data.today[type[i].todayName];
       }
+      console.log(state.data.today);
+
       state.categories = categories;
     },
   },
