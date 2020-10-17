@@ -1,6 +1,6 @@
 <template>
   <p>
-    be.<span :style="bg">{{ text }}</span>
+    be.<span :style="`background-color:${$store.getters.getColorByName(text)};`">{{ text }}</span>
   </p>
 </template>
 
@@ -12,40 +12,11 @@
         required: true,
       },
     },
-    computed: {
-      bg() {
-        const colors = {
-          richBlack: '#011627',
-          babyPowder: '#fdfffc',
-          littleBoyBlue: '#72a1e5',
-          cinnabar: '#e94f37',
-          orange: '#ff850a',
-          shamrockGreen: '#329f5b',
-        };
-        let color;
-        switch (this.text) {
-          case 'informed':
-            color = colors.orange;
-            break;
-          case 'aware':
-            color = colors.cinnabar;
-            break;
-          case 'proactive':
-            color = colors.shamrockGreen;
-            break;
-          default:
-            color = colors.littleBoyBlue;
-            break;
-        }
-        return `background-color: ${color}`;
-      },
-    },
   };
 </script>
 
 <style lang="scss" scoped>
   p {
-    // --bg: #72a1e5;
     font-size: 24px;
     color: #011627;
     position: relative;

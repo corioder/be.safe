@@ -1,6 +1,6 @@
 <template>
-  <div class="example">
-    <apexcharts width="700" height="350" type="area" :options="chartOptions" :series="series"></apexcharts>
+  <div class="chart">
+    <apexcharts width="280" height="350" type="area" :options="chartOptions" :series="series"></apexcharts>
   </div>
 </template>
 
@@ -38,11 +38,15 @@
             curve: 'smooth',
           },
           fill: {
-            colors: ['#000'],
+            colors: [this.chartData.color],
           },
           dataLabels: {
             enabled: false,
           },
+          colors: [this.chartData.color],
+          // markers: {
+          //   colors: [this.chartData.color],
+          // },
         },
         series: [
           {
@@ -54,3 +58,9 @@
     },
   };
 </script>
+<style lang="scss" scoped>
+  .chart {
+    position: relative;
+    // z-index: -1;
+  }
+</style>

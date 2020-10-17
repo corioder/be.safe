@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import colorByName from './components/colorByName.js';
 
 const CATEGORIES = [
   {
@@ -167,12 +168,13 @@ export default new Vuex.Store({
       for (let i in payload) {
         categories[i].isPositive = type[i].isPositive;
         categories[i].displayOnHomepage = type[i].displayOnHomepage;
+        categories[i].name = type[i].name;
       }
       state.categories = categories;
     },
     CHARTDATA(state, payload) {
       const getDataForChart = (chartType) => {
-        const dataForChart = { data: [], dates: [] };
+        const dataForChart = { data: [], dates: [], color: colorByName(chartType) };
         for (let i in payload) {
           dataForChart.data.push(payload[i][chartType]);
           dataForChart.dates.push(payload[i].date);
@@ -233,6 +235,7 @@ export default new Vuex.Store({
         else return false;
       });
     },
+    getColorByName: (state) => (text) => colorByName(text),
   },
   modules: {},
 });
