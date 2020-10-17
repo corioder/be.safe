@@ -1,21 +1,21 @@
 <template>
   <div class="boxes">
     <div v-if="isHome">
-      <statsBox v-for="category in $store.getters.getCategoriesForHome" :key="`${category.name}StatsBoxHome`" :data="category" />
+      <box v-for="category in $store.getters.getCategoriesForHome" :key="`${category.name}boxHome`" :data="category" />
     </div>
     <div v-else>
-      <statsBox v-for="category in $store.state.categories" :key="`${category.name}StatsBoxHome`" :data="category" />
+      <box v-for="category in $store.state.categories" :key="`${category.name}boxHome`" :data="category" />
     </div>
   </div>
 </template>
 
 <script>
-  import statsBox from './statsBox.vue';
+  import box from './box.vue';
   export default {
     name: 'boxes',
 
     components: {
-      statsBox,
+      box,
     },
     data() {
       return {

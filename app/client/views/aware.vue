@@ -22,6 +22,5 @@
   @import '../scss/mixins/_flex.scss';
   .aware {
     @include flex(column);
-    width: 100vw;
   }
 </style>

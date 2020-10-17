@@ -17,7 +17,8 @@
 <style lang="scss" scoped>
   @import '../scss/mixins/_flex.scss';
   .home {
+    margin-top: 32px;
     @include flex(column);
-    width: 100vw;
+    // width: 100vw;
   }
 </style>
