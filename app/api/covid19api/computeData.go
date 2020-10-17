@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"reflect"
 	"strconv"
+
+	"github.com/corioder/be.safe/api/utils"
 )
 
 func computeData(path string) (cachedData, error) {
@@ -77,14 +79,14 @@ func getCategories() (cachedData, error) {
 		perdayDataCorrect[i]["active_cases"] = perdayDataCorrect[i]["confirmed"] - perdayDataCorrect[i]["recovered"] - perdayDataCorrect[i]["deaths"]
 	}
 
-	// today     = 1
-	// yesterday = 0
+	// today     = index 1
+	// yesterday = index 0
 
 	categoriesData := make([]map[string]float32, 0, len(getCategoriesDataEntries))
 	for _, key := range getCategoriesDataEntries {
 		categoriesData = append(categoriesData, map[string]float32{
 			"amountOfNew":   float32(perdayDataCorrect[1][key] - perdayDataCorrect[0][key]),
-			"percentChange": 100 - (float32((perdayDataCorrect[0][key]*100))/float32(perdayDataCorrect[1][key])),
+			"percentChange": float32(utils.RoundTo2DecimalPlaces(float64(100 - (float32((perdayDataCorrect[0][key] * 100)) / float32(perdayDataCorrect[1][key]))))),
 		})
 	}
 

@@ -1,3 +1,10 @@
+if (process.env.USE_DOTENV == "true") {
+  require("dotenv").config();
+} else if (process.env.USE_DOTENV == "false") {
+  require("dotenv").config({ path: ".prod.env" });
+}
+const package = require("./package.json");
+
 const common = require("./webpack.common.js");
 
 const path = require("path");
@@ -122,9 +129,13 @@ module.exports = (env = {}) => ({
     new WebpackBar(),
     new VueLoaderPlugin(),
     new DefinePlugin({
+      __IS_DEV__: false,
+      __API__: `"${process.env.API || package.defaults.API}"`,
+      __STRAPI__: `"${process.env.STRAPI || package.defaults.STRAPI}"`,
+      __TWITTER__: `"${process.env.TWITTER || package.defaults.TWITTER}"`,
+
       __VUE_OPTIONS_API__: true,
-      __VUE_PROD_DEVTOOLS__: false,
-      __IS_DEV__: false
+      __VUE_PROD_DEVTOOLS__: false
     }),
     new WorkboxPlugin.GenerateSW({
       runtimeCaching: [
