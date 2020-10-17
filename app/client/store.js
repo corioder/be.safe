@@ -1,64 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-const CATEGORIES = [
-  {
-    amount: undefined,
-    amountOfNew: undefined,
-    percentChange: undefined,
-  },
-  {
-    amount: undefined,
-    amountOfNew: undefined,
-    percentChange: undefined,
-  },
-  {
-    amount: undefined,
-    amountOfNew: undefined,
-    percentChange: undefined,
-  },
-  {
-    amount: undefined,
-    amountOfNew: undefined,
-    percentChange: undefined,
-  },
-  {
-    amount: undefined,
-    amountOfNew: undefined,
-    percentChange: undefined,
-  },
-  {
-    amount: undefined,
-    amountOfNew: undefined,
-    percentChange: undefined,
-  },
-  {
-    amount: undefined,
-    amountOfNew: undefined,
-    percentChange: undefined,
-  },
-  {
-    amount: undefined,
-    amountOfNew: undefined,
-    percentChange: undefined,
-  },
-  {
-    amount: undefined,
-    amountOfNew: undefined,
-    percentChange: undefined,
-  },
-  {
-    amount: undefined,
-    amountOfNew: undefined,
-    percentChange: undefined,
-  },
-  {
-    amount: undefined,
-    amountOfNew: undefined,
-    percentChange: undefined,
-  },
-];
-
 Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
@@ -89,7 +31,6 @@ export default new Vuex.Store({
       state.data.perday = payload;
       state.data.today = payload[payload.length - 1];
       state.data.yesterday = payload[payload.length - 2];
-      console.log(payload[payload.length - 1]);
     },
     COMMON(state, payload) {
       state.data.common = payload;
@@ -165,6 +106,7 @@ export default new Vuex.Store({
       for (let i in payload) {
         categories[i].isPositive = type[i].isPositive;
         categories[i].displayOnHomepage = type[i].displayOnHomepage;
+        categories[i].name = type[i].name;
       }
       state.categories = categories;
     },
@@ -176,38 +118,44 @@ export default new Vuex.Store({
         const data = await response.json();
         commit('PERDAY', data);
       } catch (error) {
-        throw error;
+        console.error(error);
       }
       try {
         const response = await fetch(state.APIS.API + 'common');
         const data = await response.json();
         commit('COMMON', data[0]);
       } catch (error) {
-        throw error;
+        console.error(error);
       }
       try {
         const response = await fetch(state.APIS.API + 'provinces');
         const data = await response.json();
         commit('PROVINCES', data);
       } catch (error) {
-        throw error;
+        console.error(error);
       }
       try {
         const response = await fetch(state.APIS.API + 'countryperday');
         const data = await response.json();
         commit('COUNTRYPERDAY', data);
       } catch (error) {
-        throw error;
+        console.error(error);
       }
       try {
         const response = await fetch(state.APIS.API + 'prognosis');
         const data = await response.json();
         commit('PROGNOSIS', data);
       } catch (error) {
-        throw error;
+        console.error(error);
       }
 
-      commit('CATEGORIES', CATEGORIES);
+      try {
+        const response = await fetch(state.APIS.API + 'categories');
+        const data = await response.json();
+        commit('CATEGORIES', data);
+      } catch (error) {
+        console.error(error);
+      }
     },
   },
   getters: {
