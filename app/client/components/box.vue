@@ -1,12 +1,12 @@
 <template>
-  <div class="statsBox">
+  <div class="box">
     <p class="positive">{{ data.name }}</p>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'statsBox',
+    name: 'box',
     props: {
       data: {
         type: Object,
@@ -19,7 +19,7 @@
 <style lang="scss" scoped>
   @import '../scss/mixins/_flex.scss';
   @import '../scss/vars/_colors.scss';
-  .statsBox {
+  .box {
     margin: 0;
     margin-bottom: 20px;
     width: calc(100vw - 24px);
