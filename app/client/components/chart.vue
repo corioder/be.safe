@@ -28,20 +28,12 @@ export default {
       chartOptions: {
         chart: {
           type: "area"
-          // numberFormatter() {
-          //   return 1
-          // }
         },
         title: {
           text: "Covid 19"
         },
         xAxis: {
-          categories: this.chartData.dates,
-          labels: {
-            formatter() {
-              return this.value;
-            }
-          }
+          categories: this.chartData.dates
         },
         yAxis: {
           title: {
@@ -50,34 +42,10 @@ export default {
         },
         series: [
           {
-            dataFormatter() {
-              console.log(this);
-            },
             name: "liczba",
             data: this.chartData.data
           }
         ]
-
-        // chart: {
-        // type: "bar",
-        // id: this.chartId
-        // },
-        // xaxis: {
-        //   categories: this.chartData.dates
-        // },
-        // stroke: {
-        //   curve: "smooth"
-        // },
-        // fill: {
-        //   colors: [this.chartData.color]
-        // },
-        // dataLabels: {
-        //   enabled: false
-        // },
-        // colors: [this.chartData.color]
-        // markers: {
-        //   colors: [this.chartData.color],
-        // },
       }
     };
   }
