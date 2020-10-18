@@ -5,55 +5,60 @@
 </template>
 
 <script>
-import Highcharts from "highcharts";
-import { genComponent } from "vue-highcharts";
+  import Highcharts from 'highcharts';
+  import { genComponent } from 'vue-highcharts';
 
-export default {
-  name: "chart",
-  components: {
-    Highcharts: genComponent("Highcharts", Highcharts)
-  },
-  props: {
-    chartId: {
-      type: String,
-      required: true
+  export default {
+    name: 'chart',
+    components: {
+      Highcharts: genComponent('Highcharts', Highcharts),
     },
-    chartData: {
-      type: Object,
-      required: true
-    }
-  },
-  data() {
-    return {
-      chartOptions: {
-        chart: {
-          type: "area"
-        },
-        title: {
-          text: "Covid 19"
-        },
-        xAxis: {
-          categories: this.chartData.dates
-        },
-        yAxis: {
+    props: {
+      chartData: {
+        type: Object,
+        required: true,
+      },
+      name: {
+        type: String,
+        required: true,
+      },
+    },
+    data() {
+      return {
+        chartOptions: {
+          chart: {
+            type: 'area',
+            width: window.innerWidth - 150,
+            backgroundColor: '#FDFFFC',
+            alignTicks: false,
+          },
           title: {
-            text: "Liczba zakażeń"
-          }
+            text: this.name,
+          },
+          xAxis: {
+            categories: this.chartData.dates,
+          },
+          yAxis: {
+            title: {
+              text: '',
+            },
+          },
+          series: [
+            {
+              name: this.name,
+              data: this.chartData.data,
+            },
+          ],
+          colors: [this.$store.getters.getColorByName(this.name)],
         },
-        series: [
-          {
-            name: "liczba",
-            data: this.chartData.data
-          }
-        ]
-      }
-    };
-  }
-};
+      };
+    },
+  };
 </script>
 <style lang="scss" scoped>
-.chart {
-  position: relative;
-  // z-index: -1;
-}
+  @import '../scss/vars/_colors.scss';
+  .chart {
+    background-color: $babyPowder;
+    margin-bottom: 64px;
+  }
 </style>

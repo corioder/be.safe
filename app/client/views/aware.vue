@@ -20,7 +20,9 @@
 
 <style lang="scss" scoped>
   @import '../scss/mixins/_flex.scss';
+  @import '../scss/vars/_colors.scss';
   .aware {
     @include flex(column);
+    background-color: $babyPowder;
   }
 </style>
