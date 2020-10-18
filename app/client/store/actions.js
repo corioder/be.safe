@@ -1,47 +1,57 @@
 export default {
   async fetchData({ commit, state }) {
+    const fetchEndpoint = async (enpoint) => {
+      const response = await fetch(state.APIS.API + enpoint);
+      return await response.json();
+    };
+
+    const perdayPromise = fetchEndpoint('perday');
+    const commonPromise = fetchEndpoint('common');
+    const provincesPromise = fetchEndpoint('provinces');
+    const countryperdayPromise = fetchEndpoint('countryperday');
+    const prognosisPromise = fetchEndpoint('prognosis');
+    const categoriesPromise = fetchEndpoint('categories');
+
     try {
-      const response = await fetch(state.APIS.API + 'perday');
-      const data = await response.json();
-      commit('PERDAY', data);
-    } catch (error) {
-      console.error(error);
-    }
-    try {
-      const response = await fetch(state.APIS.API + 'common');
-      const data = await response.json();
-      commit('COMMON', data[0]);
-    } catch (error) {
-      console.error(error);
-    }
-    try {
-      const response = await fetch(state.APIS.API + 'provinces');
-      const data = await response.json();
-      commit('PROVINCES', data);
-    } catch (error) {
-      console.error(error);
-    }
-    try {
-      const response = await fetch(state.APIS.API + 'countryperday');
-      const data = await response.json();
-      commit('COUNTRYPERDAY', data);
-    } catch (error) {
-      console.error(error);
-    }
-    try {
-      const response = await fetch(state.APIS.API + 'prognosis');
-      const data = await response.json();
-      commit('PROGNOSIS', data);
-    } catch (error) {
-      console.error(error);
+      const perday = await perdayPromise;
+      commit('PERDAY', perday);
+    } catch (err) {
+      console.error(err);
     }
 
     try {
-      const response = await fetch(state.APIS.API + 'categories');
-      const data = await response.json();
-      commit('CATEGORIES', data);
-    } catch (error) {
-      console.error(error);
+      const common = await commonPromise;
+      commit('COMMON', common[0]);
+    } catch (err) {
+      console.error(err);
+    }
+
+    try {
+      const provinces = await provincesPromise;
+      commit('PROVINCES', provinces);
+    } catch (err) {
+      console.error(err);
+    }
+
+    try {
+      const countryperday = await countryperdayPromise;
+      commit('COUNTRYPERDAY', countryperday);
+    } catch (err) {
+      console.error(err);
+    }
+
+    try {
+      const prognosis = await prognosisPromise;
+      commit('PROGNOSIS', prognosis);
+    } catch (err) {
+      console.error(err);
+    }
+
+    try {
+      const categories = await categoriesPromise;
+      commit('CATEGORIES', categories);
+    } catch (err) {
+      console.error(err);
     }
   },
 };
