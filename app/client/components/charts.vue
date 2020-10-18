@@ -1,5 +1,5 @@
 <template>
-  <div class="charts" :style="$store.state.isNavOpened ? 'z-index:-1;' : 'z-index:0;'">
+  <div class="charts">
     <chart
       v-for="chartName in chartNames"
       :chartData="$store.getters.getChartData(chartName.getDataName)"
@@ -75,7 +75,6 @@
   @import '../scss/vars/_colors.scss';
   .charts {
     @include flex(column);
-    position: relative;
     background-color: $babyPowder;
   }
 </style>
