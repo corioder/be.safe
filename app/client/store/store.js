@@ -11,9 +11,9 @@ export default new Vuex.Store({
       { component: 'proactive', path: '/proactive' },
     ],
     APIS: {
-      API: __API__,        // webpack will resolve this, use .env API=apiUrl
-      STRAPI: __STRAPI__,  // webpack will resolve this, use .env STRAPI=strapiUrl
-      TWITTER: __TWITTER__,// webpack will resolve this, use .env TWITTER=twitterUrl
+      API: __API__, // webpack will resolve this, use .env API=apiUrl
+      STRAPI: __STRAPI__, // webpack will resolve this, use .env STRAPI=strapiUrl
+      TWITTER: __TWITTER__, // webpack will resolve this, use .env TWITTER=twitterUrl
     },
     data: {
       perday: [],
@@ -47,70 +47,77 @@ export default new Vuex.Store({
     CATEGORIES(state, payload) {
       const type = [
         {
-          name: 'Potwierdzone przypadki',
+          name: 'potwierdzonych przypadków',
           isPositive: false,
           displayOnHomepage: true,
           todayName: 'confirmed',
         },
         {
-          name: 'Aktywne przypadki',
+          name: 'aktywnych przypadków',
           isPositive: false,
           displayOnHomepage: true,
           todayName: 'active',
         },
         {
-          name: 'Zgony',
+          name: 'zgonów',
           isPositive: false,
           displayOnHomepage: true,
           todayName: 'deaths',
         },
         {
-          name: 'Liczba wyzdrowiałych',
+          name: 'wyzdrowiałych',
           isPositive: true,
           displayOnHomepage: true,
           todayName: 'recovered',
         },
         {
-          name: 'Kwarantanna',
+          name: 'osób na kwarantannie',
           isPositive: false,
           displayOnHomepage: false,
           todayName: 'quarantine',
         },
         {
-          name: 'Nadzór epidemologiczny',
+          name: 'objętych nadzorem epidemologicznym',
           isPositive: false,
           displayOnHomepage: false,
           todayName: 'supervision',
         },
         {
-          name: 'Liczba testów',
+          name: 'testów',
           isPositive: true,
           displayOnHomepage: true,
           todayName: 'tests',
         },
         {
-          name: 'Przetestowane osoby',
+          name: 'przetestowanych osób',
           isPositive: true,
           displayOnHomepage: false,
           todayName: 'people_tested',
         },
         {
-          name: 'Liczba testów negatywnych',
+          name: 'testów negatywnych',
           isPositive: true,
           displayOnHomepage: false,
           todayName: 'negative_tests',
         },
         {
-          name: 'Liczba hospitalizowanych',
+          name: 'hospitalizowanych',
           isPositive: false,
           displayOnHomepage: false,
           todayName: 'hospitalized',
         },
         {
-          name: 'Zajęte respiratory',
+          name: 'zajętych respiratorów',
           isPositive: false,
           displayOnHomepage: false,
           todayName: 'respirators',
+        },
+
+        {
+          name: 'przypadków na 100 000',
+          isPositive: false,
+          displayOnHomepage: false,
+          todayName: 'activePerHoundredThousand',
         },
       ];
       let categories = payload;
@@ -120,7 +127,6 @@ export default new Vuex.Store({
         categories[i].name = type[i].name;
         categories[i].amount = state.data.today[type[i].todayName];
       }
-      console.log(state.data.today);
 
       state.categories = categories;
     },
