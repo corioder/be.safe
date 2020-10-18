@@ -36,10 +36,10 @@
     margin: 0;
     @include flex(column);
     .homeBoxes,
-    .awareBoxes,
-    .homeBoxes {
+    .awareBoxes {
       @include grid(1);
-      grid-gap: 50px;
+      grid-gap: 64px;
+      margin-bottom: 64px;
     }
   }
 

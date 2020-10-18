@@ -28,7 +28,7 @@
         chartOptions: {
           chart: {
             type: 'area',
-            width: window.innerWidth - 150,
+            width: window.innerWidth - 50,
             backgroundColor: '#FDFFFC',
             alignTicks: false,
           },

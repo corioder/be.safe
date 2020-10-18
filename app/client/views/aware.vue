@@ -1,5 +1,5 @@
 <template>
-  <div class="aware">
+  <div class="aware" :style="$store.state.isNavOpened ? 'z-index:-1; position: relative;' : 'z-index:0; position: initial;'">
     <boxes />
     <charts />
   </div>
