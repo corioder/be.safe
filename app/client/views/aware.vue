@@ -1,6 +1,6 @@
 <template>
   <div class="aware">
-    <!-- <boxes /> -->
+    <boxes />
     <charts />
   </div>
 </template>

@@ -17,7 +17,7 @@ export default {
   PROGNOSIS(state, payload) {
     state.data.prognosis = payload;
   },
-  ATEGORIES(state, payload) {
+  CATEGORIES(state, payload) {
     const type = [
       {
         name: 'potwierdzonych przypadków',
