@@ -19,7 +19,7 @@ func computeData(path string) (cachedData, error) {
 	return cachedData{}, nil
 }
 
-var getCategoriesDataEntries = [...]string{"confirmed", "active_cases", "deaths", "recovered", "quarantine", "supervision", "tests", "people_tested", "negative_tests", "hospitalized", "respirators"}
+var getCategoriesDataEntries = [...]string{"confirmed", "active_cases", "deaths", "recovered", "quarantine", "supervision", "tests", "people_tested", "negative_tests", "hospitalized", "respirators", "activePerHoundredThousand"}
 
 func getCategories() (cachedData, error) {
 	cData, err := globalCache.GetData("perday", nil)
@@ -38,10 +38,10 @@ func getCategories() (cachedData, error) {
 		return nilCachedData, err
 	}
 
-	perdayDataCorrect := make([]map[string]int, 2)
+	perdayDataCorrect := make([]map[string]float64, 2)
 	j := 0
 	for i := len(perdayData) - 2; i < len(perdayData); i++ {
-		perdayDataCorrect[j] = make(map[string]int)
+		perdayDataCorrect[j] = make(map[string]float64)
 		for key, elem := range perdayData[i] {
 			if key == "date" {
 				continue
@@ -49,13 +49,13 @@ func getCategories() (cachedData, error) {
 
 			elemI, ok := elem.(int)
 			if ok {
-				perdayDataCorrect[j][key] = elemI
+				perdayDataCorrect[j][key] = float64(elemI)
 				continue
 			}
 
 			elemF, ok := elem.(float64)
 			if ok {
-				perdayDataCorrect[j][key] = int(elemF)
+				perdayDataCorrect[j][key] = float64(elemF)
 				continue
 			}
 
@@ -70,13 +70,15 @@ func getCategories() (cachedData, error) {
 				return nilCachedData, err
 			}
 
-			perdayDataCorrect[j][key] = elemToi
+			perdayDataCorrect[j][key] = float64(elemToi)
 		}
 		j++
 	}
 
 	for i := 0; i < len(perdayDataCorrect); i++ {
-		perdayDataCorrect[i]["active_cases"] = perdayDataCorrect[i]["confirmed"] - perdayDataCorrect[i]["recovered"] - perdayDataCorrect[i]["deaths"]
+		active := perdayDataCorrect[i]["confirmed"] - perdayDataCorrect[i]["recovered"] - perdayDataCorrect[i]["deaths"]
+		perdayDataCorrect[i]["active_cases"] = active
+		perdayDataCorrect[i]["activePerHoundredThousand"] = active / 100000
 	}
 
 	// today     = index 1

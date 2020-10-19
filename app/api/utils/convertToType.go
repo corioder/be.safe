@@ -12,6 +12,9 @@ func ConvertToFloat64(n interface{}) (float64, error) {
 	case float64:
 		return v, nil
 
+	case int:
+		return float64(v), nil
+
 	case string:
 		return strconv.ParseFloat(v, 64)
 	}
