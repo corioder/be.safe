@@ -39,6 +39,14 @@
             getDataName: 'active',
           },
           {
+            name: 'Testy',
+            getDataName: 'tests',
+          },
+          {
+            name: 'Wyzdrowieli',
+            getDataName: 'recovered',
+          },
+          {
             name: 'Zgony',
             getDataName: 'deaths',
           },
@@ -46,10 +54,7 @@
             name: 'Zajęte respiratory',
             getDataName: 'respirators',
           },
-          {
-            name: 'Wyzdrowieli',
-            getDataName: 'recovered',
-          },
+
           {
             name: 'Hospitalizowani',
             getDataName: 'hospitalized',
@@ -62,10 +67,7 @@
             name: 'Osoby pod nadzorem epidemiologicznym',
             getDataName: 'supervision',
           },
-          {
-            name: 'Testy',
-            getDataName: 'tests',
-          },
+
           {
             name: 'Negatywne testy',
             getDataName: 'negative_tests',
