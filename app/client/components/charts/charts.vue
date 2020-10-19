@@ -7,6 +7,7 @@
         :name="homeChart.name"
         :key="`${homeChart.getDataName}_chart`"
       />
+      <chartButton @click.native="$router.push('/aware')" />
     </div>
     <div class="awareCharts" v-else>
       <chart
@@ -20,12 +21,14 @@
 </template>
 
 <script>
-  import chart from '../components/chart.vue';
+  import chart from './chart.vue';
+  import chartButton from './chartButton.vue';
 
   export default {
     name: 'charts',
     components: {
       chart,
+      chartButton,
     },
     data() {
       return {
@@ -110,9 +113,10 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '../scss/mixins/_flex.scss';
-  @import '../scss/vars/_colors.scss';
-  .awareCharts {
+  @import '../../scss/mixins/_flex.scss';
+  @import '../../scss/vars/_colors.scss';
+  .awareCharts,
+  .homeCharts {
     @include flex(column);
     background-color: $babyPowder;
   }

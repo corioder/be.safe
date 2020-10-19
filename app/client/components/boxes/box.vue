@@ -22,16 +22,14 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '../scss/mixins/_flex.scss';
-  @import '../scss/vars/_colors.scss';
+  @import '../../scss/mixins/_flex.scss';
+  @import '../../scss/vars/_colors.scss';
 
   .box {
     @include flex(column);
     width: calc(100vw - 24px);
     max-width: 300px;
-    // width: 50px;
     border-radius: 10px;
-    // background-color: #fff;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
     p {
       text-align: center;
