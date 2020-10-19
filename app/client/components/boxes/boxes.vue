@@ -2,6 +2,7 @@
   <div class="boxes">
     <div class="homeBoxes" v-if="isHome">
       <box v-for="category in $store.getters.getCategoriesForHome" :key="`${category.name}boxHome`" :data="category" />
+      <boxButton @click.native="$router.push('/aware')" />
     </div>
     <div class="awareBoxes" v-else>
       <box v-for="category in $store.state.categories" :key="`${category.name}boxHome`" :data="category" />
@@ -11,11 +12,14 @@
 
 <script>
   import box from './box.vue';
+  import boxButton from './boxButton.vue';
+
   export default {
     name: 'boxes',
 
     components: {
       box,
+      boxButton,
     },
     data() {
       return {
@@ -30,8 +34,8 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '../scss/mixins/_flex.scss';
-  @import '../scss/mixins/_grid.scss';
+  @import '../../scss/mixins/_flex.scss';
+  @import '../../scss/mixins/_grid.scss';
   .boxes {
     margin: 0;
     @include flex(column);

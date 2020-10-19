@@ -6,8 +6,8 @@
 </template>
 
 <script>
-  import boxes from '../components/boxes.vue';
-  import charts from '../components/charts.vue';
+  import boxes from '../components/boxes/boxes.vue';
+  import charts from '../components/charts/charts.vue';
 
   export default {
     name: 'aware',
