@@ -25,11 +25,12 @@
   @import './scss/vars/_colors.scss';
   * {
     font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
     box-sizing: border-box;
   }
   html {
     background-color: $babyPowder;
-
+    color: $richBlack;
     font-weight: 400;
   }
 
