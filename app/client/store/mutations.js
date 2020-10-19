@@ -3,7 +3,6 @@ export default {
     state.data.perday = payload;
     state.data.today = payload[payload.length - 1];
     state.data.yesterday = payload[payload.length - 2];
-    console.log(payload[payload.length - 1]);
   },
   COMMON(state, payload) {
     state.data.common = payload;

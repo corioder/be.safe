@@ -1,11 +1,21 @@
 <template>
   <div class="charts">
-    <chart
-      v-for="chartName in chartNames"
-      :chartData="$store.getters.getChartData(chartName.getDataName)"
-      :name="chartName.name"
-      :key="`${chartName.getDataName}_chart`"
-    />
+    <div class="homeCharts" v-if="isHome">
+      <chart
+        v-for="homeChart in homeCharts"
+        :chartData="$store.getters.getChartData(homeChart.getDataName)"
+        :name="homeChart.name"
+        :key="`${homeChart.getDataName}_chart`"
+      />
+    </div>
+    <div class="awareCharts" v-else>
+      <chart
+        v-for="awareChart in awareCharts"
+        :chartData="$store.getters.getChartData(awareChart.getDataName)"
+        :name="awareChart.name"
+        :key="`${awareChart.getDataName}_chart`"
+      />
+    </div>
   </div>
 </template>
 
@@ -19,7 +29,7 @@
     },
     data() {
       return {
-        chartNames: [
+        awareCharts: [
           {
             name: 'Potwierdzone przypadki',
             getDataName: 'confirmed',
@@ -65,7 +75,34 @@
             getDataName: 'people_tested',
           },
         ],
+        homeCharts: [
+          {
+            name: 'Potwierdzone przypadki',
+            getDataName: 'confirmed',
+          },
+          {
+            name: 'Aktywne przypadki',
+            getDataName: 'active',
+          },
+          {
+            name: 'Testy',
+            getDataName: 'tests',
+          },
+          {
+            name: 'Wyzdrowieli',
+            getDataName: 'recovered',
+          },
+          {
+            name: 'Zgony',
+            getDataName: 'deaths',
+          },
+        ],
+        isHome: true,
       };
+    },
+    created() {
+      if (this.$route.name == 'aware') this.isHome = false;
+      else this.isHome = true;
     },
   };
 </script>
@@ -73,7 +110,7 @@
 <style lang="scss" scoped>
   @import '../scss/mixins/_flex.scss';
   @import '../scss/vars/_colors.scss';
-  .charts {
+  .awareCharts {
     @include flex(column);
     background-color: $babyPowder;
   }

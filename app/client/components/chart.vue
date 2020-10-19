@@ -50,6 +50,13 @@
             },
           ],
           colors: [this.$store.getters.getColorByName(this.name)],
+          plotOptions: {
+            area: {
+              marker: {
+                enabled: false,
+              },
+            },
+          },
         },
       };
     },
