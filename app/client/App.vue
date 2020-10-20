@@ -1,51 +1,82 @@
 <template>
   <div id="app">
-    <header>
-      <div class="logoContainer"><logo :text="$route.name == 'home' ? 'safe' : $route.name" /></div>
-      <navigation />
-    </header>
-    <router-view style="margin-top: 60px" />
+    <div v-if="!loaded && loadingTimeoutDone">
+      <loading :loadingError="loadingError" />
+    </div>
+
+    <div v-if="loaded">
+      <header>
+        <div class="logoContainer"><logo :text="$route.name == 'home' ? 'safe' : $route.name" /></div>
+        <navigation />
+      </header>
+      <router-view style="margin-top: 60px" />
+    </div>
   </div>
 </template>
 
 <script>
-  import logo from './components/logo.vue';
-  import navigation from './components/navigation.vue';
-  export default {
-    name: 'App',
-    components: {
-      logo,
-      navigation,
-    },
-  };
+import logo from "./components/logo.vue";
+import navigation from "./components/navigation.vue";
+import loading from "./components/loading/loading.vue";
+
+export default {
+  name: "App",
+  components: {
+    logo,
+    navigation,
+    loading
+  },
+  data() {
+    return {
+      loaded: false,
+      loadingTimeoutDone: false,
+      loadingError: ""
+    };
+  },
+  created() {
+    setTimeout(() => {
+      this.loadingTimeoutDone = true;
+    }, 900);
+
+    window.loadingPromise
+      .then(() => {
+        this.loaded = true;
+      })
+      // .catch(err => {
+      //   console.log(err)
+      //   this.loadingTimeoutDone = true;
+      //   this.loadingError = String(err)
+      // });
+  }
+};
 </script>
 
 <style lang="scss">
-  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;800&display=swap');
-  @import './scss/vars/_colors.scss';
-  * {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 400;
-    box-sizing: border-box;
-  }
-  html {
-    background-color: $babyPowder;
-    color: $richBlack;
-    font-weight: 400;
-  }
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;800&display=swap");
+@import "./scss/vars/_colors.scss";
+* {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  box-sizing: border-box;
+}
+html {
+  background-color: $babyPowder;
+  color: $richBlack;
+  font-weight: 400;
+}
 
-  header {
-    position: fixed;
-    z-index: 999;
-    left: 0;
-    top: 0;
-    width: 100vw;
-    height: 60px;
-    background-color: $babyPowder;
-    .logoContainer {
-      position: relative;
-      left: 12px;
-      top: 12px;
-    }
+header {
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 60px;
+  background-color: $babyPowder;
+  .logoContainer {
+    position: relative;
+    left: 12px;
+    top: 12px;
   }
+}
 </style>
