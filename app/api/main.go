@@ -6,10 +6,12 @@ import (
 	"os"
 
 	"github.com/corioder/be.safe/api/covid19api"
+	"github.com/corioder/be.safe/api/twitterapi"
 )
 
 func main() {
-	http.HandleFunc("/api/", covid19api.Covid19ApiHandler)
+	http.HandleFunc(covid19api.Handler("/api/"))
+	http.HandleFunc(twitterapi.Handler("/twi/"))
 
 	port := os.Getenv("PORT")
 	if port == "" {
