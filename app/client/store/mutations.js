@@ -86,7 +86,7 @@ export default {
       },
 
       {
-        name: 'przypadków na 100 000',
+        name: 'aktywnych przypadków na 100 000 osób',
         isPositive: false,
         displayOnHomepage: false,
         todayName: 'activePerHoundredThousand',

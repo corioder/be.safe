@@ -79,6 +79,10 @@
             name: 'Przetestowane osoby',
             getDataName: 'people_tested',
           },
+          {
+            name: 'Liczba aktywnych na 100 000 osób',
+            getDataName: 'activePerHoundredThousand',
+          },
         ],
         homeCharts: [
           {

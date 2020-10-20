@@ -13,6 +13,7 @@ export default (text) => {
     case 'Aktywne przypadki':
     case 'Osoby na kwarantannie':
     case 'Osoby pod nadzorem epidemiologicznym':
+    case 'Liczba aktywnych na 100 000 osób':
       color = colors.orange;
       break;
     case 'aware':
