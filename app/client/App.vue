@@ -27,18 +27,20 @@
     font-family: 'Open Sans', sans-serif;
     box-sizing: border-box;
   }
-  html{
-    background-color:$babyPowder;
+  html {
+    background-color: $babyPowder;
+
     font-weight: 400;
   }
 
   header {
     position: fixed;
+    z-index: 999;
     left: 0;
     top: 0;
     width: 100vw;
     height: 60px;
-    background: $babyPowder;
+    background-color: $babyPowder;
     .logoContainer {
       position: relative;
       left: 12px;

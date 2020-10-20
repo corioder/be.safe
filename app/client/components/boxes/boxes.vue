@@ -1,9 +1,10 @@
 <template>
   <div class="boxes">
-    <div v-if="isHome">
+    <div class="homeBoxes" v-if="isHome">
       <box v-for="category in $store.getters.getCategoriesForHome" :key="`${category.name}boxHome`" :data="category" />
+      <boxButton @click.native="$router.push('/aware')" />
     </div>
-    <div v-else>
+    <div class="awareBoxes" v-else>
       <box v-for="category in $store.state.categories" :key="`${category.name}boxHome`" :data="category" />
     </div>
   </div>
@@ -11,11 +12,14 @@
 
 <script>
   import box from './box.vue';
+  import boxButton from './boxButton.vue';
+
   export default {
     name: 'boxes',
 
     components: {
       box,
+      boxButton,
     },
     data() {
       return {
@@ -30,10 +34,34 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '../scss/mixins/_flex.scss';
+  @import '../../scss/mixins/_flex.scss';
+  @import '../../scss/mixins/_grid.scss';
   .boxes {
-    // width: 100vw;
     margin: 0;
     @include flex(column);
+    .homeBoxes,
+    .awareBoxes {
+      @include grid(1);
+      grid-gap: 64px;
+      margin-bottom: 64px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .boxes {
+      .awareBoxes,
+      .homeBoxes {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .boxes {
+      .awareBoxes,
+      .homeBoxes {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
   }
 </style>

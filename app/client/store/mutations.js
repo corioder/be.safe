@@ -19,59 +19,77 @@ export default {
   CATEGORIES(state, payload) {
     const type = [
       {
-        name: 'Potwierdzone przypadki',
+        name: 'potwierdzonych przypadków',
         isPositive: false,
         displayOnHomepage: true,
+        todayName: 'confirmed',
       },
       {
-        name: 'Aktywne przypadki',
+        name: 'aktywnych przypadków',
         isPositive: false,
         displayOnHomepage: true,
+        todayName: 'active',
       },
       {
-        name: 'Zgony',
+        name: 'zgonów',
         isPositive: false,
         displayOnHomepage: true,
+        todayName: 'deaths',
       },
       {
-        name: 'Liczba wyzdrowiałych',
+        name: 'wyzdrowiałych',
         isPositive: true,
         displayOnHomepage: true,
+        todayName: 'recovered',
       },
       {
-        name: 'Kwarantanna',
+        name: 'osób na kwarantannie',
         isPositive: false,
         displayOnHomepage: false,
+        todayName: 'quarantine',
       },
       {
-        name: 'Nadzór epidemologiczny',
+        name: 'objętych nadzorem epidemologicznym',
         isPositive: false,
         displayOnHomepage: false,
+        todayName: 'supervision',
       },
       {
-        name: 'Liczba testów',
+        name: 'testów',
         isPositive: true,
         displayOnHomepage: true,
+        todayName: 'tests',
       },
       {
-        name: 'Przetestowane osoby',
+        name: 'przetestowanych osób',
         isPositive: true,
         displayOnHomepage: false,
+        todayName: 'people_tested',
       },
       {
-        name: 'Liczba testów negatywnych',
+        name: 'testów negatywnych',
         isPositive: true,
         displayOnHomepage: false,
+        todayName: 'negative_tests',
       },
       {
-        name: 'Liczba hospitalizowanych',
+        name: 'hospitalizowanych',
         isPositive: false,
         displayOnHomepage: false,
+        todayName: 'hospitalized',
       },
       {
-        name: 'Zajęte respiratory',
+        name: 'zajętych respiratorów',
         isPositive: false,
         displayOnHomepage: false,
+        todayName: 'respirators',
+      },
+
+      {
+        name: 'aktywnych przypadków na 100 000 osób',
+        isPositive: false,
+        displayOnHomepage: false,
+        todayName: 'activePerHoundredThousand',
       },
     ];
     let categories = payload;
@@ -79,7 +97,12 @@ export default {
       categories[i].isPositive = type[i].isPositive;
       categories[i].displayOnHomepage = type[i].displayOnHomepage;
       categories[i].name = type[i].name;
+      categories[i].amount = state.data.today[type[i].todayName];
     }
+
     state.categories = categories;
+  },
+  NAVOPEN(state) {
+    state.isNavOpened = !state.isNavOpened;
   },
 };
