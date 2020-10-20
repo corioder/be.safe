@@ -78,7 +78,7 @@ func getCategories() (cachedData, error) {
 	for i := 0; i < len(perdayDataCorrect); i++ {
 		active := perdayDataCorrect[i]["confirmed"] - perdayDataCorrect[i]["recovered"] - perdayDataCorrect[i]["deaths"]
 		perdayDataCorrect[i]["active_cases"] = active
-		perdayDataCorrect[i]["activePerHoundredThousand"] = active / 100000
+		perdayDataCorrect[i]["activePerHoundredThousand"] = activePerHoundredThousand(active)
 	}
 
 	// today     = index 1
