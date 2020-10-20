@@ -39,6 +39,11 @@
     methods: {
       toggle() {
         document.querySelector('.hamburger').classList.toggle('hamburger--active');
+        if (this.$store.state.isNavOpened) {
+          setTimeout(() => {
+            this.$store.commit('NAVOPEN');
+          }, 300);
+        } else this.$store.commit('NAVOPEN');
       },
     },
   };
@@ -57,9 +62,9 @@
 
   nav {
     position: absolute;
+    z-index: 999;
     top: 10px;
     right: 12px;
-    z-index: 9999999;
   }
 
   .hamburger {

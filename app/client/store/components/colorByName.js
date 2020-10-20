@@ -10,14 +10,23 @@ export default (text) => {
   let color;
   switch (text) {
     case 'informed':
+    case 'Aktywne przypadki':
+    case 'Osoby na kwarantannie':
+    case 'Osoby pod nadzorem epidemiologicznym':
       color = colors.orange;
       break;
     case 'aware':
-    case 'confirmed':
+    case 'Potwierdzone przypadki':
+    case 'Hospitalizowani':
       color = colors.cinnabar;
       break;
     case 'proactive':
+    case 'Wyzdrowieli':
       color = colors.shamrockGreen;
+      break;
+    case 'Zgony':
+    case 'Zajęte respiratory':
+      color = colors.richBlack;
       break;
     default:
       color = colors.littleBoyBlue;

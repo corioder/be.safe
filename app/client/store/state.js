@@ -1,4 +1,5 @@
 export default {
+  isNavOpened: false,
   links: [
     { component: 'home', path: '/' },
     { component: 'aware', path: '/aware' },
