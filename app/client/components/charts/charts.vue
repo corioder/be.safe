@@ -7,7 +7,6 @@
         :name="homeChart.name"
         :key="`${homeChart.getDataName}_chart`"
       />
-      <chartButton @click.native="$router.push('/informed')" />
     </div>
     <div class="informedCharts" v-else>
       <chart
@@ -21,102 +20,104 @@
 </template>
 
 <script>
-  import chart from './chart.vue';
-  import chartButton from './chartButton.vue';
+import chart from "./chart.vue";
 
-  export default {
-    name: 'charts',
-    components: {
-      chart,
-      chartButton,
+export default {
+  name: "charts",
+  components: {
+    chart,
+  },
+  props: {
+    isHome: {
+      required: true,
+      type: Boolean,
     },
-    data() {
-      return {
-        informedCharts: [
-          {
-            name: 'Potwierdzone przypadki',
-            getDataName: 'confirmed',
-          },
-          {
-            name: 'Aktywne przypadki',
-            getDataName: 'active',
-          },
-          {
-            name: 'Testy',
-            getDataName: 'tests',
-          },
-          {
-            name: 'Wyzdrowieli',
-            getDataName: 'recovered',
-          },
-          {
-            name: 'Zgony',
-            getDataName: 'deaths',
-          },
-          {
-            name: 'Zajęte respiratory',
-            getDataName: 'respirators',
-          },
+  },
+  created() {
+    console.log(`created`);
+  },
+  data() {
+    return {
+      homeCharts: [
+        {
+          name: "Potwierdzone przypadki",
+          getDataName: "confirmed",
+        },
+        {
+          name: "Aktywne przypadki",
+          getDataName: "active",
+        },
+        {
+          name: "Testy",
+          getDataName: "tests",
+        },
+        {
+          name: "Wyzdrowieli",
+          getDataName: "recovered",
+        },
+        {
+          name: "Zgony",
+          getDataName: "deaths",
+        },
+      ],
+      informedCharts: [
+        {
+          name: "Potwierdzone przypadki",
+          getDataName: "confirmed",
+        },
+        {
+          name: "Aktywne przypadki",
+          getDataName: "active",
+        },
+        {
+          name: "Testy",
+          getDataName: "tests",
+        },
+        {
+          name: "Wyzdrowieli",
+          getDataName: "recovered",
+        },
+        {
+          name: "Zgony",
+          getDataName: "deaths",
+        },
+        {
+          name: "Zajęte respiratory",
+          getDataName: "respirators",
+        },
 
-          {
-            name: 'Hospitalizowani',
-            getDataName: 'hospitalized',
-          },
-          {
-            name: 'Osoby na kwarantannie',
-            getDataName: 'quarantine',
-          },
-          {
-            name: 'Osoby pod nadzorem epidemiologicznym',
-            getDataName: 'supervision',
-          },
-          {
-            name: 'Negatywne testy',
-            getDataName: 'negative_tests',
-          },
-          {
-            name: 'Przetestowane osoby',
-            getDataName: 'people_tested',
-          },
-        ],
-        homeCharts: [
-          {
-            name: 'Potwierdzone przypadki',
-            getDataName: 'confirmed',
-          },
-          {
-            name: 'Aktywne przypadki',
-            getDataName: 'active',
-          },
-          {
-            name: 'Testy',
-            getDataName: 'tests',
-          },
-          {
-            name: 'Wyzdrowieli',
-            getDataName: 'recovered',
-          },
-          {
-            name: 'Zgony',
-            getDataName: 'deaths',
-          },
-        ],
-        isHome: true,
-      };
-    },
-    created() {
-      if (this.$route.name == 'informed') this.isHome = false;
-      else this.isHome = true;
-    },
-  };
+        {
+          name: "Hospitalizowani",
+          getDataName: "hospitalized",
+        },
+        {
+          name: "Osoby na kwarantannie",
+          getDataName: "quarantine",
+        },
+        {
+          name: "Osoby pod nadzorem epidemiologicznym",
+          getDataName: "supervision",
+        },
+        {
+          name: "Negatywne testy",
+          getDataName: "negative_tests",
+        },
+        {
+          name: "Przetestowane osoby",
+          getDataName: "people_tested",
+        },
+      ],
+    };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-  @import '../../scss/mixins/_flex.scss';
-  @import '../../scss/vars/_colors.scss';
-  .informedCharts,
-  .homeCharts {
-    @include flex(column);
-    background-color: $babyPowder;
-  }
+@import "../../scss/mixins/_flex.scss";
+@import "../../scss/vars/_colors.scss";
+.informedCharts,
+.homeCharts {
+  @include flex(column);
+  background-color: $babyPowder;
+}
 </style>
