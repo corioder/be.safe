@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <header>
+    <header v-if="$route.name != 'pageNotFound'">
       <div class="logoContainer"><logo :text="$route.name == 'home' ? 'safe' : $route.name" /></div>
       <navigation />
     </header>
