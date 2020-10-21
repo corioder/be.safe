@@ -14,19 +14,11 @@ if (!__IS_DEV__) {
   }
 }
 
-async function main() {
-  try {
-    // some loading screen
-    await store.dispatch("fetchData");
-    new Vue({
-      router,
-      store,
-      el: "#root",
-      render: h => h(App)
-    });
-  } catch (err) {
-    console.error(err);
-  }
-}
+window.loadingPromise = store.dispatch("fetchData");
 
-main();
+new Vue({
+  router,
+  store,
+  el: "#root",
+  render: h => h(App)
+});
