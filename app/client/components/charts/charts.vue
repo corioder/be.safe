@@ -70,7 +70,6 @@
             name: 'Osoby pod nadzorem epidemiologicznym',
             getDataName: 'supervision',
           },
-
           {
             name: 'Negatywne testy',
             getDataName: 'negative_tests',
