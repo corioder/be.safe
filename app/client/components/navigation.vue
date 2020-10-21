@@ -114,7 +114,7 @@
   }
 
   .menu {
-    width: 140px;
+    width: 155px;
     min-height: calc(100vh - 0.1px);
     background-color: $richBlack;
     position: absolute;
@@ -157,7 +157,7 @@
 
   //////////////////////////////////////
   .hamburger--active {
-    transform: translateX(-140px);
+    transform: translateX(-155px);
   }
 
   .hamburger--active .inner {
