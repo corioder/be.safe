@@ -5,7 +5,7 @@
     </div>
 
     <div v-if="loaded">
-      <header>
+      <header v-if="$route.name != 'pageNotFound'">
         <div class="logoContainer"><logo :text="$route.name == 'home' ? 'safe' : $route.name" /></div>
         <navigation />
       </header>
@@ -42,11 +42,11 @@ export default {
       .then(() => {
         this.loaded = true;
       })
-      // .catch(err => {
-      //   console.log(err)
-      //   this.loadingTimeoutDone = true;
-      //   this.loadingError = String(err)
-      // });
+      .catch(err => {
+        console.log(err);
+        this.loadingTimeoutDone = true;
+        this.loadingError = String(err);
+      });
   }
 };
 </script>
@@ -56,15 +56,15 @@ export default {
 @import "./scss/vars/_colors.scss";
 * {
   font-family: "Open Sans", sans-serif;
-  font-weight: 400;
   box-sizing: border-box;
 }
 html {
   background-color: $babyPowder;
-  color: $richBlack;
   font-weight: 400;
 }
-
+body::-webkit-scrollbar {
+  display: none;
+}
 header {
   position: fixed;
   z-index: 999;

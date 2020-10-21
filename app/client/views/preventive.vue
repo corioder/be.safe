@@ -1,10 +1,10 @@
 <template>
-  <div class="proactive"></div>
+  <div class="preventive"></div>
 </template>
 
 <script>
   export default {
-    name: 'proactive',
+    name: 'preventive',
   };
 </script>
 

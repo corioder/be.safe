@@ -20,7 +20,7 @@ export default (text) => {
     case 'Hospitalizowani':
       color = colors.cinnabar;
       break;
-    case 'proactive':
+    case 'preventive':
     case 'Wyzdrowieli':
       color = colors.shamrockGreen;
       break;
