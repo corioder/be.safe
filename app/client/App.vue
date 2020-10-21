@@ -32,6 +32,9 @@
 
     font-weight: 400;
   }
+  body::-webkit-scrollbar {
+    display: none;
+  }
 
   header {
     position: fixed;
