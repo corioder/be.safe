@@ -22,7 +22,7 @@
                 ? require(`../assets/icons/${to.component}--richBlack.svg`)
                 : require(`../assets/icons/${to.component}--babyPowder.svg`)
             "
-            alt=""
+            :class="to.component"
           />
           <span>
             {{ to.component }}
@@ -145,10 +145,12 @@
     position: relative;
     img {
       width: 20px;
-      height: 20px;
       position: absolute;
       top: 7px;
       left: 3px;
+    }
+    img.preventive {
+      top: 14px;
     }
     span {
       margin-left: 32px;
