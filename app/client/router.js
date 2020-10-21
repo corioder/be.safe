@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import home from './views/home.vue';
-import aware from './views/aware.vue';
+import informed from './views/informed.vue';
 
 Vue.use(VueRouter);
 
@@ -12,23 +12,24 @@ const routes = [
     component: home,
   },
   {
-    path: '/aware',
-    name: 'aware',
-    component: aware,
-    // route level code-splitting
-    // this generates a separate chunk (aware.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    // component: () => import(/* webpackChunkName: "aware" */ './views/aware.vue'),
-  },
-  {
     path: '/informed',
     name: 'informed',
-    component: () => import(/* webpackChunkName: "informed" */ './views/informed.vue'),
+    component: informed,
   },
   {
-    path: '/proactive',
-    name: 'proactive',
-    component: () => import(/* webpackChunkName: "proactive" */ './views/proactive.vue'),
+    path: '/aware',
+    name: 'aware',
+    component: () => import(/* webpackChunkName: "aware" */ './views/aware.vue'),
+  },
+  {
+    path: '/preventive',
+    name: 'preventive',
+    component: () => import(/* webpackChunkName: "preventive" */ './views/preventive.vue'),
+  },
+  {
+    path: '*',
+    name: 'pageNotFound',
+    component: () => import(/* webpackChunkName: "pageNotFound" */ './views/pageNotFound.vue'),
   },
 ];
 

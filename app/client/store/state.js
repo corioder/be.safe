@@ -2,9 +2,9 @@ export default {
   isNavOpened: false,
   links: [
     { component: 'home', path: '/' },
-    { component: 'aware', path: '/aware' },
     { component: 'informed', path: '/informed' },
-    { component: 'proactive', path: '/proactive' },
+    { component: 'aware', path: '/aware' },
+    { component: 'preventive', path: '/preventive' },
   ],
   APIS: {
     API: __API__, // webpack will resolve this, use .env API=apiUrl

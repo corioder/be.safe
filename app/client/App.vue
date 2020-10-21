@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <header>
+    <header v-if="$route.name != 'pageNotFound'">
       <div class="logoContainer"><logo :text="$route.name == 'home' ? 'safe' : $route.name" /></div>
       <navigation />
     </header>
@@ -32,6 +32,9 @@
     background-color: $babyPowder;
 
     font-weight: 400;
+  }
+  body::-webkit-scrollbar {
+    display: none;
   }
 
   header {
