@@ -102,6 +102,9 @@ export default {
 
     state.categories = categories;
   },
+  ARTICLES(state, payload) {
+    state.articles = payload;
+  },
   NAVOPEN(state) {
     state.isNavOpened = !state.isNavOpened;
   },

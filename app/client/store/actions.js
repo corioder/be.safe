@@ -53,5 +53,14 @@ export default {
     } catch (err) {
       console.error(err);
     }
+
+    try {
+      const response = await fetch(state.APIS.STRAPI + '/articles');
+      const data = await response.json();
+      console.log(data);
+      commit('ARTICLES', data);
+    } catch (error) {
+      console.error(error);
+    }
   },
 };

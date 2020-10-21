@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <header v-if="$route.name != 'pageNotFound'">
-      <div class="logoContainer"><logo :text="$route.name == 'home' ? 'safe' : $route.name" /></div>
+      <div class="logoContainer"><logo :text="$route.name == 'home' ? 'safe' : $route.name == 'fullArticle' ? 'preventive' : $route.name" /></div>
       <navigation />
     </header>
     <router-view style="margin-top: 60px" />
@@ -21,7 +21,7 @@
 </script>
 
 <style lang="scss">
-  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;800&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;800&display=swap');
   @import './scss/vars/_colors.scss';
   * {
     font-family: 'Open Sans', sans-serif;
