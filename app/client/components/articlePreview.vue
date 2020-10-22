@@ -59,7 +59,7 @@
 		.articlePreview {
 			max-width: 600px;
 			.photo {
-				width: 200px;
+				width: 150px;
 				height: 150px;
 			}
 			.text {
