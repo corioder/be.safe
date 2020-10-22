@@ -23,34 +23,36 @@ type cachedData struct {
 	d []byte
 }
 
-func Covid19ApiHandler(rw http.ResponseWriter, r *http.Request) {
-	defer func() {
-		err := recover()
+func Handler(pattern string) (string, func(rw http.ResponseWriter, r *http.Request)) {
+	return pattern, func(rw http.ResponseWriter, r *http.Request) {
+		defer utils.RecoverFunc()
+
+		cData, err := globalCache.GetData(utils.RelativeURLPath(pattern, r.URL.Path), nil)
 		if err != nil {
-			fmt.Println("recoverd from error:", err)
+			fmt.Println(err)
+			rw.WriteHeader(http.StatusInternalServerError)
+			return
 		}
-	}()
 
-	cData, err := globalCache.GetData(utils.LastPathComponnet(r.URL.Path), nil)
-	if err != nil {
-		fmt.Println(err)
-		rw.WriteHeader(http.StatusInternalServerError)
-		return
+		data, ok := cData.(cachedData)
+		if !ok {
+			fmt.Println("Wrong data type for cData.(cachedData)")
+			rw.WriteHeader(http.StatusInternalServerError)
+			return
+		}
+
+		utils.AllowCors(rw)
+
+		_, err = rw.Write(data.d)
+		if err != nil {
+			fmt.Println(err)
+			rw.WriteHeader(http.StatusInternalServerError)
+			return
+		}
 	}
+}
 
-	data, ok := cData.(cachedData)
-	if !ok {
-		fmt.Println("Wrong data type for cData.(cachedData)")
-		rw.WriteHeader(http.StatusInternalServerError)
-		return
-	}
-
-	rw.Header().Set("Access-Control-Allow-Origin", "*")
-
-	_, err = rw.Write(data.d)
-	if err != nil {
-		fmt.Println(err)
-		rw.WriteHeader(http.StatusInternalServerError)
-		return
-	}
+func activePerHoundredThousand(active float64) float64 {
+	const peopleInPolland = 37970000
+	return (100000 * active) / peopleInPolland
 }

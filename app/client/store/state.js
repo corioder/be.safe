@@ -8,8 +8,7 @@ export default {
   ],
   APIS: {
     API: __API__, // webpack will resolve this, use .env API=apiUrl
-    STRAPI: 'https://besafedb.herokuapp.com',
-    TWITTER: __TWITTER__, // webpack will resolve this, use .env TWITTER=twitterUrl
+    STRAPI: __STRAPI__, // webpack will resolve this, use .env STRAPI=strapiUrl
   },
   data: {
     perday: [],

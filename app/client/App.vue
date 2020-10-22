@@ -6,10 +6,17 @@
 
 		<div v-if="loaded">
 			<header v-if="$route.name != 'pageNotFound'">
-				<div class="logoContainer"><logo :text="$route.name == 'home' ? 'safe' : $route.name == 'fullArticle' ? 'preventive' : $route.name" /></div>
+				<div class="logoContainer">
+					<logo :text="$route.name == 'home' ? 'safe' : $route.name" />
+				</div>
 				<navigation />
 			</header>
-			<router-view style="margin-top: 60px" />
+			<div style="margin-top: 60px">
+				<router-view />
+				<keep-alive>
+					<router-view name="charts" />
+				</keep-alive>
+			</div>
 		</div>
 	</div>
 </template>
@@ -36,7 +43,7 @@
 		created() {
 			setTimeout(() => {
 				this.loadingTimeoutDone = true;
-			}, 900);
+			}, 400);
 
 			window.loadingPromise
 				.then(() => {
