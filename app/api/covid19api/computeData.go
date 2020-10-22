@@ -87,7 +87,7 @@ func getCategories() (cachedData, error) {
 	categoriesData := make([]map[string]float32, 0, len(getCategoriesDataEntries))
 	for _, key := range getCategoriesDataEntries {
 		categoriesData = append(categoriesData, map[string]float32{
-			"amountOfNew":   float32(perdayDataCorrect[1][key] - perdayDataCorrect[0][key]),
+			"amountOfNew":   float32(utils.RoundTo2DecimalPlaces(perdayDataCorrect[1][key] - perdayDataCorrect[0][key])),
 			"percentChange": float32(utils.RoundTo2DecimalPlaces(float64(100 - (float32((perdayDataCorrect[0][key] * 100)) / float32(perdayDataCorrect[1][key]))))),
 		})
 	}
