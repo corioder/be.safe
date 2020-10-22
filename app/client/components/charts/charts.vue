@@ -1,15 +1,13 @@
 <template>
 	<div class="charts">
-		<div class="homeCharts" v-if="isHome">
-			<chart
-				v-for="homeChart in homeCharts"
-				:chartData="$store.getters.getChartData(homeChart.getDataName)"
-				:name="homeChart.name"
-				:key="`${homeChart.getDataName}_chart`"
-			/>
-			<chartButton @click.native="$router.push('/informed')" />
-		</div>
-		<div class="informedCharts" v-else>
+		<chart
+			v-for="homeChart in homeCharts"
+			:chartData="$store.getters.getChartData(homeChart.getDataName)"
+			:name="homeChart.name"
+			:key="`${homeChart.getDataName}_chart`"
+		/>
+
+		<div v-show="!isHome">
 			<chart
 				v-for="informedChart in informedCharts"
 				:chartData="$store.getters.getChartData(informedChart.getDataName)"
@@ -21,105 +19,79 @@
 </template>
 
 <script>
-	import chart from './chart.vue';
-	import chartButton from './chartButton.vue';
+	import chart from "./chart.vue";
 
 	export default {
-		name: 'charts',
+		name: "charts",
 		components: {
 			chart,
-			chartButton,
+		},
+		props: {
+			isHome: {
+				required: true,
+				type: Boolean,
+			},
 		},
 		data() {
 			return {
-				informedCharts: [
-					{
-						name: 'Potwierdzone przypadki w Polsce',
-						getDataName: 'confirmed',
-					},
-					{
-						name: 'Aktywne przypadki w Polsce',
-						getDataName: 'active',
-					},
-					{
-						name: 'Testy w Polsce',
-						getDataName: 'tests',
-					},
-					{
-						name: 'Wyzdrowieli w Polsce',
-						getDataName: 'recovered',
-					},
-					{
-						name: 'Zgony w Polsce',
-						getDataName: 'deaths',
-					},
-					{
-						name: 'Zajęte respiratory w Polsce',
-						getDataName: 'respirators',
-					},
-
-					{
-						name: 'Hospitalizowani w Polsce',
-						getDataName: 'hospitalized',
-					},
-					{
-						name: 'Osoby na kwarantannie w Polsce',
-						getDataName: 'quarantine',
-					},
-					{
-						name: 'Osoby pod nadzorem epidemiologicznym w Polsce',
-						getDataName: 'supervision',
-					},
-					{
-						name: 'Negatywne testy w Polsce',
-						getDataName: 'negative_tests',
-					},
-					{
-						name: 'Przetestowane osoby w Polsce',
-						getDataName: 'people_tested',
-					},
-					{
-						name: 'Liczba aktywnych na 100 000 osób w Polsce',
-						getDataName: 'activePerHoundredThousand',
-					},
-				],
 				homeCharts: [
 					{
-						name: 'Potwierdzone przypadki w Polsce',
-						getDataName: 'confirmed',
+						name: "Potwierdzone przypadki w Polsce",
+						getDataName: "confirmed",
 					},
 					{
-						name: 'Aktywne przypadki w Polsce',
-						getDataName: 'active',
+						name: "Aktywne przypadki w Polsce",
+						getDataName: "active",
 					},
 					{
-						name: 'Testy w Polsce',
-						getDataName: 'tests',
+						name: "Testy w Polsce",
+						getDataName: "tests",
 					},
 					{
-						name: 'Wyzdrowieli w Polsce',
-						getDataName: 'recovered',
+						name: "Wyzdrowieli w Polsce",
+						getDataName: "recovered",
 					},
 					{
-						name: 'Zgony w Polsce',
-						getDataName: 'deaths',
+						name: "Zgony w Polsce",
+						getDataName: "deaths",
 					},
 				],
-				isHome: true,
+				informedCharts: [
+					// homeCharts and this
+					{
+						name: "Zajęte respiratory w Polsce",
+						getDataName: "respirators",
+					},
+					{
+						name: "Hospitalizowani w Polsce",
+						getDataName: "hospitalized",
+					},
+					{
+						name: "Osoby na kwarantannie w Polsce",
+						getDataName: "quarantine",
+					},
+					{
+						name: "Osoby pod nadzorem epidemiologicznym w Polsce",
+						getDataName: "supervision",
+					},
+					{
+						name: "Negatywne testy w Polsce",
+						getDataName: "negative_tests",
+					},
+					{
+						name: "Przetestowane osoby w Polsce",
+						getDataName: "people_tested",
+					},
+				],
 			};
-		},
-		created() {
-			if (this.$route.name == 'informed') this.isHome = false;
-			else this.isHome = true;
 		},
 	};
 </script>
 
 <style lang="scss" scoped>
-	@import '../../scss/mixins/_flex.scss';
-	@import '../../scss/vars/_colors.scss';
-	.informedCharts,
-	.homeCharts {
+	@import "../../scss/mixins/_flex.scss";
+	@import "../../scss/vars/_colors.scss";
+	.charts {
 		@include flex(column);
 		background-color: $babyPowder;
 	}
