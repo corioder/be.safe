@@ -1,7 +1,7 @@
+const path = require('path');
 require('dotenv').config();
 const package = require('./package.json');
 
-const path = require('path');
 
 const common = require('./webpack.common.js');
 
@@ -16,6 +16,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const WebpackBar = require('webpackbar');
+
+const API = process.env.API || package.defaults.API;
+const STRAPI = process.env.STRAPI || package.defaults.STRAPI;
+const TWITTER = process.env.TWITTER || package.defaults.TWITTER;
+
 
 module.exports = (env = {}) => ({
 	...common,
@@ -88,9 +93,9 @@ module.exports = (env = {}) => ({
 		new VueLoaderPlugin(),
 		new DefinePlugin({
 			__IS_DEV__: true,
-			__API__: `"${process.env.API || package.defaults.API}"`,
-			__STRAPI__: `"${process.env.STRAPI || package.defaults.STRAPI}"`,
-			__TWITTER__: `"${process.env.TWITTER || package.defaults.TWITTER}"`,
+			__API__: `"${API}"`,
+			__STRAPI__: `"${STRAPI}"`,
+			__TWITTER__: `"${TWITTER}"`,
 
 			__VUE_OPTIONS_API__: true,
 			__VUE_PROD_DEVTOOLS__: false,

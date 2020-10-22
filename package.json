@@ -3,12 +3,12 @@
 	"scripts": {
 		"start": "npm run serve",
 		"serve": "webpack-dev-server --config ./webpack.dev.js",
-		"build": "cross-env USE_DOTENV=true webpack --config ./webpack.prod.js",
-		"produce": "cross-env USE_DOTENV=false webpack --config ./webpack.prod.js"
+		"build": "cross-env NODE_ENV=production USE_DOTENV=true webpack --config ./webpack.prod.js",
+		"produce": "cross-env NODE_ENV=production USE_DOTENV=false webpack --config ./webpack.prod.js"
 	},
 	"defaults": {
 		"API": "http://localhost:8081/api/",
-		"STRAPI": null,
+		"STRAPI": "https://besafedb.herokuapp.com",
 		"TWITTER": null
 	},
 	"browserslist": [

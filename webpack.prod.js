@@ -1,13 +1,14 @@
+const fs = require('fs');
+const path = require('path');
+
 if (process.env.USE_DOTENV == 'true') {
 	require('dotenv').config();
 } else if (process.env.USE_DOTENV == 'false') {
-	require('dotenv').config({ path: '.prod.env' });
+	if (fs.existsSync(path.resolve(__dirname, '.prod.env'))) require('dotenv').config({ path: '.prod.env' });
 }
 const package = require('./package.json');
 
 const common = require('./webpack.common.js');
-
-const path = require('path');
 
 const { DefinePlugin } = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -22,6 +23,10 @@ const MinifyPlugin = require('babel-minify-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const WebpackBar = require('webpackbar');
+
+const API = process.env.API || package.defaults.API;
+const STRAPI = process.env.STRAPI || package.defaults.STRAPI;
+const TWITTER = process.env.TWITTER || package.defaults.TWITTER;
 
 let fileLoaderIndex = -1;
 module.exports = (env = {}) => ({
@@ -62,7 +67,7 @@ module.exports = (env = {}) => ({
 						loader: 'postcss-loader',
 						options: {
 							postcssOptions: {
-								plugins: [require('postcss-import')(), require('postcss-preset-env')()],
+								plugins: [require('postcss-import')(), require('postcss-preset-env')(), require('autoprefixer')()],
 							},
 						},
 					},
@@ -125,9 +130,9 @@ module.exports = (env = {}) => ({
 		new VueLoaderPlugin(),
 		new DefinePlugin({
 			__IS_DEV__: false,
-			__API__: `"${process.env.API || package.defaults.API}"`,
-			__STRAPI__: `"${process.env.STRAPI || package.defaults.STRAPI}"`,
-			__TWITTER__: `"${process.env.TWITTER || package.defaults.TWITTER}"`,
+			__API__: `"${API}"`,
+			__STRAPI__: `"${STRAPI}"`,
+			__TWITTER__: `"${TWITTER}"`,
 
 			__VUE_OPTIONS_API__: true,
 			__VUE_PROD_DEVTOOLS__: false,
@@ -136,7 +141,7 @@ module.exports = (env = {}) => ({
 			runtimeCaching: [
 				{
 					handler: 'CacheFirst',
-					urlPattern: /http:\/\/localhost:8081/,
+					urlPattern: new RegExp(`${API}|${STRAPI}`),
 					options: {
 						cacheName: 'API',
 						expiration: {
