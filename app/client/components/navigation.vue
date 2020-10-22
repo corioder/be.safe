@@ -22,7 +22,7 @@
                 ? require(`../assets/icons/${to.component}--richBlack.svg`)
                 : require(`../assets/icons/${to.component}--babyPowder.svg`)
             "
-            alt=""
+            :class="to.component"
           />
           <span>
             {{ to.component }}
@@ -114,7 +114,7 @@
   }
 
   .menu {
-    width: 140px;
+    width: 155px;
     min-height: calc(100vh - 0.1px);
     background-color: $richBlack;
     position: absolute;
@@ -145,10 +145,12 @@
     position: relative;
     img {
       width: 20px;
-      height: 20px;
       position: absolute;
       top: 7px;
       left: 3px;
+    }
+    img.preventive {
+      top: 14px;
     }
     span {
       margin-left: 32px;
@@ -157,7 +159,7 @@
 
   //////////////////////////////////////
   .hamburger--active {
-    transform: translateX(-140px);
+    transform: translateX(-155px);
   }
 
   .hamburger--active .inner {

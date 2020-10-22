@@ -2,9 +2,9 @@
   <div class="boxes">
     <div class="homeBoxes" v-if="isHome">
       <box v-for="category in $store.getters.getCategoriesForHome" :key="`${category.name}boxHome`" :data="category" />
-      <boxButton @click.native="$router.push('/aware')" />
+      <boxButton @click.native="$router.push('/informed')" />
     </div>
-    <div class="awareBoxes" v-else>
+    <div class="informedBoxes" v-else>
       <box v-for="category in $store.state.categories" :key="`${category.name}boxHome`" :data="category" />
     </div>
   </div>
@@ -27,7 +27,7 @@
       };
     },
     created() {
-      if (this.$route.name == 'aware') this.isHome = false;
+      if (this.$route.name == 'informed') this.isHome = false;
       else this.isHome = true;
     },
   };
@@ -40,7 +40,7 @@
     margin: 0;
     @include flex(column);
     .homeBoxes,
-    .awareBoxes {
+    .informedBoxes {
       @include grid(1);
       grid-gap: 64px;
       margin-bottom: 64px;
@@ -49,7 +49,7 @@
 
   @media (min-width: 768px) {
     .boxes {
-      .awareBoxes,
+      .informedBoxes,
       .homeBoxes {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -58,7 +58,7 @@
 
   @media (min-width: 1024px) {
     .boxes {
-      .awareBoxes,
+      .informedBoxes,
       .homeBoxes {
         grid-template-columns: repeat(3, 1fr);
       }

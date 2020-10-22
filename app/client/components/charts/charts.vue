@@ -7,14 +7,14 @@
         :name="homeChart.name"
         :key="`${homeChart.getDataName}_chart`"
       />
-      <chartButton @click.native="$router.push('/aware')" />
+      <chartButton @click.native="$router.push('/informed')" />
     </div>
-    <div class="awareCharts" v-else>
+    <div class="informedCharts" v-else>
       <chart
-        v-for="awareChart in awareCharts"
-        :chartData="$store.getters.getChartData(awareChart.getDataName)"
-        :name="awareChart.name"
-        :key="`${awareChart.getDataName}_chart`"
+        v-for="informedChart in informedCharts"
+        :chartData="$store.getters.getChartData(informedChart.getDataName)"
+        :name="informedChart.name"
+        :key="`${informedChart.getDataName}_chart`"
       />
     </div>
   </div>
@@ -32,7 +32,7 @@
     },
     data() {
       return {
-        awareCharts: [
+        informedCharts: [
           {
             name: 'Potwierdzone przypadki',
             getDataName: 'confirmed',
@@ -70,7 +70,6 @@
             name: 'Osoby pod nadzorem epidemiologicznym',
             getDataName: 'supervision',
           },
-
           {
             name: 'Negatywne testy',
             getDataName: 'negative_tests',
@@ -110,7 +109,7 @@
       };
     },
     created() {
-      if (this.$route.name == 'aware') this.isHome = false;
+      if (this.$route.name == 'informed') this.isHome = false;
       else this.isHome = true;
     },
   };
@@ -119,7 +118,7 @@
 <style lang="scss" scoped>
   @import '../../scss/mixins/_flex.scss';
   @import '../../scss/vars/_colors.scss';
-  .awareCharts,
+  .informedCharts,
   .homeCharts {
     @include flex(column);
     background-color: $babyPowder;
