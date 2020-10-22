@@ -12,7 +12,9 @@
 				<navigation />
 			</header>
 			<div style="margin-top: 60px">
-				<router-view />
+				<keep-alive>
+					<router-view />
+				</keep-alive>
 				<keep-alive>
 					<router-view name="charts" />
 				</keep-alive>
