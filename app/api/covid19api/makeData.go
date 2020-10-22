@@ -153,7 +153,7 @@ func reciveAndSortData(body io.Reader, path string) ([]byte, error) {
 
 			active := confirmed - deaths - recovered
 			d[i]["active"] = active
-			d[i]["activePerHoundredThousand"] = active / 100000
+			d[i]["activePerHoundredThousand"] = activePerHoundredThousand(active)
 		}
 
 	case "common", "provinces":

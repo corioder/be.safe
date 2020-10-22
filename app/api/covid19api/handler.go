@@ -54,3 +54,8 @@ func Covid19ApiHandler(rw http.ResponseWriter, r *http.Request) {
 		return
 	}
 }
+
+func activePerHoundredThousand(active float64) float64 {
+	const peopleInPolland = 37970000
+	return (100000 * active) / peopleInPolland
+}
