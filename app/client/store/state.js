@@ -20,4 +20,5 @@ export default {
     prognosis: {},
   },
   categories: [],
+  articles: [],
 };

@@ -37,6 +37,11 @@ const routes = [
 		component: () => import(/* webpackChunkName: "preventive" */ './views/preventive.vue'),
 	},
 	{
+		path: '/preventive/:id',
+		name: 'fullArticle',
+		component: () => import(/* webpackChunkName: "fullArticle" */ './views/fullArticle.vue'),
+	},
+	{
 		path: '*',
 		name: 'pageNotFound',
 		component: () => import(/* webpackChunkName: "pageNotFound" */ './views/pageNotFound.vue'),

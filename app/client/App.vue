@@ -22,12 +22,12 @@
 </template>
 
 <script>
-	import logo from "./components/logo.vue";
-	import navigation from "./components/navigation.vue";
-	import loading from "./components/loading/loading.vue";
+	import logo from './components/logo.vue';
+	import navigation from './components/navigation.vue';
+	import loading from './components/loading/loading.vue';
 
 	export default {
-		name: "App",
+		name: 'App',
 		components: {
 			logo,
 			navigation,
@@ -37,7 +37,7 @@
 			return {
 				loaded: false,
 				loadingTimeoutDone: false,
-				loadingError: "",
+				loadingError: '',
 			};
 		},
 		created() {
@@ -59,10 +59,10 @@
 </script>
 
 <style lang="scss">
-	@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;800&display=swap");
-	@import "./scss/vars/_colors.scss";
+	@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;800&display=swap');
+	@import './scss/vars/_colors.scss';
 	* {
-		font-family: "Open Sans", sans-serif;
+		font-family: 'Open Sans', sans-serif;
 		box-sizing: border-box;
 	}
 	html {
