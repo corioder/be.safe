@@ -7,7 +7,7 @@
 		<div v-if="loaded">
 			<header v-if="$route.name != 'pageNotFound'">
 				<div class="logoContainer">
-					<logo :text="$route.name == 'home' ? 'safe' : $route.name" />
+					<logo :text="$route.name == 'home' ? 'safe' : $route.name == 'fullArticle' ? 'preventive' : $route.name" />
 				</div>
 				<navigation />
 			</header>
