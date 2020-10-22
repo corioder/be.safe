@@ -20,5 +20,5 @@ new Vue({
 	router,
 	store,
 	el: '#root',
-	render: h => h(App),
+	render: (h) => h(App),
 });
