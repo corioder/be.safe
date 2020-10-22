@@ -32,57 +32,54 @@
 				type: Boolean,
 			},
 		},
-		created() {
-			console.log(`created`);
-		},
 		data() {
 			return {
 				homeCharts: [
 					{
-						name: "Potwierdzone przypadki",
+						name: "Potwierdzone przypadki w Polsce",
 						getDataName: "confirmed",
 					},
 					{
-						name: "Aktywne przypadki",
+						name: "Aktywne przypadki w Polsce",
 						getDataName: "active",
 					},
 					{
-						name: "Testy",
+						name: "Testy w Polsce",
 						getDataName: "tests",
 					},
 					{
-						name: "Wyzdrowieli",
+						name: "Wyzdrowieli w Polsce",
 						getDataName: "recovered",
 					},
 					{
-						name: "Zgony",
+						name: "Zgony w Polsce",
 						getDataName: "deaths",
 					},
 				],
 				informedCharts: [
 					// homeCharts and this
 					{
-						name: "Zajęte respiratory",
+						name: "Zajęte respiratory w Polsce",
 						getDataName: "respirators",
 					},
 					{
-						name: "Hospitalizowani",
+						name: "Hospitalizowani w Polsce",
 						getDataName: "hospitalized",
 					},
 					{
-						name: "Osoby na kwarantannie",
+						name: "Osoby na kwarantannie w Polsce",
 						getDataName: "quarantine",
 					},
 					{
-						name: "Osoby pod nadzorem epidemiologicznym",
+						name: "Osoby pod nadzorem epidemiologicznym w Polsce",
 						getDataName: "supervision",
 					},
 					{
-						name: "Negatywne testy",
+						name: "Negatywne testy w Polsce",
 						getDataName: "negative_tests",
 					},
 					{
-						name: "Przetestowane osoby",
+						name: "Przetestowane osoby w Polsce",
 						getDataName: "people_tested",
 					},
 				],

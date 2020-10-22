@@ -13,7 +13,6 @@ export default (text) => {
 		case 'Aktywne przypadki w Polsce':
 		case 'Osoby na kwarantannie w Polsce':
 		case 'Osoby pod nadzorem epidemiologicznym w Polsce':
-		case 'Liczba aktywnych na 100 000 osób':
 			color = colors.orange;
 			break;
 		case 'aware':
@@ -25,7 +24,7 @@ export default (text) => {
 		case 'Wyzdrowieli w Polsce':
 			color = colors.shamrockGreen;
 			break;
-		case 'Zgony':
+		case 'Zgony w Polsce':
 		case 'Zajęte respiratory w Polsce':
 			color = colors.richBlack;
 			break;
