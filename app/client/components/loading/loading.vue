@@ -15,10 +15,10 @@
 </template>
 
 <script>
-	import mapErrorNames from "./js/mapErrorNames";
+	import mapErrorNames from './js/mapErrorNames';
 
 	export default {
-		name: "loading",
+		name: 'loading',
 		props: {
 			loadingError: {
 				required: true,
@@ -34,8 +34,8 @@
 </script>
 
 <style lang="scss" scoped>
-	@import "../../scss/components/_loading.scss";
-	@import "../../scss/mixins/_flex.scss";
+	@import '../../scss/components/_loading.scss';
+	@import '../../scss/mixins/_flex.scss';
 	.loading {
 		@include flex(column);
 		justify-content: center;
@@ -44,6 +44,8 @@
 		h1 {
 			font-size: 24px;
 			text-align: center;
+			color: $richBlack;
+			font-weight: 600;
 		}
 	}
 </style>
