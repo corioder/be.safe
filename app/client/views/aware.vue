@@ -1,5 +1,5 @@
 <template>
-  <div class="aware">?TWITTER?</div>
+  <div class="aware"></div>
 </template>
 
 <script>

@@ -26,7 +26,6 @@ const WebpackBar = require('webpackbar');
 
 const API = process.env.API || package.defaults.API;
 const STRAPI = process.env.STRAPI || package.defaults.STRAPI;
-const TWITTER = process.env.TWITTER || package.defaults.TWITTER;
 
 let fileLoaderIndex = -1;
 module.exports = (env = {}) => ({
@@ -132,7 +131,6 @@ module.exports = (env = {}) => ({
 			__IS_DEV__: false,
 			__API__: `"${API}"`,
 			__STRAPI__: `"${STRAPI}"`,
-			__TWITTER__: `"${TWITTER}"`,
 
 			__VUE_OPTIONS_API__: true,
 			__VUE_PROD_DEVTOOLS__: false,

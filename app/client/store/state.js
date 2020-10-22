@@ -9,7 +9,6 @@ export default {
   APIS: {
     API: __API__, // webpack will resolve this, use .env API=apiUrl
     STRAPI: __STRAPI__, // webpack will resolve this, use .env STRAPI=strapiUrl
-    TWITTER: __TWITTER__, // webpack will resolve this, use .env TWITTER=twitterUrl
   },
   data: {
     perday: [],

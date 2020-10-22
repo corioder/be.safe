@@ -10,7 +10,6 @@ import (
 
 func main() {
 	http.HandleFunc(covid19api.Handler("/api/"))
-	// http.HandleFunc(twitterapi.Handler("/twi/"))
 
 	port := os.Getenv("PORT")
 	if port == "" {

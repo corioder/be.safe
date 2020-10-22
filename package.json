@@ -8,8 +8,7 @@
 	},
 	"defaults": {
 		"API": "http://localhost:8081/api/",
-		"STRAPI": "https://besafedb.herokuapp.com",
-		"TWITTER": null
+		"STRAPI": "https://besafedb.herokuapp.com"
 	},
 	"browserslist": [
 		" > 0.25%",
