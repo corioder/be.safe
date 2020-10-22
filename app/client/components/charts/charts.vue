@@ -6,6 +6,9 @@
 			:name="homeChart.name"
 			:key="`${homeChart.getDataName}_chart`"
 		/>
+		<div v-show="isHome">
+			<chartButton />
+		</div>
 
 		<div v-show="!isHome">
 			<chart
@@ -20,11 +23,13 @@
 
 <script>
 	import chart from "./chart.vue";
+	import chartButton from "./chartButton.vue";
 
 	export default {
 		name: "charts",
 		components: {
 			chart,
+			chartButton,
 		},
 		props: {
 			isHome: {
