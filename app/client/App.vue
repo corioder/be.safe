@@ -11,9 +11,12 @@
 				</div>
 				<navigation />
 			</header>
-			<keep-alive include="home,informed">
-				<router-view style="margin-top: 60px" />
-			</keep-alive>
+			<div style="margin-top: 60px">
+				<router-view />
+				<keep-alive>
+					<router-view name="charts" />
+				</keep-alive>
+			</div>
 		</div>
 	</div>
 </template>
@@ -40,7 +43,7 @@
 		created() {
 			setTimeout(() => {
 				this.loadingTimeoutDone = true;
-			}, 900);
+			}, 400);
 
 			window.loadingPromise
 				.then(() => {

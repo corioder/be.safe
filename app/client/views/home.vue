@@ -1,22 +1,17 @@
 <template>
 	<div class="home">
 		<boxes />
-			<charts :isHome="true" />
-		<chartButton @click.native="$router.push('/informed')" />
+		<!-- router connects charts to this route -->
 	</div>
 </template>
 
 <script>
 	import boxes from "../components/boxes/boxes.vue";
-	import charts from "../components/charts/charts.vue";
-	import chartButton from "../components/charts/chartButton.vue";
 
 	export default {
 		name: "home",
 		components: {
 			boxes,
-			charts,
-			chartButton,
 		},
 	};
 </script>

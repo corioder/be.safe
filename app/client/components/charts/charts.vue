@@ -1,14 +1,13 @@
 <template>
 	<div class="charts">
-		<div class="homeCharts" v-if="isHome">
-			<chart
-				v-for="homeChart in homeCharts"
-				:chartData="$store.getters.getChartData(homeChart.getDataName)"
-				:name="homeChart.name"
-				:key="`${homeChart.getDataName}_chart`"
-			/>
-		</div>
-		<div class="informedCharts" v-else>
+		<chart
+			v-for="homeChart in homeCharts"
+			:chartData="$store.getters.getChartData(homeChart.getDataName)"
+			:name="homeChart.name"
+			:key="`${homeChart.getDataName}_chart`"
+		/>
+
+		<div v-show="!isHome">
 			<chart
 				v-for="informedChart in informedCharts"
 				:chartData="$store.getters.getChartData(informedChart.getDataName)"
@@ -61,31 +60,11 @@
 					},
 				],
 				informedCharts: [
-					{
-						name: "Potwierdzone przypadki",
-						getDataName: "confirmed",
-					},
-					{
-						name: "Aktywne przypadki",
-						getDataName: "active",
-					},
-					{
-						name: "Testy",
-						getDataName: "tests",
-					},
-					{
-						name: "Wyzdrowieli",
-						getDataName: "recovered",
-					},
-					{
-						name: "Zgony",
-						getDataName: "deaths",
-					},
+					// homeCharts and this
 					{
 						name: "Zajęte respiratory",
 						getDataName: "respirators",
 					},
-
 					{
 						name: "Hospitalizowani",
 						getDataName: "hospitalized",
@@ -115,8 +94,7 @@
 <style lang="scss" scoped>
 	@import "../../scss/mixins/_flex.scss";
 	@import "../../scss/vars/_colors.scss";
-	.informedCharts,
-	.homeCharts {
+	.charts {
 		@include flex(column);
 		background-color: $babyPowder;
 	}

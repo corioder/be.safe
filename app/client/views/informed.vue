@@ -8,7 +8,7 @@
 		"
 	>
 		<boxes />
-		<charts :isHome="false" />
+	<!-- router connects charts to this route -->
 	</div>
 </template>
 
