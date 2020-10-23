@@ -7,7 +7,7 @@
 		"produce": "cross-env NODE_ENV=production USE_DOTENV=false webpack --config ./webpack.prod.js"
 	},
 	"defaults": {
-		"API": "http://localhost:8081/api/",
+		"API": "http://localhost:8081/",
 		"STRAPI": "https://besafedb.herokuapp.com"
 	},
 	"browserslist": [
