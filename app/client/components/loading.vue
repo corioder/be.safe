@@ -15,14 +15,13 @@
 </template>
 
 <script>
-	import mapErrorNames from './js/mapErrorNames';
+	import mapErrorNames from '../utils/mapErrorNames';
 
 	export default {
 		name: 'loading',
 		props: {
 			loadingError: {
 				required: true,
-				type: String,
 			},
 		},
 		computed: {
@@ -34,8 +33,8 @@
 </script>
 
 <style lang="scss" scoped>
-	@import '../../scss/components/_loading.scss';
-	@import '../../scss/mixins/_flex.scss';
+	@import '../scss/components/_loading.scss';
+	@import '../scss/mixins/_flex.scss';
 	.loading {
 		@include flex(column);
 		justify-content: center;

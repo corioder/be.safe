@@ -22,6 +22,7 @@
 				</div>
 			</div>
 		</div>
+		
 		<noInternetBar />
 	</div>
 </template>
@@ -29,7 +30,7 @@
 <script>
 	import logo from './components/logo.vue';
 	import navigation from './components/navigation.vue';
-	import loading from './components/loading/loading.vue';
+	import loading from './components/loading.vue';
 	import charts from './components/charts/charts.vue';
 	import noInternetBar from './components/noInternet/noInternetBar.vue';
 
@@ -59,9 +60,8 @@
 					this.loaded = true;
 				})
 				.catch((err) => {
-					console.log(err);
 					this.loadingTimeoutDone = true;
-					this.loadingError = String(err);
+					this.loadingError = err;
 				});
 		},
 	};
