@@ -105,6 +105,10 @@ export default {
 		const articles = payload.sort((a, b) => new Date(b.date) - new Date(a.date));
 		state.articles = articles;
 	},
+	MAP(state, payload) {
+		console.log(payload)
+		state.map = payload;
+	},
 	NAVOPEN(state) {
 		state.isNavOpened = !state.isNavOpened;
 	},

@@ -10,16 +10,18 @@ export default {
 		};
 
 		try {
-			const perdayPromise = fetchData(state.APIS.API, 'perday');
-			const commonPromise = fetchData(state.APIS.API, 'common');
-			const provincesPromise = fetchData(state.APIS.API, 'provinces');
-			const countryperdayPromise = fetchData(state.APIS.API, 'countryperday');
-			const prognosisPromise = fetchData(state.APIS.API, 'prognosis');
-			const categoriesPromise = fetchData(state.APIS.API, 'categories');
+			const API = state.APIS.API + state.APIS.API_ENPOINT;
+			const perdayPromise = fetchData(API, 'perday');
+			const commonPromise = fetchData(API, 'common');
+			const provincesPromise = fetchData(API, 'provinces');
+			const countryperdayPromise = fetchData(API, 'countryperday');
+			const prognosisPromise = fetchData(API, 'prognosis');
+			const categoriesPromise = fetchData(API, 'categories');
 			const articlesPromise = fetchData(state.APIS.STRAPI + '/', 'articles');
+			const mapPromise = fetchData(state.APIS.API + state.APIS.MAP_ENPOINT, '');
 
-			let perday, common, provinces, countryperday, prognosis, categories, articles;
-			[perday, common, provinces, countryperday, prognosis, categories, articles] = await Promise.all([
+			let perday, common, provinces, countryperday, prognosis, categories, articles, map;
+			[perday, common, provinces, countryperday, prognosis, categories, articles, map] = await Promise.all([
 				perdayPromise,
 				commonPromise,
 				provincesPromise,
@@ -27,6 +29,7 @@ export default {
 				prognosisPromise,
 				categoriesPromise,
 				articlesPromise,
+				mapPromise
 			]);
 
 			commit('PERDAY', perday);
@@ -36,6 +39,7 @@ export default {
 			commit('PROGNOSIS', prognosis);
 			commit('CATEGORIES', categories);
 			commit('ARTICLES', articles);
+			commit('MAP', map);
 		} catch (err) {
 			throw err;
 		}
