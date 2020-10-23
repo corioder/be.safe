@@ -3,7 +3,7 @@
 		<main>
 			<img src="../../assets/noInternet.svg" />
 			<h1>Ups!</h1>
-			<h2>Nie znaleźliśmy strony, której szukasz...</h2>
+			<h2>Brak inernetu. <br />Sprawdź swoje połączenie.</h2>
 		</main>
 	</div>
 </template>
