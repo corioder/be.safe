@@ -106,7 +106,6 @@ export default {
 		state.articles = articles;
 	},
 	MAP(state, payload) {
-		console.log(payload)
 		state.map = payload;
 	},
 	NAVOPEN(state) {

@@ -15,9 +15,11 @@
 				<keep-alive>
 					<router-view />
 				</keep-alive>
-				<keep-alive>
-					<router-view name="charts" />
-				</keep-alive>
+				<div v-show="$route.name == 'informed'">
+					<keep-alive>
+						<charts />
+					</keep-alive>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -27,6 +29,7 @@
 	import logo from './components/logo.vue';
 	import navigation from './components/navigation.vue';
 	import loading from './components/loading/loading.vue';
+	import charts from './components/charts/charts.vue';
 
 	export default {
 		name: 'App',
@@ -34,6 +37,7 @@
 			logo,
 			navigation,
 			loading,
+			charts,
 		},
 		data() {
 			return {
