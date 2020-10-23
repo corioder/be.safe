@@ -153,6 +153,23 @@ module.exports = (env = {}) => ({
 		}),
 		new WebpackPwaManifest({
 			fingerprints: false,
+			name: 'be.safe',
+			short_name: 'be.safe',
+			description: 'Bądź bezpieczny w czasie pandemii COVID-19',
+			background_color: '#ffffff',
+			filename: 'manifest.json',
+			orientation: 'portrait',
+			display: 'standalone',
+			ios: {
+				'apple-mobile-web-app-title': 'be.safe',
+				'apple-mobile-web-app-status-bar-style': 'black',
+			},
+			// start_url: '.',
+			// inject: true,
+			// publicPath: null,
+			// includeDirectory: true,
+			// ?crossorigin: 'use-credentials',
+			//TODO icons
 		}),
 		new MinifyPlugin(null, { sourceMap: false }),
 	],
