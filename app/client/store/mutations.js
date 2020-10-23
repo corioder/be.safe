@@ -102,7 +102,8 @@ export default {
 		state.categories = categories;
 	},
 	ARTICLES(state, payload) {
-		state.articles = payload;
+		const articles = payload.sort((a, b) => new Date(b.date) - new Date(a.date));
+		state.articles = articles;
 	},
 	NAVOPEN(state) {
 		state.isNavOpened = !state.isNavOpened;
