@@ -1,5 +1,5 @@
 <template>
-	<div class="bar" @offline="ifOffline = true" @online="isOffline = false" v-if="isOffline">Brak internetu, dane mogą być nieaktualne</div>
+	<div class="bar" v-if="isOffline">Brak internetu, dane mogą być nieaktualne</div>
 </template>
 
 <script>
@@ -9,6 +9,11 @@
 			return {
 				isOffline: false,
 			};
+		},
+
+		created() {
+			window.addEventListener('offline', () => (this.isOffline = true));
+			window.addEventListener('online', () => (this.isOffline = false));
 		},
 	};
 </script>
@@ -23,5 +28,12 @@
 		left: 0;
 		padding: 2px 10px;
 		color: $babyPowder;
+
+	}
+	
+	@media(min-width:375px){
+		.bar{
+			font-size: 16px;
+		}
 	}
 </style>

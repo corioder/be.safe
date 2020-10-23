@@ -29,3 +29,10 @@ polyfillsPromise
 		});
 	})
 	.catch(console.error);
+
+
+
+
+window.addEventListener('offline',() => {
+	console.log(`aaa`)
+})
