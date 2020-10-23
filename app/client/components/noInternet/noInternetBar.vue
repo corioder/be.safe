@@ -1,5 +1,5 @@
 <template>
-	<div class="bar" @offline="ifOffline = true" @online="isOffline = false" v-if="isOffline">Brak internetu, dane mogą nieaktualne</div>
+	<div class="bar" @offline="ifOffline = true" @online="isOffline = false" v-if="isOffline">Brak internetu, dane mogą być nieaktualne</div>
 </template>
 
 <script>
