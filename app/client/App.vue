@@ -22,6 +22,7 @@
 				</div>
 			</div>
 		</div>
+		<noInternetBar />
 	</div>
 </template>
 
@@ -29,7 +30,11 @@
 	import logo from './components/logo.vue';
 	import navigation from './components/navigation.vue';
 	import loading from './components/loading/loading.vue';
+<<<<<<< HEAD
 	import charts from './components/charts/charts.vue';
+=======
+	import noInternetBar from './components/noInternet/noInternetBar.vue';
+>>>>>>> 373337a4d9d259d1bb674641878e7f16b2fb753e
 
 	export default {
 		name: 'App',
@@ -37,7 +42,11 @@
 			logo,
 			navigation,
 			loading,
+<<<<<<< HEAD
 			charts,
+=======
+			noInternetBar,
+>>>>>>> 373337a4d9d259d1bb674641878e7f16b2fb753e
 		},
 		data() {
 			return {

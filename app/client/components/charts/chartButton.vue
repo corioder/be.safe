@@ -1,17 +1,15 @@
 <template>
-	<button @click="$router.push('/informed')">
-		Zobacz więcej wykresów
-	</button>
+	<button @click="$router.push('/informed')">Zobacz więcej wykresów</button>
 </template>
 
 <script>
 	export default {
-		name: "",
+		name: '',
 	};
 </script>
 
 <style lang="scss" scoped>
-	@import "../../scss/vars/_colors.scss";
+	@import '../../scss/vars/_colors.scss';
 	button {
 		border: none;
 		padding: 10px;
@@ -19,5 +17,11 @@
 		font-size: 18px;
 		background-color: $richBlack;
 		color: $babyPowder;
+		margin-bottom: 32px;
+	}
+	@media (min-width: 768px) {
+		button {
+			margin-bottom: 64px;
+		}
 	}
 </style>

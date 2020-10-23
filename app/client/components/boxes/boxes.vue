@@ -43,7 +43,7 @@
 		.homeBoxes,
 		.informedBoxes {
 			@include grid(1);
-			grid-gap: 64px;
+			grid-gap: 32px;
 		}
 	}
 
@@ -52,6 +52,7 @@
 			.informedBoxes,
 			.homeBoxes {
 				grid-template-columns: repeat(2, 1fr);
+				grid-gap: 64px;
 			}
 		}
 	}
