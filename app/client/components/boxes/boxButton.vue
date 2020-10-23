@@ -12,8 +12,8 @@
 </script>
 
 <style lang="scss" scoped>
-	@import '../../scss/mixins/_flex.scss';
-	@import '../../scss/vars/_colors.scss';
+	@import '@/scss/mixins/_flex.scss';
+	@import '@/scss/vars/_colors.scss';
 
 	button {
 		@include flex(column);

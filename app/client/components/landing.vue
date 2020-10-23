@@ -9,7 +9,7 @@
 				<router-link to="/aware" class="aware" tag="button">świadomość</router-link>
 				<router-link to="/preventive" class="preventive" tag="button">profilaktyka</router-link>
 			</div>
-			<img src="../assets/landing.svg" />
+			<img src="@/assets/landing.svg" />
 		</div>
 	</div>
 </template>
@@ -21,8 +21,8 @@
 </script>
 
 <style lang="scss" scoped>
-	@import '../scss/mixins/_flex.scss';
-	@import '../scss/vars/_colors.scss';
+	@import '@/scss/mixins/_flex.scss';
+	@import '@/scss/vars/_colors.scss';
 	.landing {
 		@include flex(column, flex-start);
 		h2 {

@@ -1,6 +1,6 @@
 <template>
 	<div class="chart">
-		<Highcharts :options="chartOptions"></Highcharts>
+		<Highcharts :options="chartOptions" />
 	</div>
 </template>
 
@@ -63,7 +63,7 @@
 	};
 </script>
 <style lang="scss" scoped>
-	@import '../../scss/vars/_colors.scss';
+	@import '@/scss/vars/_colors.scss';
 	.chart {
 		background-color: $babyPowder;
 		margin-bottom: 32px;

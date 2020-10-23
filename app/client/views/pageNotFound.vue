@@ -1,7 +1,7 @@
 <template>
   <div class="pageNotFound">
     <main>
-      <img src="../assets/404.svg" />
+      <img src="@/assets/404.svg" />
       <h1>Ups!</h1>
       <h2>Nie znaleźliśmy strony, której szukasz...</h2>
     </main>
@@ -16,8 +16,8 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '../scss/mixins/_flex.scss';
-  @import '../scss/vars/_colors.scss';
+  @import '@/scss/mixins/_flex.scss';
+  @import '@/scss/vars/_colors.scss';
   .pageNotFound {
     @include flex(column);
     width: 100vw;

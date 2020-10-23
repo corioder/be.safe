@@ -15,7 +15,7 @@
 </template>
 
 <script>
-	import mapErrorNames from '../utils/mapErrorNames';
+	import mapErrorNames from '@/utils/mapErrorNames';
 
 	export default {
 		name: 'loading',
@@ -33,8 +33,8 @@
 </script>
 
 <style lang="scss" scoped>
-	@import '../scss/components/_loading.scss';
-	@import '../scss/mixins/_flex.scss';
+	@import '@/scss/components/_loading.scss';
+	@import '@/scss/mixins/_flex.scss';
 	.loading {
 		@include flex(column);
 		justify-content: center;

@@ -43,8 +43,8 @@
 </script>
 
 <style lang="scss" scoped>
-	@import '../scss/mixins/_flex.scss';
-	@import '../scss/vars/_colors.scss';
+	@import '@/scss/mixins/_flex.scss';
+	@import '@/scss/vars/_colors.scss';
 	h1 {
 		// font-weight: 800;
 		max-width: 100vw;
@@ -114,8 +114,8 @@
 	}
 </style>
 <style lang="scss">
-	@import '../scss/mixins/_flex.scss';
-	@import '../scss/vars/_colors.scss';
+	@import '@/scss/mixins/_flex.scss';
+	@import '@/scss/vars/_colors.scss';
 	.article {
 		@include flex(column, flex-start);
 		line-height: 200%;

@@ -1,7 +1,7 @@
 <template>
 	<div class="noInternet">
 		<main>
-			<img src="../../assets/noInternet.svg" />
+			<img src="@/assets/noInternet.svg" />
 			<h1>Ups!</h1>
 			<h2>Brak inernetu. <br />Sprawdź swoje połączenie.</h2>
 		</main>
@@ -15,8 +15,8 @@
 </script>
 
 <style lang="scss" scoped>
-	@import '../../scss/mixins/_flex.scss';
-	@import '../../scss/vars/_colors.scss';
+	@import '@/scss/mixins/_flex.scss';
+	@import '@/scss/vars/_colors.scss';
 	.noInternet {
 		@include flex(column);
 		width: 100vw;

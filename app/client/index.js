@@ -7,6 +7,12 @@ import App from './App.vue';
 import router from './router.js';
 import store from './store/store.js';
 
+window.noInternt = false;
+
+window.addEventListener('online', () => {
+	if (router.currentRoute.name == 'noInternet') router.replace({ name: 'home' });
+});
+
 polyfillsPromise
 	.then(() => {
 		Vue.config.productionTip = false;
@@ -29,10 +35,3 @@ polyfillsPromise
 		});
 	})
 	.catch(console.error);
-
-
-
-
-window.addEventListener('offline',() => {
-	console.log(`aaa`)
-})

@@ -30,8 +30,8 @@
 </script>
 
 <style lang="scss" scoped>
-	@import '../scss/vars/_colors.scss';
-	@import '../scss/mixins/_flex.scss';
+	@import '@/scss/vars/_colors.scss';
+	@import '@/scss/mixins/_flex.scss';
 	.phoneNumbers {
 		margin: 32px 0;
 		width: calc(100vw - 24px);

@@ -9,7 +9,7 @@
 </script>
 
 <style lang="scss" scoped>
-	@import '../../scss/vars/_colors.scss';
+	@import '@/scss/vars/_colors.scss';
 	button {
 		border: none;
 		padding: 10px;
