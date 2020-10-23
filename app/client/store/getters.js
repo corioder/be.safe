@@ -4,7 +4,6 @@ import proxyArrayProperties from '../utils/proxyArrayProperties';
 export default {
 	getCategoriesForHome(state) {
 		return state.categories.filter((category) => {
-			prxya;
 			if (category.displayOnHomepage) return true;
 			else return false;
 		});

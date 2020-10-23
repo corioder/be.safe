@@ -2,7 +2,6 @@
 	<div class="home">
 		<landing />
 		<boxes />
-		<!-- router connects charts to this route -->
 		<articlePreview v-if="$store.state.articles.length > 0" :article="$store.state.articles[Math.floor($store.state.articles.length * Math.random())]" />
 		<phoneNumbers />
 	</div>

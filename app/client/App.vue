@@ -1,11 +1,11 @@
 <template>
 	<div id="app">
-		<div v-if="!loaded && loadingTimeoutDone">
-			<loading :loadingError="loadingError" />
+		<div v-if="!loaded && loadingTimeoutDone && $route.name != 'noInternet'">
+			<loading :loadingError="''" />
 		</div>
 
-		<div v-if="loaded">
-			<header v-if="$route.name != 'pageNotFound'">
+		<div v-if="loaded || $route.name == 'noInternet'">
+			<header v-show="$route.name != 'pageNotFound' && $route.name != 'noInternet'">
 				<div class="logoContainer">
 					<logo :text="$route.name == 'home' ? 'safe' : $route.name == 'fullArticle' ? 'preventive' : $route.name" />
 				</div>
@@ -21,9 +21,9 @@
 					</keep-alive>
 				</div>
 			</div>
-		</div>
 
-		<noInternetBar />
+			<noInternetBar />
+		</div>
 	</div>
 </template>
 
@@ -47,7 +47,6 @@
 			return {
 				loaded: false,
 				loadingTimeoutDone: false,
-				loadingError: '',
 			};
 		},
 		created() {
@@ -60,8 +59,8 @@
 					this.loaded = true;
 				})
 				.catch((err) => {
-					this.loadingTimeoutDone = true;
-					this.loadingError = err;
+					window.noInternt = true;
+					if (this.$route.name != 'noInternet') this.$router.replace({ name: 'noInternet' });
 				});
 		},
 	};

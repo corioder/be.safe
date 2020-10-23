@@ -145,6 +145,7 @@ module.exports = (env = {}) => ({
 						expiration: {
 							// half hour
 							maxAgeSeconds: 60 * 30,
+							// maxAgeSeconds: 10,
 						},
 					},
 				},

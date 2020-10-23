@@ -1,6 +1,6 @@
 <template>
 	<div class="articlePreview" @click="$router.push(`/preventive/${article.id}`)">
-		<div class="photo" :style="{ backgroundImage: `url(${$store.state.APIS.STRAPI + article.mainphoto.url})` }" alt="" />
+		<div class="photo" :style="{ backgroundImage: `url(${mainphotoUrl})` }" alt="" />
 		<div class="text">
 			<p>{{ article.date }}</p>
 			<h2>{{ article.title }}</h2>
@@ -15,6 +15,13 @@
 			article: {
 				type: Object,
 				required: true,
+			},
+		},
+		computed: {
+			mainphotoUrl() {
+				const parts = this.article.mainphoto.url.split('/');
+				parts[parts.lenght - 1] = `small_${parts[parts.lenght - 1]}`;
+				return `${this.$store.state.APIS.STRAPI}${parts.join("/")}`;
 			},
 		},
 	};
