@@ -16,21 +16,29 @@
 				article: {},
 			};
 		},
-		mounted() {
-			setTimeout(() => {}, 500);
-			console.log(document.querySelectorAll('.articleRedirect'));
+		methods: {
+			updateArticle(routeID) {
+				if (routeID == undefined) return;
+				const articles = this.$store.state.articles;
 
-			const routeID = this.$route.params.id;
-			const articles = this.$store.state.articles;
-			let foundArticle = false;
-			for (let i in articles) {
-				if (routeID == articles[i].id) {
-					this.article = articles[i];
-					foundArticle = true;
+				for (let i = 0; i < articles.length; i++) {
+					if (routeID == articles[i].id) {
+						this.article = articles[i];
+						return;
+					}
 				}
-			}
-			if (!foundArticle) $router.push('/404');
-			console.log(this.article);
+
+				this.$router.push('/404');
+			},
+		},
+		watch: {
+			$route(to, from) {
+				this.updateArticle(to.params.id);
+			},
+		},
+
+		mounted() {
+			this.updateArticle(this.$route.params.id);
 		},
 	};
 </script>
@@ -117,7 +125,7 @@
 			text-align: left;
 			// @include flex(column);
 		}
-		.articleRedirect {
+		a {
 			text-decoration: none;
 			color: $babyPowder;
 			background-color: $shamrockGreen;
@@ -126,17 +134,8 @@
 			margin: 0;
 			line-height: 150%;
 		}
-		// a {
-		// 	text-decoration: none;
-		// 	color: $babyPowder;
-		// 	background-color: $shamrockGreen;
-		// 	display: inline-block;
-		// 	padding: 0 5px;
-		// 	margin: 0;
-		// 	line-height: 150%;
-		// }
-		// a:visited {
-		// 	color: $babyPowder;
-		// }
+		a:visited {
+			color: $babyPowder;
+		}
 	}
 </style>
