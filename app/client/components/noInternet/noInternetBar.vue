@@ -28,11 +28,11 @@
 		left: 0;
 		padding: 2px 10px;
 		color: $babyPowder;
-
+		font-size: 14px;
 	}
-	
-	@media(min-width:375px){
-		.bar{
+
+	@media (min-width: 375px) {
+		.bar {
 			font-size: 16px;
 		}
 	}
