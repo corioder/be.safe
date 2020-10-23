@@ -18,5 +18,11 @@
 	@import '../scss/mixins/_flex.scss';
 	.preventive {
 		@include flex(column);
+		margin-bottom: 32px;
+	}
+	@media (min-width: 768px) {
+		.preventive {
+			margin-bottom: 64px;
+		}
 	}
 </style>
