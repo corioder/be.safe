@@ -1,5 +1,5 @@
 import colorByName from './components/colorByName';
-import proxyArrayProperties from '../utils/proxyArrayProperties';
+import proxyArrayProperties from '@/utils/proxyArrayProperties';
 
 export default {
 	getCategoriesForHome(state) {

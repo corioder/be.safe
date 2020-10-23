@@ -28,8 +28,8 @@
 </script>
 
 <style lang="scss" scoped>
-	@import '../scss/mixins/_flex.scss';
-	@import '../scss/vars/_colors.scss';
+	@import '@/scss/mixins/_flex.scss';
+	@import '@/scss/vars/_colors.scss';
 	.articlePreview {
 		padding: 0;
 		margin-top: 32px;

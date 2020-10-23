@@ -1,5 +1,5 @@
-import preloadImgs from '../utils/preloadImgs';
-import proxyArrayProperties from '../utils/proxyArrayProperties';
+import preloadImgs from '@/utils/preloadImgs';
+import proxyArrayProperties from '@/utils/proxyArrayProperties';
 
 export default {
 	PERDAY(state, payload) {

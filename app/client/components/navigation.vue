@@ -19,8 +19,8 @@
 					<img
 						:src="
 							$route.name == to.component || ($route.name == 'fullArticle' && to.component == 'preventive')
-								? require(`../assets/icons/${to.component}--richBlack.svg`)
-								: require(`../assets/icons/${to.component}--babyPowder.svg`)
+								? require(`@/assets/icons/${to.component}--richBlack.svg`)
+								: require(`@/assets/icons/${to.component}--babyPowder.svg`)
 						"
 						:class="to.component"
 					/>
@@ -50,8 +50,8 @@
 </script>
 
 <style lang="scss" scoped>
-	@import '../scss/vars/_colors.scss';
-	@import '../scss/mixins/_flex.scss';
+	@import '@/scss/vars/_colors.scss';
+	@import '@/scss/mixins/_flex.scss';
 	@mixin line() {
 		width: 100%;
 		height: 5px;

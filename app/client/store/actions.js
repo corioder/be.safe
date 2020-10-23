@@ -1,4 +1,4 @@
-import promiseOne from '../utils/promiseOne';
+import promiseOne from '@/utils/promiseOne';
 
 export default {
 	async fetchData({ commit, state }) {

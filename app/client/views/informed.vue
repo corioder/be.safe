@@ -13,8 +13,8 @@
 </template>
 
 <script>
-	import boxes from "../components/boxes/boxes.vue";
-	import charts from "../components/charts/charts.vue";
+	import boxes from "@/components/boxes/boxes.vue";
+	import charts from "@/components/charts/charts.vue";
 
 	export default {
 		name: "informed",
@@ -26,8 +26,8 @@
 </script>
 
 <style lang="scss" scoped>
-	@import "../scss/mixins/_flex.scss";
-	@import "../scss/vars/_colors.scss";
+	@import "@/scss/mixins/_flex.scss";
+	@import "@/scss/vars/_colors.scss";
 	.informed {
 		@include flex(column);
 		background-color: $babyPowder;

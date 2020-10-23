@@ -34,8 +34,8 @@
 </script>
 
 <style lang="scss" scoped>
-	@import '../../scss/mixins/_flex.scss';
-	@import '../../scss/mixins/_grid.scss';
+	@import '@/scss/mixins/_flex.scss';
+	@import '@/scss/mixins/_grid.scss';
 	.boxes {
 		max-width: calc(100vw - 24px);
 		@include flex(column);

@@ -74,8 +74,8 @@
 </script>
 
 <style lang="scss" scoped>
-	@import '../../scss/mixins/_flex.scss';
-	@import '../../scss/vars/_colors.scss';
+	@import '@/scss/mixins/_flex.scss';
+	@import '@/scss/vars/_colors.scss';
 	.charts {
 		@include flex(column);
 		background-color: $babyPowder;

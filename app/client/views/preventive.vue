@@ -8,7 +8,7 @@
 </template>
 
 <script>
-	import articlePreview from '../components/articlePreview.vue';
+	import articlePreview from '@/components/articlePreview.vue';
 	export default {
 		name: 'preventive',
 		components: {
@@ -18,7 +18,7 @@
 </script>
 
 <style lang="scss" scoped>
-	@import '../scss/mixins/_flex.scss';
+	@import '@/scss/mixins/_flex.scss';
 	.preventive {
 		@include flex(column);
 		margin-bottom: 32px;

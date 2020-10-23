@@ -8,10 +8,10 @@
 </template>
 
 <script>
-	import landing from '../components/landing.vue';
-	import boxes from '../components/boxes/boxes.vue';
-	import articlePreview from '../components/articlePreview.vue';
-	import phoneNumbers from '../components/phoneNumbers.vue';
+	import landing from '@/components/landing.vue';
+	import boxes from '@/components/boxes/boxes.vue';
+	import articlePreview from '@/components/articlePreview.vue';
+	import phoneNumbers from '@/components/phoneNumbers.vue';
 
 	export default {
 		name: 'home',
@@ -25,7 +25,7 @@
 </script>
 
 <style lang="scss" scoped>
-	@import '../scss/mixins/_flex.scss';
+	@import '@/scss/mixins/_flex.scss';
 	.home {
 		margin-top: 32px;
 		@include flex(column);
