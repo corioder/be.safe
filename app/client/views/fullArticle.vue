@@ -27,7 +27,6 @@
 						return;
 					}
 				}
-
 				this.$router.push('/404');
 			},
 		},
@@ -114,12 +113,13 @@
 	@import '../scss/mixins/_flex.scss';
 	@import '../scss/vars/_colors.scss';
 	.article {
-		@include flex(column);
+		@include flex(column, flex-start);
 		line-height: 200%;
 
 		img {
 			width: 100%;
 			border-radius: 10px;
+			max-width: 600px;
 		}
 		p {
 			text-align: left;
