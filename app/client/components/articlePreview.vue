@@ -1,6 +1,6 @@
 <template>
 	<div class="articlePreview" @click="$router.push(`/preventive/${article.id}`)">
-		<div class="photo" :style="{ backgroundImage: `url(${$store.state.APIS.STRAPI + article.mainphoto.url})` }" alt="" />
+		<div class="photo" :style="{ backgroundImage: `url(${$store.state.APIS.STRAPI + article.mainphoto.formats.small.url})` }" alt="" />
 		<div class="text">
 			<p>{{ article.date }}</p>
 			<h2>{{ article.title }}</h2>

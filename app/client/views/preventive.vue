@@ -1,8 +1,6 @@
 <template>
 	<div>
-		<div v-if="$store.state.articlesErr != null"> 
-			AN ERROR OCCURRED
-		</div>
+		<div v-if="$store.state.articlesErr != null">AN ERROR OCCURRED</div>
 		<div v-else class="preventive">
 			<articlePreview v-for="article in $store.state.articles" :key="`article_${article.id}`" :article="article" />
 		</div>
