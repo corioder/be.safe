@@ -1,5 +1,5 @@
 <template>
-	<div class="fullArticle">
+	<div class="fullArticle" v-if="article.mainphoto != undefined">
 		<div class="photo" :style="`background-image:url(${$store.state.APIS.STRAPI + article.mainphoto.url});`"></div>
 		<div class="container">
 			<h1>{{ article.title }}</h1>
@@ -17,6 +17,9 @@
 			};
 		},
 		mounted() {
+			setTimeout(() => {}, 500);
+			console.log(document.querySelectorAll('.articleRedirect'));
+
 			const routeID = this.$route.params.id;
 			const articles = this.$store.state.articles;
 			let foundArticle = false;
@@ -60,13 +63,51 @@
 			}
 		}
 	}
+	@media (min-width: 768px) {
+		.fullArticle {
+			.container {
+				margin-top: -70px;
+				max-width: 80vw;
+				padding: 15px 50px;
+				p {
+					width: 100%;
+				}
+			}
+		}
+	}
+	@media (min-width: 1024px) {
+		.fullArticle {
+			.container {
+				margin-top: -80px;
+				max-width: 70vw;
+				padding: 20px 70px;
+			}
+		}
+	}
+	@media (min-width: 1440px) {
+		.fullArticle {
+			.photo {
+				width: calc(80vw - 24px);
+				height: 30vw;
+				background-position: center;
+				background-size: cover;
+				background-repeat: no-repeat;
+				border-radius: 10px;
+			}
+			.container {
+				margin-top: -110px;
+				max-width: 65vw;
+				padding: 20px 100px;
+			}
+		}
+	}
 </style>
 <style lang="scss">
 	@import '../scss/mixins/_flex.scss';
 	@import '../scss/vars/_colors.scss';
 	.article {
 		@include flex(column);
-		line-height: 250%;
+		line-height: 200%;
 
 		img {
 			width: 100%;
@@ -76,16 +117,26 @@
 			text-align: left;
 			// @include flex(column);
 		}
-		a {
+		.articleRedirect {
 			text-decoration: none;
 			color: $babyPowder;
 			background-color: $shamrockGreen;
 			display: inline-block;
-			padding: 0 10px;
+			padding: 0 5px;
 			margin: 0;
+			line-height: 150%;
 		}
-		a:visited {
-			color: $babyPowder;
-		}
+		// a {
+		// 	text-decoration: none;
+		// 	color: $babyPowder;
+		// 	background-color: $shamrockGreen;
+		// 	display: inline-block;
+		// 	padding: 0 5px;
+		// 	margin: 0;
+		// 	line-height: 150%;
+		// }
+		// a:visited {
+		// 	color: $babyPowder;
+		// }
 	}
 </style>
