@@ -3,28 +3,18 @@ import VueRouter from 'vue-router';
 import home from './views/home.vue';
 import informed from './views/informed.vue';
 
-import charts from './components/charts/charts.vue';
-
 Vue.use(VueRouter);
 
 const routes = [
 	{
 		path: '/',
 		name: 'home',
-		components: {
-			default: home,
-			charts: charts,
-		},
-		props: { charts: { isHome: true } },
+		component: home,
 	},
 	{
 		path: '/informed',
 		name: 'informed',
-		components: {
-			default: informed,
-			charts: charts,
-		},
-		props: { charts: { isHome: false } },
+		component: informed,
 	},
 	{
 		path: '/aware',

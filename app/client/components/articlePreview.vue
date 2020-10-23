@@ -28,12 +28,15 @@
 		margin-top: 20px;
 		@include flex;
 		color: $richBlack;
+		border-radius: 10px;
 		box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 		width: calc(100vw - 24px);
 		max-width: 500px;
 		.photo {
 			width: 100px;
 			height: 100px;
+			border-radius: 10px;
+
 			background-repeat: no-repeat;
 			background-position: center;
 			background-size: cover;
