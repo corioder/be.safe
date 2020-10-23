@@ -11,7 +11,7 @@ export default (err) => {
 
 	let errMessage  = errors[String(err)]
 	if(errMessage == undefined) {
-		return "Unknow error"
+		return "Unknown error"
 	}
 
 	return errMessage

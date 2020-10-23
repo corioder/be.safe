@@ -2,6 +2,10 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import home from './views/home.vue';
 import informed from './views/informed.vue';
+import aware from './views/aware.vue';
+import preventive from './views/preventive.vue';
+import fullArticle from './views/fullArticle.vue';
+import pageNotFound from './views/pageNotFound.vue';
 
 Vue.use(VueRouter);
 
@@ -19,22 +23,22 @@ const routes = [
 	{
 		path: '/aware',
 		name: 'aware',
-		component: () => import(/* webpackChunkName: "aware" */ './views/aware.vue'),
+		component: aware,
 	},
 	{
 		path: '/preventive',
 		name: 'preventive',
-		component: () => import(/* webpackChunkName: "preventive" */ './views/preventive.vue'),
+		component: preventive,
 	},
 	{
 		path: '/preventive/:id',
 		name: 'fullArticle',
-		component: () => import(/* webpackChunkName: "fullArticle" */ './views/fullArticle.vue'),
+		component: fullArticle,
 	},
 	{
 		path: '*',
 		name: 'pageNotFound',
-		component: () => import(/* webpackChunkName: "pageNotFound" */ './views/pageNotFound.vue'),
+		component: pageNotFound,
 	},
 ];
 

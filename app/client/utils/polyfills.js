@@ -1,4 +1,4 @@
-export default function() {
+export default () => {
 	const promises = [];
 
 	if (isUdefined('fetch')) {
@@ -19,7 +19,7 @@ export default function() {
 	}
 
 	return Promise.all(promises);
-}
+};
 
 function isUdefined(windowPropertyKey) {
 	return window[windowPropertyKey] === undefined || typeof window[windowPropertyKey] === 'undefined';

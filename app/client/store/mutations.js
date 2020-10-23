@@ -1,3 +1,6 @@
+import preloadImgs from '../utils/preloadImgs';
+import proxyArrayProperties from '../utils/proxyArrayProperties';
+
 export default {
 	PERDAY(state, payload) {
 		state.data.perday = payload;
@@ -106,8 +109,10 @@ export default {
 			state.articlesErr = payload.err;
 			return;
 		}
+
 		const articles = payload.data.sort((a, b) => new Date(b.date) - new Date(a.date));
 		state.articles = articles;
+		preloadImgs(proxyArrayProperties(state.articles, 'mainphoto.url', (link) => state.APIS.STRAPI + link));
 	},
 	MAP(state, payload) {
 		if (payload.err != null) {
