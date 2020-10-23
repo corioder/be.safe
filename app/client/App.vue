@@ -20,6 +20,7 @@
 				</keep-alive>
 			</div>
 		</div>
+		<noInternetBar />
 	</div>
 </template>
 
@@ -27,6 +28,7 @@
 	import logo from './components/logo.vue';
 	import navigation from './components/navigation.vue';
 	import loading from './components/loading/loading.vue';
+	import noInternetBar from './components/noInternet/noInternetBar.vue';
 
 	export default {
 		name: 'App',
@@ -34,6 +36,7 @@
 			logo,
 			navigation,
 			loading,
+			noInternetBar,
 		},
 		data() {
 			return {
