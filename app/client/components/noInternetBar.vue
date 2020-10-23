@@ -19,7 +19,7 @@
 </script>
 
 <style lang="scss" scoped>
-	@import '../../scss/vars/_colors.scss';
+	@import '../scss/vars/_colors.scss';
 	.bar {
 		background-color: $cinnabar;
 		width: 100vw;

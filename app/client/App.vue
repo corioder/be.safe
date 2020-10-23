@@ -32,7 +32,7 @@
 	import navigation from './components/navigation.vue';
 	import loading from './components/loading.vue';
 	import charts from './components/charts/charts.vue';
-	import noInternetBar from './components/noInternet/noInternetBar.vue';
+	import noInternetBar from './components/noInternetBar.vue';
 
 	export default {
 		name: 'App',
