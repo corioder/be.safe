@@ -45,6 +45,10 @@
 <style lang="scss" scoped>
 	@import '../scss/mixins/_flex.scss';
 	@import '../scss/vars/_colors.scss';
+	h1 {
+		// font-weight: 800;
+		max-width: 100vw;
+	}
 	.fullArticle {
 		color: $richBlack;
 		@include flex(column);

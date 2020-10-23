@@ -37,13 +37,18 @@
 	@import '../../scss/mixins/_flex.scss';
 	@import '../../scss/mixins/_grid.scss';
 	.boxes {
-		margin: 64px 0;
 		max-width: calc(100vw - 24px);
 		@include flex(column);
 		.homeBoxes,
 		.informedBoxes {
 			@include grid(1);
 			grid-gap: 32px;
+		}
+		.homeBoxes {
+			margin: 64px 0 0 0;
+		}
+		.informedBoxes {
+			margin: 32px 0 64px 0;
 		}
 	}
 
