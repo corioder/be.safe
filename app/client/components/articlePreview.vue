@@ -32,7 +32,7 @@
 	@import '../scss/vars/_colors.scss';
 	.articlePreview {
 		padding: 0;
-		margin-top: 20px;
+		margin-top: 32px;
 		@include flex;
 		color: $richBlack;
 		border-radius: 10px;
@@ -68,6 +68,7 @@
 	@media (min-width: 768px) {
 		.articlePreview {
 			max-width: 600px;
+			margin-top: 64px;
 			.photo {
 				width: 150px;
 				height: 150px;
