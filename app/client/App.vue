@@ -26,7 +26,7 @@
 <script>
 	import logo from './components/logo.vue';
 	import navigation from './components/navigation.vue';
-	import loading from './components/loading/loading.vue';
+	import loading from './components/loading.vue';
 
 	export default {
 		name: 'App',
@@ -52,9 +52,8 @@
 					this.loaded = true;
 				})
 				.catch((err) => {
-					console.log(err);
 					this.loadingTimeoutDone = true;
-					this.loadingError = String(err);
+					this.loadingError = err;
 				});
 		},
 	};

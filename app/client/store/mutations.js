@@ -102,12 +102,19 @@ export default {
 		state.categories = categories;
 	},
 	ARTICLES(state, payload) {
-		const articles = payload.sort((a, b) => new Date(b.date) - new Date(a.date));
+		if (payload.err != null) {
+			state.articlesErr = payload.err;
+			return;
+		}
+		const articles = payload.data.sort((a, b) => new Date(b.date) - new Date(a.date));
 		state.articles = articles;
 	},
 	MAP(state, payload) {
-		console.log(payload)
-		state.map = payload;
+		if (payload.err != null) {
+			state.mapErr = payload.err;
+			return;
+		}
+		state.map = payload.data;
 	},
 	NAVOPEN(state) {
 		state.isNavOpened = !state.isNavOpened;

@@ -1,3 +1,5 @@
+import promiseOne from '../utils/promiseOne';
+
 export default {
 	async fetchData({ commit, state }) {
 		const fetchData = async (API, enpoint) => {
@@ -20,16 +22,30 @@ export default {
 			const articlesPromise = fetchData(state.APIS.STRAPI + '/', 'articles');
 			const mapPromise = fetchData(state.APIS.API + state.APIS.MAP_ENPOINT, '');
 
-			let perday, common, provinces, countryperday, prognosis, categories, articles, map;
-			[perday, common, provinces, countryperday, prognosis, categories, articles, map] = await Promise.all([
+			// non citical data
+			promiseOne([articlesPromise, mapPromise]).then(([articles, map]) => {
+				if (articles.err != null) {
+					commit('ARTICLES', { err: articles.err });
+				} else {
+					commit('ARTICLES', { data: articles.data });
+				}
+
+				if (map.err != null) {
+					commit('MAP', { err: map.err });
+				} else {
+					commit('MAP', { data: map.data });
+				}
+			});
+
+			// critical data
+			let perday, common, provinces, countryperday, prognosis, categories;
+			[perday, common, provinces, countryperday, prognosis, categories] = await Promise.all([
 				perdayPromise,
 				commonPromise,
 				provincesPromise,
 				countryperdayPromise,
 				prognosisPromise,
 				categoriesPromise,
-				articlesPromise,
-				mapPromise
 			]);
 
 			commit('PERDAY', perday);
@@ -38,8 +54,6 @@ export default {
 			commit('COUNTRYPERDAY', countryperday);
 			commit('PROGNOSIS', prognosis);
 			commit('CATEGORIES', categories);
-			commit('ARTICLES', articles);
-			commit('MAP', map);
 		} catch (err) {
 			throw err;
 		}

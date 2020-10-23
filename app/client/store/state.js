@@ -21,7 +21,9 @@ export default {
 		countryperday: {},
 		prognosis: {},
 	},
-	map: {},
 	categories: [],
 	articles: [],
+	articlesErr: undefined,
+	map: {},
+	mapErr: undefined,
 };
