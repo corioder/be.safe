@@ -14,7 +14,7 @@ const { DefinePlugin } = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
 
-const ManifestPlugin = require('webpack-manifest-plugin');
+const WebpackPwaManifest = require('webpack-pwa-manifest');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -150,6 +150,9 @@ module.exports = (env = {}) => ({
 					},
 				},
 			],
+		}),
+		new WebpackPwaManifest({
+			fingerprints: false,
 		}),
 		new MinifyPlugin(null, { sourceMap: false }),
 	],
