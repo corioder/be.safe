@@ -3,18 +3,21 @@
 		<landing />
 		<boxes />
 		<!-- router connects charts to this route -->
+		<articlePreview v-if="$store.state.articles.length > 0" :article="$store.state.articles[Math.floor($store.state.articles.length * Math.random())]" />
 	</div>
 </template>
 
 <script>
 	import landing from '../components/landing.vue';
 	import boxes from '../components/boxes/boxes.vue';
+	import articlePreview from '../components/articlePreview.vue';
 
 	export default {
 		name: 'home',
 		components: {
 			landing,
 			boxes,
+			articlePreview,
 		},
 	};
 </script>
