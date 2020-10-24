@@ -12,6 +12,8 @@ type country struct {
 	Name       string `json:"name"`
 }
 
+const url = "https://www.etravel.pl/pl/restrykcje-podrozy?fbclid=IwAR03n2NS7Jb8qvtUa5eJxQxRokjP38i0Hm2BI96XBMz1zLgxzx0VbltPtBY"
+
 func makeDataFunc(key string, info interface{}) (interface{}, error) {
 	c := colly.NewCollector()
 	dataMap := make(map[string]interface{})
@@ -46,7 +48,7 @@ func makeDataFunc(key string, info interface{}) (interface{}, error) {
 		dataMap["countries"] = countries
 	})
 
-	err := c.Visit("https://www.etravel.pl/pl/restrykcje-podrozy?fbclid=IwAR03n2NS7Jb8qvtUa5eJxQxRokjP38i0Hm2BI96XBMz1zLgxzx0VbltPtBY")
+	err := c.Visit(url)
 	if err != nil {
 		return nil, err
 	}
