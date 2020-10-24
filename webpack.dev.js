@@ -9,9 +9,6 @@ const { DefinePlugin } = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
 
-const ManifestPlugin = require('webpack-manifest-plugin');
-const WorkboxPlugin = require('workbox-webpack-plugin');
-
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
@@ -82,7 +79,7 @@ module.exports = (env = {}) => ({
 	plugins: [
 		new CleanWebpackPlugin(),
 		new HtmlWebpackPlugin({
-			favicon: path.resolve(__dirname, 'app/client/assets/favicons/icon-32x32.ico'),
+			favicon: path.resolve(__dirname, 'app/client/assets/favicons/icon_36x36.svg'),
 			template: path.resolve(__dirname, 'app/client/public/index.html'),
 		}),
 		new MiniCssExtractPlugin({
