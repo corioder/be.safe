@@ -9,7 +9,8 @@
 	import { genComponent } from 'vue-highcharts';
 	import maps from 'highcharts/modules/map';
 	maps(Highcharts);
-	import world from './world.geo.json';
+	import world from '@/assets/data/world.geo.json';
+
 
 	export default {
 		components: {
