@@ -1,23 +1,16 @@
 <template>
 	<div class="charts">
-		<chart
-			v-for="chart in charts"
-			:chartData="$store.getters.getChartData(chart.getDataName)"
-			:name="chart.name"
-			:key="`${chart.getDataName}_chart`"
-		/>
+		<chart v-for="chart in charts" :chartData="$store.getters.getChartData(chart.getDataName)" :name="chart.name" :key="`${chart.getDataName}_chart`" />
 	</div>
 </template>
 
 <script>
 	import chart from './chart.vue';
-	import chartButton from './chartButton.vue';
 
 	export default {
 		name: 'charts',
 		components: {
 			chart,
-			chartButton,
 		},
 		data() {
 			return {

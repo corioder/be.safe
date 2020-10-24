@@ -120,7 +120,6 @@ export default {
 			state.mapErr = payload.err;
 			return;
 		}
-		console.log(payload.data);
 		state.map = payload.data;
 	},
 	NAVOPEN(state) {
