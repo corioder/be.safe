@@ -27,7 +27,7 @@
 				chartOptions: {
 					chart: {
 						type: 'bar',
-						width: window.innerWidth - 50,
+						width: window.innerWidth - 48,
 						height: 5000,
 						backgroundColor: '#FDFFFC',
 						alignTicks: false,

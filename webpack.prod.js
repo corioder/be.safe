@@ -151,7 +151,7 @@ module.exports = (env = {}) => ({
 				},
 			],
 		}),
-		new MinifyPlugin(null, { sourceMap: false }),
+		// new MinifyPlugin(null, { sourceMap: false }),
 	],
 
 	optimization: {
