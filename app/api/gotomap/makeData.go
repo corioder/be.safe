@@ -7,9 +7,10 @@ import (
 )
 
 type country struct {
-	Landborder string `json:"landborder"`
-	Airborder  string `json:"airborder"`
-	Name       string `json:"name"`
+	Landborder  string `json:"landborder"`
+	Airborder   string `json:"airborder"`
+	Requirement string `json:"requirement"`
+	Name        string `json:"name"`
 }
 
 func makeDataFunc(key string, info interface{}) (interface{}, error) {
@@ -38,6 +39,8 @@ func makeDataFunc(key string, info interface{}) (interface{}, error) {
 					c.Landborder = h.Text
 				case 2:
 					c.Airborder = h.Text
+				case 3:
+					c.Requirement = h.Text
 				}
 			})
 			countries = append(countries, c)
