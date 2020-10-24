@@ -69,7 +69,7 @@
 					const name = this.charts[i].getDataName;
 					this.chartData[this.countySelectd][name] = {
 						data: proxyArrayProperties(data, `${df[name]}`, (n) => Number(n)),
-						dates: proxyArrayProperties(data, `${df.date}`),
+						categories: proxyArrayProperties(data, `${df.date}`),
 					};
 				}
 				this.currentChartData = this.chartData[this.countySelectd];

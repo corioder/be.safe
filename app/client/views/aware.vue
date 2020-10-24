@@ -4,17 +4,21 @@
 			<option value="">Please select one</option>
 			<option v-for="(country, code) in countries" :key="`${code}_chart`" :value="code">{{ country }}</option>
 		</select>
-		<internationalCharts ref="intCharts" />
+		<internationalBarCharts />
+		<internationalAreaCharts ref="intCharts" />
 	</div>
 </template>
 
 <script>
-	import internationalCharts from '@/components/charts/internationalCharts.vue';
+	import internationalAreaCharts from '@/components/charts/internationalAreaCharts.vue';
+	import internationalBarCharts from '@/components/charts/internationalBarCharts.vue';
 	import countries from '@/assets/data/countries.json';
+
 	export default {
 		name: 'aware',
 		components: {
-			internationalCharts,
+			internationalAreaCharts,
+			internationalBarCharts,
 		},
 		data() {
 			return {
@@ -29,22 +33,22 @@
 	@import '@/scss/mixins/_flex.scss';
 	@import '@/scss/vars/_colors.scss';
 	/* .aware {
-		@include flex(column);
-		select {
-			width: calc(100vw - 24px);
-			box-shadow: none;
-			border: none;
-			background: none;
-			appearance: none;
-			background-color: $babyPowder;
-			color: $richBlack;
-			font-size: 14px;
-		}
+			@include flex(column);
+			select {
+				width: calc(100vw - 24px);
+				box-shadow: none;
+				border: none;
+				background: none;
+				appearance: none;
+				background-color: $babyPowder;
+				color: $richBlack;
+				font-size: 14px;
+			}
 
-		// select::-ms-expand {
-		// 	display: none;
-		// }
-	} */
+			// select::-ms-expand {
+			// 	display: none;
+			// }
+		} */
 	/* class applies to select element itself, not a wrapper element */
 	select {
 		display: block;
@@ -64,9 +68,9 @@
 		appearance: none;
 		background-color: $babyPowder;
 		/* note: bg image below uses 2 urls. The first is an svg data uri for the arrow icon, and the second is the gradient. 
-        for the icon, if you want to change the color, be sure to use `%23` instead of `#`, since it's a url. You can also swap in a different svg icon or an external image reference
-        
-    */
+	        for the icon, if you want to change the color, be sure to use `%23` instead of `#`, since it's a url. You can also swap in a different svg icon or an external image reference
+	        
+	    */
 		background-image: url('../assets/icons/dropdown.svg');
 		background-repeat: no-repeat, repeat;
 		/* arrow icon position (1em from the right, 50% vertical) , then gradient position*/

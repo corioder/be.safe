@@ -17,7 +17,7 @@
 				</keep-alive>
 				<div v-show="$route.name == 'informed'">
 					<keep-alive>
-						<polandCharts />
+						<polandAreaCharts />
 					</keep-alive>
 				</div>
 			</div>
@@ -31,7 +31,7 @@
 	import logo from './components/logo.vue';
 	import navigation from './components/navigation.vue';
 	import loading from './components/loading.vue';
-	import polandCharts from './components/charts/polandCharts.vue';
+	import polandAreaCharts from './components/charts/polandAreaCharts.vue';
 	import noInternetBar from './components/noInternetBar.vue';
 
 	export default {
@@ -40,7 +40,7 @@
 			logo,
 			navigation,
 			loading,
-			polandCharts,
+			polandAreaCharts,
 			noInternetBar,
 		},
 		data() {

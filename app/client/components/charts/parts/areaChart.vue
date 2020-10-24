@@ -36,7 +36,7 @@
 						text: this.name,
 					},
 					xAxis: {
-						categories: this.chartData.dates,
+						categories: this.chartData.categories,
 					},
 					yAxis: {
 						title: {

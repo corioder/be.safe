@@ -26,7 +26,7 @@
 			return {
 				chartOptions: {
 					chart: {
-						type: 'area',
+						type: 'bar',
 						width: window.innerWidth - 50,
 						backgroundColor: '#FDFFFC',
 						alignTicks: false,
@@ -36,7 +36,7 @@
 						text: this.name,
 					},
 					xAxis: {
-						categories: this.chartData.dates,
+						categories: this.chartData.categories,
 					},
 					yAxis: {
 						title: {

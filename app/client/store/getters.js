@@ -14,21 +14,11 @@ export default {
 		return (chartType) => {
 			return {
 				data: proxyArrayProperties(state.data.perday, `${chartType}`, (n) => Number(n)),
-				dates: proxyArrayProperties(state.data.perday, `date`),
+				categories: proxyArrayProperties(state.data.perday, `date`),
 			};
 		};
 	},
 	getInternationalData(state) {
-		// data format
-		const df = {
-			date: 0,
-			confirmed: 1,
-			deaths: 2,
-			recovered: 3,
-			active: 4,
-			activePerHoundredThousand: 5,
-		};
-
 		return async (countryCode) => {
 			let data = null;
 			if (state[countryCode]) data = state[countryCode];
