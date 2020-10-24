@@ -10,23 +10,16 @@
 			<div></div>
 			<div></div>
 		</div>
-		<h1>{{ loadingErrorMessage }}</h1>
+		<h1 v-html="err"></h1>
 	</div>
 </template>
 
 <script>
-	import mapErrorNames from '@/utils/mapErrorNames';
-
 	export default {
 		name: 'loading',
 		props: {
-			loadingError: {
-				required: true,
-			},
-		},
-		computed: {
-			loadingErrorMessage() {
-				return mapErrorNames(this.loadingError);
+			err: {
+				required: false,
 			},
 		},
 	};
@@ -38,7 +31,6 @@
 	.loading {
 		@include flex(column);
 		justify-content: center;
-		// height: calc(100vh - 120px);
 		height: 100vh;
 		h1 {
 			font-size: 24px;

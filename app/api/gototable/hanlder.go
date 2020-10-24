@@ -1,4 +1,4 @@
-package gotomap
+package gototable
 
 import (
 	"fmt"

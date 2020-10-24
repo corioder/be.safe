@@ -1,22 +1,17 @@
 <template>
 	<div class="charts">
-		<chart
-			v-for="chart in charts"
-			:chartData="$store.getters.getChartData(chart.getDataName)"
-			:name="chart.name"
-			:key="`${chart.getDataName}_chart`"
-		/>
+		<areaChart v-for="chart in charts" :chartData="$store.getters.getChartData(chart.getDataName)" :name="chart.name" :key="`${chart.getDataName}_chart`" />
 	</div>
 </template>
 
 <script>
-	import chart from './chart.vue';
-	import chartButton from './chartButton.vue';
+	import areaChart from './parts/areaChart.vue';
+	import chartButton from './parts/chartButton.vue';
 
 	export default {
-		name: 'charts',
+		name: 'polandCharts',
 		components: {
-			chart,
+			areaChart,
 			chartButton,
 		},
 		data() {

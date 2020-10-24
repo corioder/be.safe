@@ -1,32 +1,70 @@
 <template>
-	<div v-if="this.$store.state.map.countries != undefined" class="countriesData">
-		<h5>Ograniczenia w Podróżach zagranicznych</h5>
-		<div class="countriesTable">
-			<table>
-				<thead>
-					<tr>
-						<td>Nazwa kraju</td>
-						<td>Granica lądowa</td>
-						<td>Granica powietrzna</td>
-						<td>Wymagania</td>
-					</tr>
-				</thead>
-				<tbody>
-					<tr v-for="country in this.$store.state.map.countries" :key="`${country.name}Data`">
-						<td>{{ country.name }}</td>
-						<td>{{ country.landborder }}</td>
-						<td>{{ country.airborder }}</td>
-						<td>{{ country.requirement }}</td>
-					</tr>
-				</tbody>
-			</table>
+	<div>
+		<div v-if="loaded" class="countriesData">
+			<h5>Ograniczenia w Podróżach zagranicznych</h5>
+			<div class="countriesTable">
+				<table>
+					<thead>
+						<tr>
+							<td>Nazwa kraju</td>
+							<td>Granica lądowa</td>
+							<td>Granica powietrzna</td>
+							<td>Wymagania</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="country in data" :key="`${country.name}Data`">
+							<td>{{ country.name }}</td>
+							<td>{{ country.landborder }}</td>
+							<td>{{ country.airborder }}</td>
+							<td>{{ country.requirement }}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
+		<loading :err="err.message" v-else />
 	</div>
 </template>
 
 <script>
+	import loading from '@/components/loading.vue';
+
 	export default {
 		name: 'countriesTable',
+		components: {
+			loading
+		},
+		data() {
+			return {
+				data: {},
+				loaded: false,
+				err: {
+					message: '',
+					timeout: null,
+				},
+			};
+		},
+		created() {
+			this.table();
+		},
+		methods: {
+			async table() {
+				if (this.err.timeout) clearTimeout(this.err.timeout);
+
+				try {
+					this.data = await this.$store.getters.getTable();
+				} catch (err) {
+					this.err.message = this.$store.state.unexpectedErr;
+					this.err.timeout = setTimeout(() => {
+						this.table();
+					}, this.$store.state.retryTimeout);
+					return;
+				}
+
+				this.loaded = true;
+			},
+		},
 	};
 </script>
 
@@ -76,8 +114,6 @@
 						width: 100%;
 						td {
 							padding: 12px;
-							// border: $richBlack 2px solid;
-							// border: $richBlack 1.5px solid;
 						}
 					}
 					tr:nth-of-type(even) {

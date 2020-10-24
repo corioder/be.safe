@@ -1,4 +1,4 @@
-package gotomap
+package gototable
 
 import (
 	"encoding/json"
@@ -13,18 +13,14 @@ type country struct {
 	Name        string `json:"name"`
 }
 
+const url = "https://www.etravel.pl/pl/restrykcje-podrozy?fbclid=IwAR03n2NS7Jb8qvtUa5eJxQxRokjP38i0Hm2BI96XBMz1zLgxzx0VbltPtBY"
+
 func makeDataFunc(key string, info interface{}) (interface{}, error) {
 	c := colly.NewCollector()
-	dataMap := make(map[string]interface{})
+	countries := make([]country, 0, 47)
 
 	c.OnHTML("section.main", func(h *colly.HTMLElement) {
-		h.ForEachWithBreak("div > p", func(i int, h *colly.HTMLElement) bool {
-			dataMap["header"] = h.Text
-			return false
-		})
-
 		// 47 because on travel site there is 47 countries
-		countries := make([]country, 0, 47)
 		h.ForEach("tbody > tr", func(i int, h *colly.HTMLElement) {
 			if i == 0 {
 				return
@@ -45,16 +41,14 @@ func makeDataFunc(key string, info interface{}) (interface{}, error) {
 			})
 			countries = append(countries, c)
 		})
-
-		dataMap["countries"] = countries
 	})
 
-	err := c.Visit("https://www.etravel.pl/pl/restrykcje-podrozy?fbclid=IwAR03n2NS7Jb8qvtUa5eJxQxRokjP38i0Hm2BI96XBMz1zLgxzx0VbltPtBY")
+	err := c.Visit(url)
 	if err != nil {
 		return nil, err
 	}
 
-	d, err := json.Marshal(dataMap)
+	d, err := json.Marshal(countries)
 	if err != nil {
 		return nil, err
 	}

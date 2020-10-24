@@ -157,7 +157,8 @@
 		}
 	}
 
-	//////////////////////////////////////
+
+	
 	.hamburger--active {
 		transform: translateX(-155px);
 	}

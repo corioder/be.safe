@@ -8,6 +8,9 @@ module.exports = {
         modules: false,
       },
     ],
-  ],
+	],
+	plugins: [
+		"@babel/plugin-proposal-class-properties"
+	],
   sourceType: "unambiguous",
 };

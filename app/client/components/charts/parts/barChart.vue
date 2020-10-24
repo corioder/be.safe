@@ -5,13 +5,12 @@
 </template>
 
 <script>
-	import Highcharts from 'highcharts';
-	import { genComponent } from 'vue-highcharts';
+	import Highcharts from './highcharts.vue';
 
 	export default {
-		name: 'chart',
+		name: 'barChart',
 		components: {
-			Highcharts: genComponent('Highcharts', Highcharts),
+			Highcharts,
 		},
 		props: {
 			chartData: {
@@ -27,16 +26,18 @@
 			return {
 				chartOptions: {
 					chart: {
-						type: 'area',
-						width: window.innerWidth - 50,
+						type: 'bar',
+						width: window.innerWidth - 48,
+						height: 5000,
 						backgroundColor: '#FDFFFC',
 						alignTicks: false,
+						zoomType: 'x',
 					},
 					title: {
 						text: this.name,
 					},
 					xAxis: {
-						categories: this.chartData.dates,
+						categories: this.chartData.categories,
 					},
 					yAxis: {
 						title: {

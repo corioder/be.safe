@@ -39,7 +39,6 @@
 		padding: 12px;
 		@include flex(column, flex-start);
 
-		// max-width: 300px;
 		border-radius: 10px;
 		box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 		h3,

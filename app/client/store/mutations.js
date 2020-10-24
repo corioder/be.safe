@@ -1,24 +1,13 @@
 import preloadImgs from '@/utils/preloadImgs';
 import proxyArrayProperties from '@/utils/proxyArrayProperties';
 import spacesInNum from '@/store/components/spacesInNum';
+import roundTo2Places from '@/utils/roundTo2Places';
 
 export default {
 	PERDAY(state, payload) {
 		state.data.perday = payload;
 		state.data.today = payload[payload.length - 1];
 		state.data.yesterday = payload[payload.length - 2];
-	},
-	COMMON(state, payload) {
-		state.data.common = payload;
-	},
-	PROVINCES(state, payload) {
-		state.data.provinces = payload;
-	},
-	COUNTRYPERDAY(state, payload) {
-		state.data.countryperday = payload;
-	},
-	PROGNOSIS(state, payload) {
-		state.data.prognosis = payload;
 	},
 	CATEGORIES(state, payload) {
 		const type = [
@@ -101,27 +90,14 @@ export default {
 			categories[i].isPositive = type[i].isPositive;
 			categories[i].displayOnHomepage = type[i].displayOnHomepage;
 			categories[i].name = type[i].name;
-			categories[i].amount = spacesInNum(Math.round((state.data.today[type[i].todayName] || payload[i].amount) * 100) / 100);
+			categories[i].amount = spacesInNum(roundTo2Places(state.data.today[type[i].todayName] || payload[i].amount));
 		}
 		state.categories = categories;
 	},
 	ARTICLES(state, payload) {
-		if (payload.err != null) {
-			state.articlesErr = payload.err;
-			return;
-		}
-
-		const articles = payload.data.sort((a, b) => new Date(b.date) - new Date(a.date));
+		const articles = payload.sort((a, b) => new Date(b.date) - new Date(a.date));
 		state.articles = articles;
 		preloadImgs(proxyArrayProperties(state.articles, 'mainphoto.url', (link) => state.APIS.STRAPI + link));
-	},
-	MAP(state, payload) {
-		if (payload.err != null) {
-			state.mapErr = payload.err;
-			return;
-		}
-		console.log(payload.data);
-		state.map = payload.data;
 	},
 	NAVOPEN(state) {
 		state.isNavOpened = !state.isNavOpened;

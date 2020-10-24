@@ -27,6 +27,7 @@
 						return;
 					}
 				}
+				
 				this.$router.push('/404');
 			},
 		},
@@ -46,7 +47,6 @@
 	@import '@/scss/mixins/_flex.scss';
 	@import '@/scss/vars/_colors.scss';
 	h3 {
-		// font-weight: 800;
 		max-width: 100vw;
 	}
 	.fullArticle {
@@ -62,10 +62,7 @@
 		}
 		.container {
 			margin: 0;
-			// margin-top: -100px;
-			// max-width: 70vw;
 			background-color: $babyPowder;
-			// padding: 10px 100px;
 			padding: 12px;
 
 			border-radius: 10px;
@@ -127,7 +124,6 @@
 		}
 		p {
 			text-align: left;
-			// @include flex(column);
 		}
 		a {
 			text-decoration: none;
