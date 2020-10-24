@@ -13,7 +13,7 @@
 	import internationalAreaCharts from '@/components/charts/internationalAreaCharts.vue';
 	import internationalBarCharts from '@/components/charts/internationalBarCharts.vue';
 	import countries from '@/assets/data/countries.json';
-	import Autocomplete from '@/components/autocomplete/autocomplete.vue';
+	import Autocomplete from '@/components/autocomplete/Autocomplete.vue';
 
 	export default {
 		name: 'aware',

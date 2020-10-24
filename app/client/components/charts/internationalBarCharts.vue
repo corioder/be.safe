@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div v-if="loaded">
-			<barChart :chartData="chartData" :name="'aaa'" />
+			<barChart :chartData="chartData" name="Aktywne przypadki na 100 tysięcy mieszkańców" />
 		</div>
 		<loading v-else />
 	</div>
@@ -26,7 +26,7 @@
 			};
 		},
 		created() {
-			this.chart()
+			this.chart();
 		},
 		methods: {
 			async chart() {
@@ -36,7 +36,7 @@
 					data: proxyArrayProperties(data, `apht`),
 					categories: proxyArrayProperties(data, `name`),
 				};
-				this.loaded = true
+				this.loaded = true;
 			},
 		},
 	};
