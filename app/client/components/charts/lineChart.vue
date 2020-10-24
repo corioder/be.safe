@@ -12,7 +12,7 @@
 	import { genComponent } from 'vue-highcharts';
 
 	export default {
-		name: 'chart',
+		name: 'bar',
 		components: {
 			Highcharts: genComponent('Highcharts', Highcharts),
 		},
