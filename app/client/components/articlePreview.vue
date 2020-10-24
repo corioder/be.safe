@@ -3,7 +3,7 @@
 		<div class="photo" :style="{ backgroundImage: `url(${mainphotoUrl})` }" alt="" />
 		<div class="text">
 			<p>{{ article.date }}</p>
-			<h2>{{ article.title }}</h2>
+			<h4>{{ article.title }}</h4>
 		</div>
 	</div>
 </template>
@@ -21,7 +21,7 @@
 			mainphotoUrl() {
 				const parts = this.article.mainphoto.url.split('/');
 				parts[parts.lenght - 1] = `small_${parts[parts.lenght - 1]}`;
-				return `${this.$store.state.APIS.STRAPI}${parts.join("/")}`;
+				return `${this.$store.state.APIS.STRAPI}${parts.join('/')}`;
 			},
 		},
 	};
@@ -58,7 +58,7 @@
 				margin: 0;
 				margin-bottom: 3px;
 			}
-			h2 {
+			h4 {
 				margin: 0;
 				font-size: 14px;
 				font-weight: 400;
@@ -78,7 +78,7 @@
 				p {
 					font-size: 14px;
 				}
-				h2 {
+				h4 {
 					font-size: 20px;
 				}
 			}
@@ -96,7 +96,7 @@
 				p {
 					font-size: 16px;
 				}
-				h2 {
+				h4 {
 					font-size: 24px;
 				}
 			}

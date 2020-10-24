@@ -2,7 +2,7 @@
 	<div class="fullArticle" v-if="article.mainphoto != undefined">
 		<div class="photo" :style="`background-image:url(${$store.state.APIS.STRAPI + article.mainphoto.url});`"></div>
 		<div class="container">
-			<h1>{{ article.title }}</h1>
+			<h3>{{ article.title }}</h3>
 			<article v-html="article.article" class="article"></article>
 		</div>
 	</div>
@@ -45,7 +45,7 @@
 <style lang="scss" scoped>
 	@import '@/scss/mixins/_flex.scss';
 	@import '@/scss/vars/_colors.scss';
-	h1 {
+	h3 {
 		// font-weight: 800;
 		max-width: 100vw;
 	}
