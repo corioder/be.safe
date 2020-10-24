@@ -2,7 +2,7 @@
 	<div>
 		<div v-if="countySelectd != ''">
 			<div v-if="loaded" :key="countySelectd">
-				<chart v-for="chart in charts" :chartData="currentChartData[chart.getDataName]" :name="chart.name" :key="`${chart.getDataName}_int_chart`" />
+				<lineChart v-for="chart in charts" :chartData="currentChartData[chart.getDataName]" :name="chart.name" :key="`${chart.getDataName}_int_chart`" />
 			</div>
 			<loading v-else />
 		</div>
@@ -10,7 +10,7 @@
 </template>
 
 <script>
-	import chart from '@/components/charts/chart.vue';
+	import lineChart from '@/components/charts/lineChart.vue';
 	import loading from '@/components/loading.vue';
 	import { df } from '@/utils/fetchFromRDS';
 	import proxyArrayProperties from '@/utils/proxyArrayProperties';
@@ -19,14 +19,14 @@
 		name: 'internationalCharts',
 		components: {
 			loading,
-			chart,
+			lineChart,
 		},
 		data() {
 			return {
 				loaded: false,
 				chartData: {},
 				currentChartData: {},
-				countySelectd:'',
+				countySelectd: '',
 				counties: {
 					AF: 'Afganistan',
 					US: 'Stany Zjednoczone',
@@ -54,9 +54,9 @@
 		methods: {
 			async changeChart(countySelectd) {
 				this.loaded = false;
-				this.countySelectd = countySelectd
-				
-				if(countySelectd == "") return
+				this.countySelectd = countySelectd;
+
+				if (countySelectd == '') return;
 				if (this.chartData[this.countySelectd]) {
 					this.currentChartData = this.chartData[this.countySelectd];
 					this.loaded = true;
