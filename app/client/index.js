@@ -1,3 +1,9 @@
+import fetchFromRDS from './utils/fetchFromRDS';
+
+// fetchFromRDS('PL').then((res) => {
+// 	console.log(res)
+// })
+
 import polyfills from './utils/polyfills.js';
 const polyfillsPromise = polyfills();
 

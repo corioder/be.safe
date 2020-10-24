@@ -26,4 +26,5 @@ export default {
 	articlesErr: undefined,
 	map: {},
 	mapErr: undefined,
+	international: {},
 };
