@@ -1,24 +1,3 @@
-import fetchFromRDS from './utils/fetchFromRDS';
-import cc from './assets/data/countries.json';
-
-async function main() {
-	const k = Object.keys(cc);
-
-	const prmises = [];
-	for (const kee of k) {
-		prmises.push({ d: fetchFromRDS(kee), k: kee });
-	}
-
-	for (const p of prmises) {
-		const d = await p.d;
-		if (d.length == 0) {
-			console.log(p.k);
-		}
-	}
-}
-
-main();
-
 import polyfills from './utils/polyfills.js';
 const polyfillsPromise = polyfills();
 
