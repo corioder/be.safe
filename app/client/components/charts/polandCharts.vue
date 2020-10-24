@@ -14,7 +14,7 @@
 	import chartButton from './chartButton.vue';
 
 	export default {
-		name: 'charts',
+		name: 'polandCharts',
 		components: {
 			chart,
 			chartButton,
