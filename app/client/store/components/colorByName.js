@@ -11,20 +11,24 @@ export default (text) => {
 	switch (text) {
 		case 'informed':
 		case 'Aktywne przypadki w Polsce':
+		case 'Aktywne przypadki':
 		case 'Osoby na kwarantannie w Polsce':
 		case 'Osoby pod nadzorem epidemiologicznym w Polsce':
 			color = colors.orange;
 			break;
 		case 'aware':
 		case 'Potwierdzone przypadki w Polsce':
+		case 'Potwierdzone przypadki':
 		case 'Hospitalizowani w Polsce':
 			color = colors.cinnabar;
 			break;
 		case 'preventive':
 		case 'Wyzdrowieli w Polsce':
+		case 'Wyzdrowieli':
 			color = colors.shamrockGreen;
 			break;
 		case 'Zgony w Polsce':
+		case 'Zgony':
 		case 'Zajęte respiratory w Polsce':
 			color = colors.richBlack;
 			break;
