@@ -5,16 +5,12 @@
 </template>
 
 <script>
-	import Highcharts from 'highcharts';
-	import boost from 'highcharts/modules/boost';
-	boost(Highcharts);
-
-	import { genComponent } from 'vue-highcharts';
+	import Highcharts from './highcharts.vue';
 
 	export default {
-		name: 'bar',
+		name: 'barChart',
 		components: {
-			Highcharts: genComponent('Highcharts', Highcharts),
+			Highcharts,
 		},
 		props: {
 			chartData: {

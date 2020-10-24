@@ -2,7 +2,7 @@
 	<div>
 		<div v-if="countySelectd != ''">
 			<div v-if="loaded" :key="countySelectd">
-				<lineChart v-for="chart in charts" :chartData="currentChartData[chart.getDataName]" :name="chart.name" :key="`${chart.getDataName}_int_chart`" />
+				<areaChart v-for="chart in charts" :chartData="currentChartData[chart.getDataName]" :name="chart.name" :key="`${chart.getDataName}_int_chart`" />
 			</div>
 			<loading v-else />
 		</div>
@@ -10,7 +10,7 @@
 </template>
 
 <script>
-	import lineChart from '@/components/charts/lineChart.vue';
+	import areaChart from './parts/areaChart.vue';
 	import loading from '@/components/loading.vue';
 	import { df } from '@/utils/fetchFromRDS';
 	import proxyArrayProperties from '@/utils/proxyArrayProperties';
@@ -19,7 +19,7 @@
 		name: 'internationalCharts',
 		components: {
 			loading,
-			lineChart,
+			areaChart,
 		},
 		data() {
 			return {
