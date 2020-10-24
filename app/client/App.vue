@@ -11,7 +11,7 @@
 				</div>
 				<navigation />
 			</header>
-			<div style="margin-top: 60px">
+			<div style="margin-top: 64px">
 				<keep-alive>
 					<router-view />
 				</keep-alive>
@@ -86,12 +86,12 @@
 		left: 0;
 		top: 0;
 		width: 100vw;
-		height: 60px;
+		height: 64px;
 		background-color: $babyPowder;
 		.logoContainer {
 			position: relative;
 			left: 12px;
-			top: 12px;
+			top: 17px;
 		}
 	}
 </style>

@@ -24,7 +24,8 @@
 	@import '@/scss/mixins/_flex.scss';
 	@import '@/scss/vars/_colors.scss';
 	.coronaDescription {
-		margin: 32px 0;
+		margin: 0;
+		margin-top: 32px;
 		width: calc(100vw - 24px);
 		max-width: 500px;
 		padding: 12px;
@@ -35,7 +36,6 @@
 		box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 		h3 {
 			font-weight: 600;
-			// color: $richBlack;
 			background-color: $orange;
 			color: $babyPowder;
 			padding: 3px 10px;
@@ -43,7 +43,7 @@
 	}
 	@media (min-width: 768px) {
 		.coronaDescription {
-			margin: 64px 0;
+			margin-top: 64px;
 			max-width: 600px;
 		}
 	}
