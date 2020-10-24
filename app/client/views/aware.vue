@@ -1,9 +1,9 @@
 <template>
 	<div class="aware">
-		<select @change="changeChart($event.target.value)">
-			<option value="">Wybierz państwo</option>
-			<option v-for="(country, code) in countries" :key="`${code}_chart`" :value="code" :selected="code == 'US' ? 'selected' : ''">{{ country }}</option>
-		</select>
+		<Autocomplete :search="search" @submit="changeChart($event)" placeholder="Szukaj państwa" />
+		<h5>
+			{{ selectedCountry }}
+		</h5>
 		<internationalCharts ref="intCharts" />
 	</div>
 </template>
@@ -11,23 +11,42 @@
 <script>
 	import internationalCharts from '@/components/charts/internationalCharts.vue';
 	import countries from '@/assets/data/countries.json';
+	import Autocomplete from '@trevoreyre/autocomplete-vue';
+
 	export default {
 		name: 'aware',
+		data() {
+			return {
+				countries,
+				countriesArray: [],
+				selectedCountry: '',
+			};
+		},
 		components: {
 			internationalCharts,
+			Autocomplete,
 		},
 		methods: {
 			changeChart(value) {
-				this.$refs.intCharts.changeChart(value);
+				if (value == 'Polska') this.$router.push('/informed');
+				this.selectedCountry = value;
+				this.$refs.intCharts.changeChart(Object.keys(this.countries).find((key) => this.countries[key] == value));
+			},
+			search(input) {
+				if (input.length < 1) {
+					return [];
+				}
+				return this.countriesArray.filter((country) => {
+					return country.toLowerCase().startsWith(input.toLowerCase());
+				});
 			},
 		},
+
 		mounted() {
-			this.changeChart('US');
-		},
-		data() {
-			return {
-				countries: countries,
-			};
+			this.changeChart('Stany Zjednoczone');
+			for (let i in this.countries) {
+				this.countriesArray.push(this.countries[i]);
+			}
 		},
 	};
 </script>
@@ -35,37 +54,58 @@
 <style lang="scss" scoped>
 	@import '@/scss/mixins/_flex.scss';
 	@import '@/scss/vars/_colors.scss';
-	select {
-		display: block;
-		font-size: 16px;
-		font-weight: 600;
-		color: $richBlack;
-		line-height: 1.3;
-		padding: 6px;
-		width: calc(100vw - 24px);
-		max-width: 300px;
-		margin: 0;
-		border: none;
-		box-shadow: 0 1px 0 2px rgba(0, 0, 0, 0.04);
-		border-radius: 10px;
-		appearance: none;
-		background-color: $babyPowder;
-		background-image: url('../assets/icons/dropdown.svg');
-		background-repeat: no-repeat;
-		background-position: right 1em top 50%;
-		background-size: auto;
-		transform: scale(1);
-		transition: transform 0.1s ease-in-out;
-		option {
-			font-weight: 400;
+	.aware {
+		@include flex(column);
+		h5 {
+			font-size: 16px;
+			font-weight: 600;
 		}
 	}
-	select:hover {
-		transform: scale(1.01);
-	}
-	select:focus {
-		outline: none;
-		transform: scale(1.05);
-		box-shadow: 0 2px 0 4px rgba(0, 0, 0, 0.04);
+</style>
+<style lang="scss">
+	@import '@/scss/vars/_colors.scss';
+
+	.autocomplete {
+		margin: 64px 0;
+		width: calc(100vw - 24px);
+		max-width: 500px;
+		input {
+			padding: 10px;
+			width: 100%;
+			background-color: $babyPowder;
+			border: none;
+			border-radius: 10px;
+			box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+			transform: scale(1);
+			transition: transform 0.2s ease-in-out;
+		}
+		input:focus {
+			outline: none;
+			transform: scale(1.01);
+		}
+		ul {
+			width: calc(100vw - 24px);
+			max-width: 500px;
+			background-color: $babyPowder;
+			font-weight: 400;
+			color: $richBlack;
+			border-radius: 10px;
+			box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+
+			li {
+				width: calc(100vw - 24px);
+				max-width: 500px;
+				margin-bottom: 12px;
+				width: 100%;
+				list-style: none;
+				padding: 2px;
+				transform: scale(1);
+				transition: transform 0.2s ease-in-out;
+			}
+			li:hover {
+				cursor: pointer;
+				transform: scale(1.01);
+			}
+		}
 	}
 </style>
