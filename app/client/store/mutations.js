@@ -1,5 +1,6 @@
 import preloadImgs from '@/utils/preloadImgs';
 import proxyArrayProperties from '@/utils/proxyArrayProperties';
+import spacesInNum from '@/store/components/spacesInNum';
 
 export default {
 	PERDAY(state, payload) {
@@ -100,7 +101,7 @@ export default {
 			categories[i].isPositive = type[i].isPositive;
 			categories[i].displayOnHomepage = type[i].displayOnHomepage;
 			categories[i].name = type[i].name;
-			categories[i].amount = Math.round((state.data.today[type[i].todayName] || payload[i].amount) * 100) / 100;
+			categories[i].amount = spacesInNum(Math.round((state.data.today[type[i].todayName] || payload[i].amount) * 100) / 100);
 		}
 		state.categories = categories;
 	},
