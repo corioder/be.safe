@@ -1,5 +1,6 @@
 import preloadImgs from '@/utils/preloadImgs';
 import proxyArrayProperties from '@/utils/proxyArrayProperties';
+import roundToTwoPlaces from '@/utils/roundToTwoPlaces';
 
 export default {
 	PERDAY(state, payload) {
@@ -100,7 +101,7 @@ export default {
 			categories[i].isPositive = type[i].isPositive;
 			categories[i].displayOnHomepage = type[i].displayOnHomepage;
 			categories[i].name = type[i].name;
-			categories[i].amount = Math.round((state.data.today[type[i].todayName] || payload[i].amount) * 100) / 100;
+			categories[i].amount = roundToTwoPlaces(state.data.today[type[i].todayName] || payload[i].amount);
 		}
 		state.categories = categories;
 	},

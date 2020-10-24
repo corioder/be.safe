@@ -21,7 +21,7 @@
 		name: 'loading',
 		props: {
 			loadingError: {
-				required: true,
+				required: false,
 			},
 		},
 		computed: {

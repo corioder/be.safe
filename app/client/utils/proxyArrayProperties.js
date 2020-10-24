@@ -17,7 +17,11 @@ export default (arr, props, format) => {
 
 	return new Proxy(arr, {
 		get(obj, prop) {
-			if (isNaN(Number(prop))) return obj[prop];
+			try {
+				if (isNaN(Number(prop))) return obj[prop];
+			} catch (err) {
+				return obj[prop];
+			}
 			return getFunc(obj, prop);
 		},
 	});
