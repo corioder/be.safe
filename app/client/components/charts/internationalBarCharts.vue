@@ -3,7 +3,7 @@
 		<div v-if="loaded">
 			<barChart :chartData="chartData" name="Aktywne przypadki na 100 tysięcy mieszkańców" />
 		</div>
-		<loading v-else />
+		<loading :err="err.message" v-else />
 	</div>
 </template>
 
@@ -23,6 +23,10 @@
 			return {
 				loaded: false,
 				chartData: {},
+				err: {
+					message: '',
+					timeout: null,
+				},
 			};
 		},
 		created() {
@@ -30,12 +34,22 @@
 		},
 		methods: {
 			async chart() {
-				// TODO: err check
-				const data = await this.$store.getters.getInternationalActivePerHoundredThousand();
-				this.chartData = {
-					data: proxyArrayProperties(data, `apht`),
-					categories: proxyArrayProperties(data, `name`),
-				};
+				if (this.err.timeout) clearTimeout(this.err.timeout);
+
+				try {
+					const data = await this.$store.getters.getInternationalActivePerHoundredThousand();
+					this.chartData = {
+						data: proxyArrayProperties(data, `apht`),
+						categories: proxyArrayProperties(data, `name`),
+					};
+				} catch (err) {
+					this.err = this.$sotre.state.unexpectedErr;
+					this.err.timeout = setTimeout(() => {
+						this.chart();
+					}, this.$sotre.state.retryTimeout);
+					return;
+				}
+
 				this.loaded = true;
 			},
 		},

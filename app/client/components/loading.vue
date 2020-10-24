@@ -10,7 +10,7 @@
 			<div></div>
 			<div></div>
 		</div>
-		<h1>{{ loadingErrorMessage }}</h1>
+		<h1>{{ err }}</h1>
 	</div>
 </template>
 
@@ -20,13 +20,8 @@
 	export default {
 		name: 'loading',
 		props: {
-			loadingError: {
+			err: {
 				required: false,
-			},
-		},
-		computed: {
-			loadingErrorMessage() {
-				return mapErrorNames(this.loadingError);
 			},
 		},
 	};

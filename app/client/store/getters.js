@@ -23,9 +23,12 @@ export default {
 			let data = null;
 			if (state.international[countryCode]) data = state.international[countryCode];
 			else {
-				// TODO: err check
-				data = await fetchFromRDS(countryCode);
-				state.international[countryCode] = data;
+				try {
+					data = await fetchFromRDS(countryCode);
+					state.international[countryCode] = data;
+				} catch (err) {
+					throw err;
+				}
 			}
 
 			return data;
@@ -37,10 +40,13 @@ export default {
 			let data = null;
 			if (state.internationalActivePerHoundredThousand.length > 0) data = state.internationalActivePerHoundredThousand;
 			else {
-				// TODO: err check
-				const response = await fetch(state.APIS.API + state.APIS.INT_ENPOINT);
-				data = await response.json();
-				state.internationalActivePerHoundredThousand = data;
+				try {
+					const response = await fetch(state.APIS.API + state.APIS.INT_ENPOINT);
+					data = await response.json();
+					state.internationalActivePerHoundredThousand = data;
+				} catch (err) {
+					throw err;
+				}
 			}
 
 			return data;

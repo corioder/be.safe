@@ -1,4 +1,6 @@
 export default {
+	unexpectedErr: 'Ojej ten error zaskoczył nas nie mniej niż Ciebie...\nżartujemy, przecież gdyby tak było, nie przygotowalibyśmy tego komunikatu.',
+	retryTimeout: 15000,
 	isNavOpened: false,
 	links: [
 		{ component: 'home', path: '/' },
