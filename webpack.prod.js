@@ -112,7 +112,7 @@ module.exports = (env = {}) => ({
 		new CleanWebpackPlugin(),
 		new HtmlWebpackPlugin({
 			template: path.resolve(__dirname, 'app/client/public/index.html'),
-			favicon: path.resolve(__dirname, 'app/client/assets/favicons/icon-32x32.ico'),
+			favicon: path.resolve(__dirname, 'app/client/assets/favicons/icon_36x36.svg'),
 			minify: {
 				collapseWhitespace: true,
 				removeComments: true,
@@ -167,64 +167,69 @@ module.exports = (env = {}) => ({
 			},
 			// icons: [
 			// 	{
-			// 		src: path.resolve(__dirname, 'app/client/assets/favicons/icon-192x192.ico'),
+			// 		src: path.resolve(__dirname, 'app/client/assets/favicons/icon.svg'),
 			// 		sizes: [36, 48, 72, 96, 144, 192, 512],
 			// 		ios: true,
 			// 	},
 			// ],
 			icons: [
 				{
-					src: path.resolve(__dirname, 'app/client/assets/favicons/icon-32x32.ico'),
-					size: '32x32',
+					src: path.resolve(__dirname, 'app/client/assets/favicons/icon_36x36.svg'),
+					size: '36x36',
 					ios: true,
 				},
 				{
-					src: path.resolve(__dirname, 'app/client/assets/favicons/icon-72x72.ico'),
+					src: path.resolve(__dirname, 'app/client/assets/favicons/icon_48x48.svg'),
+					size: '48x48',
+					ios: true,
+				},
+				{
+					src: path.resolve(__dirname, 'app/client/assets/favicons/icon_72x72.svg'),
 					size: '72x72',
 					ios: true,
 				},
 				{
-					src: path.resolve(__dirname, 'app/client/assets/favicons/icon-96x96.ico'),
+					src: path.resolve(__dirname, 'app/client/assets/favicons/icon_96x96.svg'),
 					size: '96x96',
 					ios: true,
 				},
+				// {
+				// 	src: path.resolve(__dirname, 'app/client/assets/favicons/icon_120x120.svg'),
+				// 	size: '120x120',
+				// 	ios: true,
+				// },
+				// {
+				// 	src: path.resolve(__dirname, 'app/client/assets/favicons/icon_128x128.svg'),
+				// 	size: '128x128',
+				// 	ios: true,
+				// },
 				{
-					src: path.resolve(__dirname, 'app/client/assets/favicons/icon-120x120.ico'),
-					size: '120x120',
-					ios: true,
-				},
-				{
-					src: path.resolve(__dirname, 'app/client/assets/favicons/icon-128x128.ico'),
-					size: '128x128',
-					ios: true,
-				},
-				{
-					src: path.resolve(__dirname, 'app/client/assets/favicons/icon-144x144.ico'),
+					src: path.resolve(__dirname, 'app/client/assets/favicons/icon_144x144.svg'),
 					size: '144x144',
 					ios: true,
 				},
+				// {
+				// 	src: path.resolve(__dirname, 'app/client/assets/favicons/icon_152x152.svg'),
+				// 	size: '152x152',
+				// 	ios: true,
+				// },
+				// {
+				// 	src: path.resolve(__dirname, 'app/client/assets/favicons/icon_180x180.svg'),
+				// 	size: '180x180',
+				// 	ios: true,
+				// },
 				{
-					src: path.resolve(__dirname, 'app/client/assets/favicons/icon-152x152.ico'),
-					size: '152x152',
-					ios: true,
-				},
-				{
-					src: path.resolve(__dirname, 'app/client/assets/favicons/icon-180x180.ico'),
-					size: '180x180',
-					ios: true,
-				},
-				{
-					src: path.resolve(__dirname, 'app/client/assets/favicons/icon-192x192.ico'),
+					src: path.resolve(__dirname, 'app/client/assets/favicons/icon_192x192.svg'),
 					size: '192x192',
 					ios: true,
 				},
+				// {
+				// 	src: path.resolve(__dirname, 'app/client/assets/favicons/icon_384x384.svg'),
+				// 	size: '384x384',
+					// ios: true,
+				// },
 				{
-					src: path.resolve(__dirname, 'app/client/assets/favicons/icon-384x384.ico'),
-					size: '384x384',
-					ios: true,
-				},
-				{
-					src: path.resolve(__dirname, 'app/client/assets/favicons/icon-512x512.ico'),
+					src: path.resolve(__dirname, 'app/client/assets/favicons/icon_512x512.svg'),
 					size: '512x512',
 					ios: 'startup',
 				},
