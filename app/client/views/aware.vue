@@ -14,4 +14,15 @@
 	};
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+	@import '@/scss/mixins/_flex.scss';
+	.aware {
+		@include flex(column);
+		margin-bottom: 32px;
+	}
+	@media (min-width: 768px) {
+		.aware {
+			margin-bottom: 64px;
+		}
+	}
+</style>

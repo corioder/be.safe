@@ -1,10 +1,8 @@
 <template>
 	<div v-if="this.$store.state.map.countries != undefined">
+		<h5>Ograniczenia w Podróżach zagranicznych</h5>
 		<table>
 			<thead>
-				<tr>
-					<th>Ograniczenia w Podróżach zagranicznych</th>
-				</tr>
 				<tr>
 					<td>Nazwa kraju</td>
 					<td>Granica lądowa</td>
@@ -29,25 +27,34 @@
 </script>
 
 <style lang="scss" scoped>
-	table {
-		width: 90vw;
-		thead {
-			width: 100%;
-			tr {
-				width: 100%;
-				th {
-					width: 100%;
-				}
-			}
+	@import '@/scss/vars/_colors.scss';
+	div {
+		// color: $richBlack;
+		width: calc(100vw - 24px);
+		max-width: 700px;
+		margin: 0;
+		padding: 12px;
+		border: none;
+		border-radius: 10px;
+		box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+		table {
+			width: calc(100% - 24px);
+			display: table;
+			border-collapse: collapse;
 		}
-		tbody {
-			width: 100%;
-			tr {
-				width: 100%;
-				td {
-					width: 33%;
-				}
-			}
+
+		// tbody {
+		// 	vertical-align: middle;
+		// }
+
+		// tr {
+		// 	vertical-align: middle;
+		// }
+
+		td,
+		th {
+			padding: 12px;
+			border: $richBlack 2px solid;
 		}
 	}
 </style>
