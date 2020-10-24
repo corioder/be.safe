@@ -6,6 +6,9 @@
 
 <script>
 	import Highcharts from 'highcharts';
+	import boost from 'highcharts/modules/boost';
+	boost(Highcharts);
+
 	import { genComponent } from 'vue-highcharts';
 
 	export default {
@@ -31,6 +34,7 @@
 						width: window.innerWidth - 50,
 						backgroundColor: '#FDFFFC',
 						alignTicks: false,
+						zoomType: 'x',
 					},
 					title: {
 						text: this.name,
