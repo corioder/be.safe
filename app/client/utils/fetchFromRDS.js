@@ -5,11 +5,8 @@
 // 		0, // cnt_death
 // 		0, // cnt_recovered
 // 		0, // active
-//    0, // active active per one hundred thousand
 // 	]
 // ]
-
-import roundToTwoPlaces from './roundToTwoPlaces';
 
 // data format
 export const df = {
@@ -23,7 +20,6 @@ export const df = {
 
 export default async (countryCode) => {
 	const recordsPromise = rdsData(countryCode);
-	const populationPromise = populationData(countryCode);
 
 	let records;
 	try {
@@ -32,17 +28,9 @@ export default async (countryCode) => {
 		throw err;
 	}
 
-	let population = null;
-	try {
-		population = await populationPromise;
-	} catch (err) {
-		console.error(err);
-	}
-
 	for (let i = 0; i < records.length; i++) {
 		records[i][df.date] = fomatDate(records[i][df.date]);
 		records[i][df.active] = Number(records[i][df.confirmed]) - Number(records[i][df.deaths]) - Number(records[i][df.recovered]);
-		if (population != null) records[i][df.activePerHoundredThousand] = roundToTwoPlaces((records[i][df.active] * 100000) / population);
 	}
 
 	return records;
@@ -59,16 +47,6 @@ async function rdsData(countryCode) {
 		const url = `https://covid19.richdataservices.com/rds/api/query/int/jhu_country/select?cols=date_stamp,cnt_confirmed,cnt_death,cnt_recovered&where=(iso3166_1=${countryCode})&limit=2500&orderBy=date_stamp&metadata=false`;
 		const data = await fetchData(url);
 		return data.records;
-	} catch (err) {
-		throw err;
-	}
-}
-
-async function populationData(countryCode) {
-	try {
-		const url = `https://restcountries.eu/rest/v2/alpha/${countryCode}?fields=population`;
-		const data = await fetchData(url);
-		return data.population;
 	} catch (err) {
 		throw err;
 	}

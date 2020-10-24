@@ -4,17 +4,22 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"math"
 	"net"
 	"net/http"
 	"os"
 	"path/filepath"
+	"sort"
 	"sync"
 	"time"
-
-	"github.com/corioder/be.safe/api/utils"
 )
 
 const countriesListJSON = "data/countries.json"
+
+type countryData struct {
+	CountryName               string  `json:"name"`
+	ActivePerHoundredThousand float32 `json:"apht"`
+}
 
 func makeDataFunc(key string, info interface{}) (interface{}, error) {
 	dirname, err := os.Getwd()
@@ -33,18 +38,16 @@ func makeDataFunc(key string, info interface{}) (interface{}, error) {
 		return nil, err
 	}
 
-	countriesActivePerHoundredThousandMap := make(map[string]float32)
-	reciveDataChan := make(chan struct {
-		countryName               string
-		activePerHoundredThousand float32
-	})
+	// 205 because countries.json contain 205 countries
+	countriesActivePerHoundredThousand := make([]countryData, 0, 205)
+	reciveDataChan := make(chan countryData)
 
 	rootWG := sync.WaitGroup{}
 	rootWG.Add(1)
 	go func() {
 		defer rootWG.Done()
 		for data := range reciveDataChan {
-			countriesActivePerHoundredThousandMap[data.countryName] = data.activePerHoundredThousand
+			countriesActivePerHoundredThousand = append(countriesActivePerHoundredThousand, data)
 		}
 	}()
 
@@ -58,25 +61,30 @@ func makeDataFunc(key string, info interface{}) (interface{}, error) {
 				fmt.Println(err)
 				return
 			}
-			reciveDataChan <- struct {
-				countryName               string
-				activePerHoundredThousand float32
-			}{countryName, activePerHoundredThousand}
+			reciveDataChan <- countryData{countryName, activePerHoundredThousand}
 			fmt.Println(countryCode, "done")
 		}(countryCode, countryName)
 	}
 
 	reciverWG.Wait()
 	close(reciveDataChan)
-
 	rootWG.Wait()
 
-	bytes, err := json.Marshal(countriesActivePerHoundredThousandMap)
+	sort.Sort(SortByCountyData(countriesActivePerHoundredThousand))
+	bytes, err := json.Marshal(countriesActivePerHoundredThousand)
 	if err != nil {
 		return nil, err
 	}
 
 	return cachedData{d: bytes}, nil
+}
+
+type SortByCountyData []countryData
+
+func (a SortByCountyData) Len() int      { return len(a) }
+func (a SortByCountyData) Swap(i, j int) { a[i], a[j] = a[j], a[i] }
+func (a SortByCountyData) Less(i, j int) bool {
+	return a[i].ActivePerHoundredThousand > a[j].ActivePerHoundredThousand
 }
 
 type population struct {
@@ -160,7 +168,9 @@ func getActivePerHoundredThousand(countryCode string) (float32, error) {
 	population := populationJson.Population
 	active := record[dfConfirmed] - record[dfDeath] - record[dfRecovered]
 
-	activePerHoundredThousand := float32(utils.RoundTo2DecimalPlaces(float64(float32(active*100000) / float32(population))))
+	activePerHoundredThousand := float32(active*100000) / float32(population)
+	activePerHoundredThousand = float32(math.Round(float64(activePerHoundredThousand*10000)) / 10000)
+
 	return activePerHoundredThousand, nil
 }
 

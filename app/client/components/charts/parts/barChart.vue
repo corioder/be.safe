@@ -28,6 +28,7 @@
 					chart: {
 						type: 'bar',
 						width: window.innerWidth - 50,
+						height: 5000,
 						backgroundColor: '#FDFFFC',
 						alignTicks: false,
 						zoomType: 'x',

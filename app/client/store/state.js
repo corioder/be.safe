@@ -9,6 +9,7 @@ export default {
 	APIS: {
 		API_ENPOINT: 'api/',
 		MAP_ENPOINT: 'map/',
+		INT_ENPOINT: 'int/',
 		API: __API__, // webpack will resolve this, use .env API=apiUrl
 		STRAPI: __STRAPI__, // webpack will resolve this, use .env STRAPI=strapiUrl
 	},
@@ -27,4 +28,5 @@ export default {
 	map: {},
 	mapErr: undefined,
 	international: {},
+	internationalActivePerHoundredThousand: [],
 };

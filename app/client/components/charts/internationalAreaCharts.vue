@@ -16,7 +16,7 @@
 	import proxyArrayProperties from '@/utils/proxyArrayProperties';
 
 	export default {
-		name: 'internationalCharts',
+		name: 'internationalAreaCharts',
 		components: {
 			loading,
 			areaChart,

@@ -1,8 +1,9 @@
 <template>
 	<div>
-		<!-- !!
-		<barChart :chartData="chartData" :name="'recovered'"/>
-		!! -->
+		<div v-if="loaded">
+			<barChart :chartData="chartData" :name="'aaa'" />
+		</div>
+		<loading v-else />
 	</div>
 </template>
 
@@ -13,20 +14,34 @@
 	import proxyArrayProperties from '@/utils/proxyArrayProperties';
 
 	export default {
-		name: 'internationalCharts',
+		name: 'internationalBarCharts',
 		components: {
 			loading,
 			barChart,
 		},
 		data() {
-			return {};
+			return {
+				loaded: false,
+				chartData: {},
+			};
 		},
-		computed: {
-			chartData() {
-				this.$store.getters.getInternationalData()
-
-			}
-		}
+		created() {
+			this.chart()
+		},
+		methods: {
+			async chart() {
+				// TODO: err check
+				const data = await this.$store.getters.getInternationalActivePerHoundredThousand();
+				for(const a of data ) {
+					console.log(a.name)
+				}
+				this.chartData = {
+					data: proxyArrayProperties(data, `apht`),
+					categories: proxyArrayProperties(data, `name`),
+				};
+				this.loaded = true
+			},
+		},
 	};
 </script>
 
