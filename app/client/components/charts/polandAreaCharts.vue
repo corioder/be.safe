@@ -6,13 +6,11 @@
 
 <script>
 	import areaChart from './parts/areaChart.vue';
-	import chartButton from './parts/chartButton.vue';
 
 	export default {
 		name: 'polandCharts',
 		components: {
 			areaChart,
-			chartButton,
 		},
 		data() {
 			return {
