@@ -13,7 +13,7 @@
 	import internationalAreaCharts from '@/components/charts/internationalAreaCharts.vue';
 	import internationalBarCharts from '@/components/charts/internationalBarCharts.vue';
 	import countries from '@/assets/data/countries.json';
-	import Autocomplete from '@trevoreyre/autocomplete-vue';
+	import Autocomplete from '@/components/autocomplete/autocomplete.vue';
 
 	export default {
 		name: 'aware',
@@ -31,8 +31,7 @@
 		},
 		methods: {
 			changeChart(value) {
-				if (value == 'Polska') this.$router.push('/informed');
-				console.log(value)
+				if (value.toLowerCase() == 'polska') this.$router.push('/informed');
 				this.selectedCountry = value;
 				this.$refs.intCharts.changeChart(Object.keys(this.countries).find((key) => this.countries[key] == value));
 			},

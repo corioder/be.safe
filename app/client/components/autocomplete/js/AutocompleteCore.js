@@ -60,8 +60,8 @@ class AutocompleteCore {
 				break;
 			}
 			case 'Enter': {
-				const selectedResult = this.results[this.selectedIndex];
-				this.selectResult();
+				const selectedResult = this.results[0];
+				this.selectResult(true);
 				this.onSubmit(selectedResult);
 				break;
 			}
@@ -113,12 +113,20 @@ class AutocompleteCore {
 		this.onUpdate(this.results, this.selectedIndex);
 	};
 
-	selectResult = () => {
-		const selectedResult = this.results[this.selectedIndex];
-		if (selectedResult) {
-			this.setValue(selectedResult);
+	selectResult = (fromEnter) => {
+		if (fromEnter) {
+			const selectedResult = this.results[0];
+			if (selectedResult) {
+				this.setValue(selectedResult);
+			}
+			this.hideResults();
+		} else {
+			const selectedResult = this.results[this.selectedIndex];
+			if (selectedResult) {
+				this.setValue(selectedResult);
+			}
+			this.hideResults();
 		}
-		this.hideResults();
 	};
 
 	updateResults = (value) => {
