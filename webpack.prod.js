@@ -112,6 +112,7 @@ module.exports = (env = {}) => ({
 		new CleanWebpackPlugin(),
 		new HtmlWebpackPlugin({
 			template: path.resolve(__dirname, 'app/client/public/index.html'),
+			favicon: path.resolve(__dirname, 'app/client/assets/favicons/icon-32x32.ico'),
 			minify: {
 				collapseWhitespace: true,
 				removeComments: true,
@@ -139,7 +140,7 @@ module.exports = (env = {}) => ({
 			runtimeCaching: [
 				{
 					handler: 'CacheFirst',
-					urlPattern: new RegExp(`${API}|${STRAPI}|${package.defaults.others.join("|")}`),
+					urlPattern: new RegExp(`${API}|${STRAPI}|${package.defaults.others.join('|')}`),
 					options: {
 						cacheName: 'API',
 						expiration: {
@@ -152,6 +153,7 @@ module.exports = (env = {}) => ({
 		}),
 		new WebpackPwaManifest({
 			fingerprints: false,
+			start_url: '.',
 			name: 'be.safe',
 			short_name: 'be.safe',
 			description: 'Bądź bezpieczny w czasie pandemii COVID-19',
@@ -163,14 +165,76 @@ module.exports = (env = {}) => ({
 				'apple-mobile-web-app-title': 'be.safe',
 				'apple-mobile-web-app-status-bar-style': 'black',
 			},
-			// start_url: '.',
-			// inject: true,
+			// icons: [
+			// 	{
+			// 		src: path.resolve(__dirname, 'app/client/assets/favicons/icon-192x192.ico'),
+			// 		sizes: [36, 48, 72, 96, 144, 192, 512],
+			// 		ios: true,
+			// 	},
+			// ],
+			icons: [
+				{
+					src: path.resolve(__dirname, 'app/client/assets/favicons/icon-32x32.ico'),
+					size: '32x32',
+					ios: true,
+				},
+				{
+					src: path.resolve(__dirname, 'app/client/assets/favicons/icon-72x72.ico'),
+					size: '72x72',
+					ios: true,
+				},
+				{
+					src: path.resolve(__dirname, 'app/client/assets/favicons/icon-96x96.ico'),
+					size: '96x96',
+					ios: true,
+				},
+				{
+					src: path.resolve(__dirname, 'app/client/assets/favicons/icon-120x120.ico'),
+					size: '120x120',
+					ios: true,
+				},
+				{
+					src: path.resolve(__dirname, 'app/client/assets/favicons/icon-128x128.ico'),
+					size: '128x128',
+					ios: true,
+				},
+				{
+					src: path.resolve(__dirname, 'app/client/assets/favicons/icon-144x144.ico'),
+					size: '144x144',
+					ios: true,
+				},
+				{
+					src: path.resolve(__dirname, 'app/client/assets/favicons/icon-152x152.ico'),
+					size: '152x152',
+					ios: true,
+				},
+				{
+					src: path.resolve(__dirname, 'app/client/assets/favicons/icon-180x180.ico'),
+					size: '180x180',
+					ios: true,
+				},
+				{
+					src: path.resolve(__dirname, 'app/client/assets/favicons/icon-192x192.ico'),
+					size: '192x192',
+					ios: true,
+				},
+				{
+					src: path.resolve(__dirname, 'app/client/assets/favicons/icon-384x384.ico'),
+					size: '384x384',
+					ios: true,
+				},
+				{
+					src: path.resolve(__dirname, 'app/client/assets/favicons/icon-512x512.ico'),
+					size: '512x512',
+					ios: 'startup',
+				},
+			],
+			inject: true,
 			// publicPath: null,
 			// includeDirectory: true,
 			// ?crossorigin: 'use-credentials',
-			//TODO icons
 		}),
-		new MinifyPlugin(null, { sourceMap: false }),
+		// new MinifyPlugin(null, { sourceMap: false }),
 	],
 
 	optimization: {

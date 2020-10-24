@@ -82,6 +82,7 @@ module.exports = (env = {}) => ({
 	plugins: [
 		new CleanWebpackPlugin(),
 		new HtmlWebpackPlugin({
+			favicon: path.resolve(__dirname, 'app/client/assets/favicons/icon-32x32.ico'),
 			template: path.resolve(__dirname, 'app/client/public/index.html'),
 		}),
 		new MiniCssExtractPlugin({
