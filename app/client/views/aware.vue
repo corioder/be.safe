@@ -1,6 +1,5 @@
 <template>
 	<div class="aware">
-		<!-- <worldMap /> -->
 		<select @change="$refs.intCharts.changeChart($event.target.value)">
 			<option value="">Please select one</option>
 			<option v-for="(country, code) in countries" :key="`${code}_chart`" :value="code">{{ country }}</option>
@@ -11,13 +10,11 @@
 
 <script>
 	import internationalCharts from '@/components/charts/internationalCharts.vue';
-	import worldMap from '@/components/map/worldMap.vue';
 	import countries from '@/assets/data/countries.json';
 	export default {
 		name: 'aware',
 		components: {
 			internationalCharts,
-			worldMap,
 		},
 		data() {
 			return {

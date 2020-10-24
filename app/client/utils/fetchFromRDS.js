@@ -22,16 +22,19 @@ export const df = {
 };
 
 export default async (countryCode) => {
+	const recordsPromise = rdsData(countryCode);
+	const populationPromise = populationData(countryCode);
+
 	let records;
 	try {
-		records = await rdsData(countryCode);
+		records = await recordsPromise;
 	} catch (err) {
 		throw err;
 	}
 
 	let population = null;
 	try {
-		population = await populationData(countryCode);
+		population = await populationPromise
 	} catch (err) {
 		console.error(err);
 	}
