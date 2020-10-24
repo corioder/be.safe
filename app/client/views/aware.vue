@@ -1,11 +1,11 @@
 <template>
 	<div class="aware">
-		<select @change="$refs.intCharts.changeChart($event.target.value)">
-			<option value="">Please select one</option>
-			<option v-for="(country, code) in countries" :key="`${code}_chart`" :value="code">{{ country }}</option>
-		</select>
-		<internationalBarCharts />
+		<Autocomplete :search="search" @submit="changeChart($event)" placeholder="Szukaj państwa" />
+		<h5>
+			{{ selectedCountry }}
+		</h5>
 		<internationalAreaCharts ref="intCharts" />
+		<internationalBarCharts />
 	</div>
 </template>
 
@@ -13,18 +13,43 @@
 	import internationalAreaCharts from '@/components/charts/internationalAreaCharts.vue';
 	import internationalBarCharts from '@/components/charts/internationalBarCharts.vue';
 	import countries from '@/assets/data/countries.json';
+	import Autocomplete from '@trevoreyre/autocomplete-vue';
 
 	export default {
 		name: 'aware',
 		components: {
+			Autocomplete,
 			internationalAreaCharts,
 			internationalBarCharts,
 		},
 		data() {
 			return {
-				input: '',
-				countries: countries,
+				countries,
+				countriesArray: [],
+				selectedCountry: '',
 			};
+		},
+		methods: {
+			changeChart(value) {
+				if (value == 'Polska') this.$router.push('/informed');
+				this.selectedCountry = value;
+				this.$refs.intCharts.changeChart(Object.keys(this.countries).find((key) => this.countries[key] == value));
+			},
+			search(input) {
+				if (input.length < 1) {
+					return [];
+				}
+				return this.countriesArray.filter((country) => {
+					return country.toLowerCase().startsWith(input.toLowerCase());
+				});
+			},
+		},
+
+		mounted() {
+			this.changeChart('Stany Zjednoczone');
+			for (let i in this.countries) {
+				this.countriesArray.push(this.countries[i]);
+			}
 		},
 	};
 </script>
@@ -32,91 +57,58 @@
 <style lang="scss" scoped>
 	@import '@/scss/mixins/_flex.scss';
 	@import '@/scss/vars/_colors.scss';
-	/* .aware {
-			@include flex(column);
-			select {
-				width: calc(100vw - 24px);
-				box-shadow: none;
-				border: none;
-				background: none;
-				appearance: none;
-				background-color: $babyPowder;
-				color: $richBlack;
-				font-size: 14px;
-			}
+	.aware {
+		@include flex(column);
+		h5 {
+			font-size: 16px;
+			font-weight: 600;
+		}
+	}
+</style>
+<style lang="scss">
+	@import '@/scss/vars/_colors.scss';
 
-			// select::-ms-expand {
-			// 	display: none;
-			// }
-		} */
-	/* class applies to select element itself, not a wrapper element */
-	select {
-		display: block;
-		font-size: 16px;
-		font-family: sans-serif;
-		font-weight: 700;
-		color: $richBlack;
-		line-height: 1.3;
-		padding: 6px;
+	.autocomplete {
+		margin: 64px 0;
 		width: calc(100vw - 24px);
-		box-sizing: border-box;
-		margin: 0;
-		// border: 1px solid #aaa;
-		border: none;
-		// box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
-		border-radius: 10px;
-		appearance: none;
-		background-color: $babyPowder;
-		/* note: bg image below uses 2 urls. The first is an svg data uri for the arrow icon, and the second is the gradient. 
-	        for the icon, if you want to change the color, be sure to use `%23` instead of `#`, since it's a url. You can also swap in a different svg icon or an external image reference
-	        
-	    */
-		background-image: url('../assets/icons/dropdown.svg');
-		background-repeat: no-repeat, repeat;
-		/* arrow icon position (1em from the right, 50% vertical) , then gradient position*/
-		background-position: right 0.7em top 50%, 0 0;
-		/* icon size, then gradient */
-		background-size: auto, 100%;
-	}
-	/* Hide arrow icon in IE browsers */
-	select::-ms-expand {
-		display: none;
-	}
-	/* Hover style */
-	select:hover {
-		border-color: #888;
-	}
-	/* Focus style */
-	select:focus {
-		border-color: #aaa;
-		/* It'd be nice to use -webkit-focus-ring-color here but it doesn't work on box-shadow */
-		box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7);
-		box-shadow: 0 0 0 3px -moz-mac-focusring;
-		color: #222;
-		outline: none;
-	}
+		max-width: 500px;
+		input {
+			padding: 10px;
+			width: 100%;
+			background-color: $babyPowder;
+			border: none;
+			border-radius: 10px;
+			box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+			transform: scale(1);
+			transition: transform 0.2s ease-in-out;
+		}
+		input:focus {
+			outline: none;
+			transform: scale(1.01);
+		}
+		ul {
+			width: calc(100vw - 24px);
+			max-width: 500px;
+			background-color: $babyPowder;
+			font-weight: 400;
+			color: $richBlack;
+			border-radius: 10px;
+			box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 
-	/* Set options to normal weight */
-	select option {
-		font-weight: normal;
-	}
-
-	/* Support for rtl text, explicit support for Arabic and Hebrew */
-	*[dir='rtl'] select,
-	:root:lang(ar) select,
-	:root:lang(iw) select {
-		background-position: left 0.7em top 50%, 0 0;
-		padding: 0.6em 0.8em 0.5em 1.4em;
-	}
-
-	/* Disabled styles */
-	select:disabled,
-	select[aria-disabled='true'] {
-		background-image: url('../assets/icons/dropdown.svg');
-	}
-
-	select:disabled:hover,
-	select[aria-disabled='true'] {
-		border-color: #aaa;
+			li {
+				width: calc(100vw - 24px);
+				max-width: 500px;
+				margin-bottom: 12px;
+				width: 100%;
+				list-style: none;
+				padding: 2px;
+				transform: scale(1);
+				transition: transform 0.2s ease-in-out;
+			}
+			li:hover {
+				cursor: pointer;
+				transform: scale(1.01);
+			}
+		}
 	}
 </style>

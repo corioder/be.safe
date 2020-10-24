@@ -32,9 +32,6 @@
 			async chart() {
 				// TODO: err check
 				const data = await this.$store.getters.getInternationalActivePerHoundredThousand();
-				for(const a of data ) {
-					console.log(a.name)
-				}
 				this.chartData = {
 					data: proxyArrayProperties(data, `apht`),
 					categories: proxyArrayProperties(data, `name`),
