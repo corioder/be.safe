@@ -32,6 +32,7 @@
 		methods: {
 			changeChart(value) {
 				if (value == 'Polska') this.$router.push('/informed');
+				console.log(value)
 				this.selectedCountry = value;
 				this.$refs.intCharts.changeChart(Object.keys(this.countries).find((key) => this.countries[key] == value));
 			},

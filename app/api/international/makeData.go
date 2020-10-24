@@ -62,7 +62,6 @@ func makeDataFunc(key string, info interface{}) (interface{}, error) {
 				return
 			}
 			reciveDataChan <- countryData{countryName, activePerHoundredThousand}
-			fmt.Println(countryCode, "done")
 		}(countryCode, countryName)
 	}
 
