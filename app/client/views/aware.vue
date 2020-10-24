@@ -1,6 +1,6 @@
 <template>
 	<div class="aware">
-		<Autocomplete :search="search" @submit="changeChart($event)" placeholder="Szukaj państwa" />
+		<autocomplete :search="search" @submit="changeChart($event)" placeholder="Szukaj państwa" />
 		<h5>
 			{{ selectedCountry }}
 		</h5>
@@ -13,12 +13,12 @@
 	import internationalAreaCharts from '@/components/charts/internationalAreaCharts.vue';
 	import internationalBarCharts from '@/components/charts/internationalBarCharts.vue';
 	import countries from '@/assets/data/countries.json';
-	import Autocomplete from '@/components/autocomplete/autocomplete.vue';
+	import autocomplete from '@/components/autocomplete/autocomplete.vue';
 
 	export default {
 		name: 'aware',
 		components: {
-			Autocomplete,
+			autocomplete,
 			internationalAreaCharts,
 			internationalBarCharts,
 		},

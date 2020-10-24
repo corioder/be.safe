@@ -139,7 +139,7 @@ module.exports = (env = {}) => ({
 			runtimeCaching: [
 				{
 					handler: 'CacheFirst',
-					urlPattern: new RegExp(`${API}|${STRAPI}`),
+					urlPattern: new RegExp(`${API}|${STRAPI}|${package.defaults.others.join("|")}`),
 					options: {
 						cacheName: 'API',
 						expiration: {

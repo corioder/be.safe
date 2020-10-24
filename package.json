@@ -8,7 +8,10 @@
 	},
 	"defaults": {
 		"API": "http://localhost:8081/",
-		"STRAPI": "https://besafedb.herokuapp.com"
+		"STRAPI": "https://besafedb.herokuapp.com",
+		"others": [
+			"https://covid19.richdataservices.com"
+		]
 	},
 	"browserslist": [
 		" > 0.25%",
