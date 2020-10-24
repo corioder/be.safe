@@ -65,6 +65,9 @@
 			}
 		}
 	}
+	.articlePreview:hover {
+		cursor: pointer;
+	}
 	@media (min-width: 768px) {
 		.articlePreview {
 			max-width: 600px;
