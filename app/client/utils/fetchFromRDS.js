@@ -34,13 +34,13 @@ export default async (countryCode) => {
 
 	let population = null;
 	try {
-		population = await populationPromise
+		population = await populationPromise;
 	} catch (err) {
 		console.error(err);
 	}
 
 	for (let i = 0; i < records.length; i++) {
-		records[i][df.date] = fomatDate(new Date(records[i][df.date]));
+		records[i][df.date] = fomatDate(records[i][df.date]);
 		records[i][df.active] = Number(records[i][df.confirmed]) - Number(records[i][df.deaths]) - Number(records[i][df.recovered]);
 		if (population != null) records[i][df.activePerHoundredThousand] = roundToTwoPlaces((records[i][df.active] * 100000) / population);
 	}
@@ -49,13 +49,10 @@ export default async (countryCode) => {
 };
 
 function fomatDate(date) {
-	return `${formatToTwoDigits(date.getMonth().toString())}.${formatToTwoDigits(date.getDay().toString())}.${date.getFullYear()}`;
+	const sdate = date.split('-');
+	return `${sdate[2]}.${sdate[1]}.${sdate[0]}`
 }
 
-function formatToTwoDigits(string) {
-	if (string.length == 1) string = `0${string}`;
-	return string;
-}
 
 async function rdsData(countryCode) {
 	try {
