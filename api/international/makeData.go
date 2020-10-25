@@ -10,6 +10,8 @@ import (
 	"sort"
 	"sync"
 	"time"
+
+	"github.com/corioder/be.safe/api/cache"
 )
 
 type countryData struct {
@@ -39,13 +41,13 @@ func makeDataFunc(key string, info interface{}) (interface{}, error) {
 		i++
 		go func(countryCode, countryName string, i int) {
 			defer reciverWG.Done()
-			activePerHoundredThousand, err := getActivePerHoundredThousand(countryCode)
-			fmt.Println(i)
+			activePerHoundredThousand, err := activePerHoundredThousandCache.GetData(countryCode, nil)
 			if err != nil {
 				fmt.Println(err)
 				return
 			}
-			reciveDataChan <- countryData{countryName, activePerHoundredThousand}
+
+			reciveDataChan <- countryData{countryName, activePerHoundredThousand.(float32)}
 		}(countryCode, countryName, i)
 	}
 
@@ -85,8 +87,14 @@ const (
 	dfRecovered
 )
 
+var activePerHoundredThousandCache *cache.Cache
+
+func init() {
+	activePerHoundredThousandCache = cache.NewCache(time.Hour/2, getActivePerHoundredThousand)
+}
+
 // cnt_confirmed,cnt_death,cnt_recovered
-func getActivePerHoundredThousand(countryCode string) (float32, error) {
+func getActivePerHoundredThousand(countryCode string, info interface{}) (interface{}, error) {
 	client := &http.Client{
 		Transport: &http.Transport{
 			Dial: (&net.Dialer{
