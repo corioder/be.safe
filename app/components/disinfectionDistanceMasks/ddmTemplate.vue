@@ -1,36 +1,19 @@
 <template>
-	<div class="articlePreview" @click="$router.push(`/preventive/${article.id}`)">
-		<div class="photo" :style="{ backgroundImage: `url(${mainphotoUrl})` }" alt="" />
-		<div class="text">
-			<p>{{ article.date }}</p>
-			<h4>{{ article.title }}</h4>
-		</div>
+	<div class="ddmTemplate">
+		<slot></slot>
 	</div>
 </template>
 
 <script>
 	export default {
-		name: 'articlePreview',
-		props: {
-			article: {
-				type: Object,
-				required: true,
-			},
-		},
-		computed: {
-			mainphotoUrl() {
-				const parts = this.article.mainphoto.url.split('/');
-				parts[parts.lenght - 1] = `small_${parts[parts.lenght - 1]}`;
-				return `${this.$store.state.APIS.STRAPI}${parts.join('/')}`;
-			},
-		},
+		name: 'ddmTemplate',
 	};
 </script>
 
 <style lang="scss" scoped>
 	@import '@/scss/mixins/_flex.scss';
 	@import '@/scss/vars/_colors.scss';
-	.articlePreview {
+	.ddmTemplate {
 		padding: 0;
 		margin-top: 32px;
 		@include flex;
@@ -65,11 +48,8 @@
 			}
 		}
 	}
-	.articlePreview:hover {
-		cursor: pointer;
-	}
 	@media (min-width: 768px) {
-		.articlePreview {
+		.ddmTemplate {
 			max-width: 600px;
 			margin-top: 64px;
 			.photo {
@@ -88,7 +68,7 @@
 		}
 	}
 	@media (min-width: 1024px) {
-		.articlePreview {
+		.ddmTemplate {
 			max-width: 800px;
 			.photo {
 				width: 200px;
