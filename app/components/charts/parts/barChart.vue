@@ -33,6 +33,9 @@
 						alignTicks: false,
 						zoomType: 'x',
 					},
+					credits: {
+						enabled: false,
+					},
 					title: {
 						text: this.name,
 					},
