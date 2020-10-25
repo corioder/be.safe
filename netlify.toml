@@ -9,5 +9,9 @@ GO111MODULE = "on"
 
 [[redirects]]
 from = "/api/*"
-to = "/.netlify/functions/api/:splat"
+to = "/.netlify/api/api/:splat"
 status = 200
+
+
+# github.com/carlmjohnson/netlify-function-cache-test
+# github.com/carlmjohnson/netlify-go-function-demo
