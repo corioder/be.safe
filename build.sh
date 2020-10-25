@@ -1,3 +1,2 @@
 GOBIN=$(pwd)/functions go install ./...
-cp ./api/countries.json ./functions/countries.json
 npm run produce
