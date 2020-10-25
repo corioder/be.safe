@@ -7,7 +7,7 @@
 		<phoneNumbers />
 		<footer>
 			<a href="https://tilda.cc">Ikonki</a>
-			<p>aktywne przypadki - różnica między zakażonymi a wyszdrowiałymi i zmarłymi, liczona jako ogólna pula</p>
+			<p>aktywne przypadki - różnica między zakażonymi a wyzdrowiałymi i zmarłymi, liczona jako ogólna pula</p>
 		</footer>
 	</div>
 </template>

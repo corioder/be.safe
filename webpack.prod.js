@@ -161,6 +161,7 @@ module.exports = (env = {}) => ({
 			short_name: 'be.safe',
 			description: 'Bądź bezpieczny w czasie pandemii COVID-19',
 			background_color: '#ffffff',
+			theme_color: "#fdfffc",
 			filename: 'manifest.json',
 			orientation: 'portrait',
 			display: 'standalone',
@@ -168,7 +169,13 @@ module.exports = (env = {}) => ({
 				'apple-mobile-web-app-title': 'be.safe',
 				'apple-mobile-web-app-status-bar-style': '#011627',
 			},
+
 			icons: [
+				{
+					src: path.resolve(iconsPwa, 'maskable_icon.png'),
+					sizes: "1024x1024",
+					purpose: "maskable"
+				},
 				{
 					src: path.resolve(iconsPwa, 'icon-32x32.png'),
 					size: '32x32',
