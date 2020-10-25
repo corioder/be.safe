@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"net/http"
+	"strconv"
 
 	"github.com/apex/gateway"
 )
@@ -19,8 +20,10 @@ func main() {
 		listenAndServe = http.ListenAndServe
 	}
 
+	var a int
 	http.HandleFunc("/api", func(rw http.ResponseWriter, r *http.Request) {
-		rw.Write([]byte("Hello"))
+		rw.Write([]byte("Hello " + strconv.Itoa(a)))
+		a++
 	})
 
 	err := listenAndServe(portStr, nil)
