@@ -11,8 +11,6 @@ import (
 
 var globalCache *cache.Cache
 
-var nilCachedData cachedData
-
 type cachedData struct {
 	d []byte
 }

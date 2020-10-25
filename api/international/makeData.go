@@ -12,31 +12,14 @@ import (
 	"time"
 )
 
-const countriesListJSON = "countries.json"
-
 type countryData struct {
 	CountryName               string  `json:"name"`
 	ActivePerHoundredThousand float32 `json:"apht"`
 }
 
 func makeDataFunc(key string, info interface{}) (interface{}, error) {
-	// dirname, err := os.Getwd()
-	// if err != nil {
-	// 	return nil, err
-	// }
 
-	countries, err := ioutil.ReadFile(countriesListJSON)
-	if err != nil {
-		return nil, err
-	}
-
-	countriesMap := make(map[string]string)
-	err = json.Unmarshal(countries, &countriesMap)
-	if err != nil {
-		return nil, err
-	}
-
-	// 205 because countries.json contain 205 countries
+	// 205 because countriesMap contain 205 countries
 	countriesActivePerHoundredThousand := make([]countryData, 0, 205)
 	reciveDataChan := make(chan countryData)
 
