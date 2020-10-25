@@ -1,7 +1,6 @@
 [build]
 command = "./build.sh"
-functions = "api"
-publish = "dist"
+functions = "functions"
 
 [build.environment]
 GO_IMPORT_PATH = "github.com/corioder/be.safe/api"
@@ -9,7 +8,7 @@ GO111MODULE = "on"
 
 [[redirects]]
 from = "/api/*"
-to = "/.netlify/api/api/:splat"
+to = "/.netlify/functions/api/:splat"
 status = 200
 
 
