@@ -25,8 +25,8 @@ export default {
 			if (state.table.countries?.length > 0) data = state.table;
 			else {
 				try {
-					state.table = await fetchData(state.APIS.API, state.APIS.TAB_ENPOINT);
-					data = state.table;
+					data = await fetchData(state.APIS.API, state.APIS.TAB_ENPOINT);
+					state.table = data;
 				} catch (err) {
 					throw err;
 				}
@@ -40,8 +40,8 @@ export default {
 			if (state.internationalAPHT.length > 0) data = state.internationalAPHT;
 			else {
 				try {
-					state.internationalAPHT = await fetchData(state.APIS.API, state.APIS.INT_ENPOINT);
-					data = state.internationalAPHT;
+					data = await fetchData(state.APIS.API, state.APIS.INT_ENPOINT);
+					state.internationalAPHT = data;
 				} catch (err) {
 					throw err;
 				}
