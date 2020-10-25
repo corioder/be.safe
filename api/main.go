@@ -22,10 +22,17 @@ func main() {
 		listenAndServe = http.ListenAndServe
 	}
 
-	http.HandleFunc(covid19api.Handler("api/api/"))
-	http.HandleFunc(gototable.Handler("api/tab/"))
-	http.HandleFunc(international.Handler("api/int/"))
+	if portStr == "" {
+		portStr = ":8081"
+		listenAndServe = http.ListenAndServe
+	}
 
+
+	http.HandleFunc(covid19api.Handler("/api/api/"))
+	http.HandleFunc(gototable.Handler("/api/tab/"))
+	http.HandleFunc(international.Handler("/api/int/"))
+
+	fmt.Println(portStr)
 	err := listenAndServe(portStr, nil)
 	if err != nil {
 		panic(err)
