@@ -7,8 +7,6 @@ import (
 	"math"
 	"net"
 	"net/http"
-	"os"
-	"path/filepath"
 	"sort"
 	"sync"
 	"time"
@@ -22,12 +20,12 @@ type countryData struct {
 }
 
 func makeDataFunc(key string, info interface{}) (interface{}, error) {
-	dirname, err := os.Getwd()
-	if err != nil {
-		return nil, err
-	}
+	// dirname, err := os.Getwd()
+	// if err != nil {
+	// 	return nil, err
+	// }
 
-	countries, err := ioutil.ReadFile(filepath.Join(dirname, countriesListJSON))
+	countries, err := ioutil.ReadFile(countriesListJSON)
 	if err != nil {
 		return nil, err
 	}
