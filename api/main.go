@@ -22,10 +22,10 @@ func main() {
 		listenAndServe = http.ListenAndServe
 	}
 
-	if portStr == "" {
-		portStr = ":8081"
-		listenAndServe = http.ListenAndServe
-	}
+	// if portStr == "" {
+	// 	portStr = ":8081"
+	// 	listenAndServe = http.ListenAndServe
+	// }
 
 
 	http.HandleFunc(covid19api.Handler("/api/api/"))
