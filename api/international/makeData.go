@@ -14,7 +14,7 @@ import (
 	"time"
 )
 
-const countriesListJSON = "data/countries.json"
+const countriesListJSON = "countries.json"
 
 type countryData struct {
 	CountryName               string  `json:"name"`
