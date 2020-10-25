@@ -17,6 +17,7 @@ type cachedData struct {
 
 func init() {
 	globalCache = cache.NewCache(time.Hour/2, makeDataFunc)
+	globalCache.GetData("", nil)
 }
 
 func Handler(pattern string) (string, func(rw http.ResponseWriter, r *http.Request)) {
