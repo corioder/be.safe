@@ -4,6 +4,7 @@
 		<div class="container">
 			<h3>{{ article.title }}</h3>
 			<article v-html="article.article" class="article"></article>
+			<p>{{ article.date }} {{ article.author }}</p>
 		</div>
 	</div>
 </template>
@@ -27,7 +28,7 @@
 						return;
 					}
 				}
-				
+
 				this.$router.push('/404');
 			},
 		},

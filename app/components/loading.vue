@@ -10,7 +10,7 @@
 			<div></div>
 			<div></div>
 		</div>
-		<h1 v-html="err"></h1>
+		<h5 v-html="err"></h5>
 	</div>
 </template>
 
@@ -32,8 +32,8 @@
 		@include flex(column);
 		justify-content: center;
 		height: 100vh;
-		h1 {
-			font-size: 24px;
+		h5 {
+			font-size: 16px;
 			text-align: center;
 			color: $richBlack;
 			font-weight: 600;
