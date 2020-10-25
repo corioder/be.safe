@@ -47,7 +47,7 @@
 					this.err.message = this.$store.state.unexpectedErr;
 					this.err.timeout = setTimeout(() => {
 						this.chart();
-					}, this.$store.state.timeout);
+					}, this.$store.state.retryTimeout);
 					return;
 				}
 
