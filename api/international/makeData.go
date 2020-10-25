@@ -34,24 +34,22 @@ func makeDataFunc(key string, info interface{}) (interface{}, error) {
 		}
 	}()
 
-	reciverWG := sync.WaitGroup{}
-	reciverWG.Add(len(countriesMap))
-	var i int
+	// reciverWG := sync.WaitGroup{}
+	// reciverWG.Add(len(countriesMap))
 	for countryCode, countryName := range countriesMap {
-		i++
-		go func(countryCode, countryName string, i int) {
-			defer reciverWG.Done()
-			activePerHoundredThousand, err := activePerHoundredThousandCache.GetData(countryCode, nil)
-			if err != nil {
-				fmt.Println(err)
-				return
-			}
+		activePerHoundredThousand, err := activePerHoundredThousandCache.GetData(countryCode, nil)
+		if err != nil {
+			fmt.Println(err)
+			continue
+		}
 
-			reciveDataChan <- countryData{countryName, activePerHoundredThousand.(float32)}
-		}(countryCode, countryName, i)
+		reciveDataChan <- countryData{countryName, activePerHoundredThousand.(float32)}
+		// go func(countryCode, countryName string) {
+		// 	defer reciverWG.Done()
+		// }(countryCode, countryName)
 	}
 
-	reciverWG.Wait()
+	// reciverWG.Wait()
 	close(reciveDataChan)
 	rootWG.Wait()
 
