@@ -19,7 +19,6 @@ const WorkboxPlugin = require('workbox-webpack-plugin');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const MinifyPlugin = require('babel-minify-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const WebpackBar = require('webpackbar');
@@ -243,7 +242,6 @@ module.exports = (env = {}) => ({
 				},
 			],
 		}),
-		new MinifyPlugin(null, { sourceMap: false }),
 	],
 
 	optimization: {
