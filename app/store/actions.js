@@ -8,7 +8,6 @@ export default {
 			const categoriesPromise = fetchData(API, 'categories');
 			const articlesPromise = fetchData(state.APIS.STRAPI + '/', 'articles');
 
-			// state.fetches.table.retry = () => (state.fetches.table.promise = fetchData(state.APIS.API, state.APIS.TAB_ENPOINT));
 			getters.getInternationalAPHT();
 			getters.getTable();
 
