@@ -10,12 +10,14 @@ import (
 )
 
 var globalCache *cache.Cache
+var activePerHoundredThousandCache *cache.Cache
 
 type cachedData struct {
 	d []byte
 }
 
 func init() {
+	activePerHoundredThousandCache = cache.NewCache(time.Hour/2, getActivePerHoundredThousand)
 	globalCache = cache.NewCache(time.Hour/2, makeDataFunc)
 	globalCache.GetData("", nil)
 }

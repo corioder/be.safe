@@ -10,8 +10,6 @@ import (
 	"sort"
 	"sync"
 	"time"
-
-	"github.com/corioder/be.safe/api/cache"
 )
 
 type countryData struct {
@@ -85,12 +83,6 @@ const (
 	dfDeath
 	dfRecovered
 )
-
-var activePerHoundredThousandCache *cache.Cache
-
-func init() {
-	activePerHoundredThousandCache = cache.NewCache(time.Hour/2, getActivePerHoundredThousand)
-}
 
 // cnt_confirmed,cnt_death,cnt_recovered
 func getActivePerHoundredThousand(countryCode string, info interface{}) (interface{}, error) {
