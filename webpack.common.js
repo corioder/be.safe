@@ -4,12 +4,12 @@ module.exports = {
   context: path.resolve(__dirname, "src"),
 
   entry: {
-    app: path.resolve(__dirname, "app/client/index.js")
+    app: path.resolve(__dirname, "app/index.js")
   },
 
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "app/client")
+      "@": path.resolve(__dirname, "app")
     }
   }
 };
