@@ -2,6 +2,7 @@ import preloadImgs from '@/utils/preloadImgs';
 import proxyArrayProperties from '@/utils/proxyArrayProperties';
 import spacesInNum from '@/store/components/spacesInNum';
 import roundTo2Places from '@/utils/roundTo2Places';
+import smallPhoto from '@/utils/smallPhoto';
 
 export default {
 	PERDAY(state, payload) {
@@ -97,7 +98,10 @@ export default {
 	ARTICLES(state, payload) {
 		const articles = payload.sort((a, b) => new Date(b.date) - new Date(a.date));
 		state.articles = articles;
-		preloadImgs(proxyArrayProperties(state.articles, 'mainphoto.url', (link) => state.APIS.STRAPI + link));
+		try {
+			preloadImgs(proxyArrayProperties(state.articles, 'mainphoto.url', (url) => `${state.APIS.STRAPI}${url}`));
+			preloadImgs(proxyArrayProperties(state.articles, 'mainphoto.url', (url) => `${state.APIS.STRAPI}${smallPhoto(url)}`));
+		} catch (err) {}
 	},
 	NAVOPEN(state) {
 		state.isNavOpened = !state.isNavOpened;

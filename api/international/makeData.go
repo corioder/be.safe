@@ -46,6 +46,7 @@ func makeDataFunc(key string, info interface{}) (interface{}, error) {
 
 			reciveDataChan <- countryData{countryName, activePerHoundredThousand.(float32)}
 		}(countryCode, countryName)
+		time.Sleep(time.Millisecond)
 	}
 
 	reciverWG.Wait()
@@ -89,12 +90,12 @@ func getActivePerHoundredThousand(countryCode string, info interface{}) (interfa
 	client := &http.Client{
 		Transport: &http.Transport{
 			Dial: (&net.Dialer{
-				Timeout:   time.Minute,
-				KeepAlive: time.Minute,
+				Timeout:   time.Minute * 5,
+				KeepAlive: time.Minute * 5,
 			}).Dial,
-			TLSHandshakeTimeout:   time.Minute,
-			ResponseHeaderTimeout: time.Minute,
-			ExpectContinueTimeout: time.Minute,
+			TLSHandshakeTimeout:   time.Minute * 5,
+			ResponseHeaderTimeout: time.Minute * 5,
+			ExpectContinueTimeout: time.Minute * 5,
 		},
 	}
 

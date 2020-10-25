@@ -9,6 +9,8 @@
 </template>
 
 <script>
+	import smallPhoto from "@/utils/smallPhoto"
+
 	export default {
 		name: 'articlePreview',
 		props: {
@@ -19,9 +21,7 @@
 		},
 		computed: {
 			mainphotoUrl() {
-				const parts = this.article.mainphoto.url.split('/');
-				parts[parts.lenght - 1] = `small_${parts[parts.lenght - 1]}`;
-				return `${this.$store.state.APIS.STRAPI}${parts.join('/')}`;
+				return `${this.$store.state.APIS.STRAPI}${smallPhoto(this.article.mainphoto.url)}`;
 			},
 		},
 	};
