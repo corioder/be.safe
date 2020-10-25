@@ -41,6 +41,7 @@ export default {
 			else {
 				try {
 					state.internationalAPHT = await fetchData(state.APIS.API, state.APIS.INT_ENPOINT);
+					data = state.internationalAPHT;
 				} catch (err) {
 					throw err;
 				}
