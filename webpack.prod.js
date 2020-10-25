@@ -163,7 +163,7 @@ module.exports = (env = {}) => ({
 			display: 'standalone',
 			ios: {
 				'apple-mobile-web-app-title': 'be.safe',
-				'apple-mobile-web-app-status-bar-style': 'black',
+				'apple-mobile-web-app-status-bar-style': '#011627',
 			},
 			// icons: [
 			// 	{
@@ -226,7 +226,7 @@ module.exports = (env = {}) => ({
 				// {
 				// 	src: path.resolve(__dirname, 'app/assets/favicons/icon_384x384.svg'),
 				// 	size: '384x384',
-					// ios: true,
+				// ios: true,
 				// },
 				{
 					src: path.resolve(__dirname, 'app/assets/favicons/icon_512x512.svg'),
