@@ -19,7 +19,6 @@ type cachedData struct {
 func init() {
 	activePerHoundredThousandCache = cache.NewCache(time.Hour/2, getActivePerHoundredThousand)
 	globalCache = cache.NewCache(time.Hour/2, makeDataFunc)
-	globalCache.GetData("", nil)
 }
 
 func Handler(pattern string) (string, func(rw http.ResponseWriter, r *http.Request)) {
