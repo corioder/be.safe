@@ -24,6 +24,8 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const WebpackBar = require('webpackbar');
 
+const iconsPwa = path.resolve(__dirname, 'app/assets/iconsPwa');
+
 const API = process.env.API || package.defaults.API;
 const STRAPI = process.env.STRAPI || package.defaults.STRAPI;
 
@@ -112,7 +114,7 @@ module.exports = (env = {}) => ({
 		new CleanWebpackPlugin(),
 		new HtmlWebpackPlugin({
 			template: path.resolve(__dirname, 'app/public/index.html'),
-			favicon: path.resolve(__dirname, 'app/assets/favicons/icon_36x36.svg'),
+			favicon: path.resolve(__dirname, 'app/assets/favicon.ico'),
 			minify: {
 				collapseWhitespace: true,
 				removeComments: true,
@@ -153,6 +155,7 @@ module.exports = (env = {}) => ({
 		}),
 		new WebpackPwaManifest({
 			fingerprints: false,
+			inject: true,
 			start_url: '.',
 			name: 'be.safe',
 			short_name: 'be.safe',
@@ -165,81 +168,75 @@ module.exports = (env = {}) => ({
 				'apple-mobile-web-app-title': 'be.safe',
 				'apple-mobile-web-app-status-bar-style': 'black',
 			},
-			// icons: [
-			// 	{
-			// 		src: path.resolve(__dirname, 'app/assets/favicons/icon.svg'),
-			// 		sizes: [36, 48, 72, 96, 144, 192, 512],
-			// 		ios: true,
-			// 	},
-			// ],
 			icons: [
 				{
-					src: path.resolve(__dirname, 'app/assets/favicons/icon_36x36.svg'),
+					src: path.resolve(iconsPwa, 'icon-32x32.png'),
+					size: '32x32',
+					ios: true,
+				},
+				{
+					src: path.resolve(iconsPwa, 'icon-36x36.png'),
 					size: '36x36',
 					ios: true,
 				},
 				{
-					src: path.resolve(__dirname, 'app/assets/favicons/icon_48x48.svg'),
+					src: path.resolve(iconsPwa, 'icon-48x48.png'),
 					size: '48x48',
 					ios: true,
 				},
 				{
-					src: path.resolve(__dirname, 'app/assets/favicons/icon_72x72.svg'),
+					src: path.resolve(iconsPwa, 'icon-72x72.png'),
 					size: '72x72',
 					ios: true,
 				},
 				{
-					src: path.resolve(__dirname, 'app/assets/favicons/icon_96x96.svg'),
+					src: path.resolve(iconsPwa, 'icon-96x96.png'),
 					size: '96x96',
 					ios: true,
 				},
-				// {
-				// 	src: path.resolve(__dirname, 'app/assets/favicons/icon_120x120.svg'),
-				// 	size: '120x120',
-				// 	ios: true,
-				// },
-				// {
-				// 	src: path.resolve(__dirname, 'app/assets/favicons/icon_128x128.svg'),
-				// 	size: '128x128',
-				// 	ios: true,
-				// },
 				{
-					src: path.resolve(__dirname, 'app/assets/favicons/icon_144x144.svg'),
+					src: path.resolve(iconsPwa, 'icon-120x120.png'),
+					size: '120x120',
+					ios: true,
+				},
+				{
+					src: path.resolve(iconsPwa, 'icon-128x128.png'),
+					size: '128x128',
+					ios: true,
+				},
+				{
+					src: path.resolve(iconsPwa, 'icon-144x144.png'),
 					size: '144x144',
 					ios: true,
 				},
-				// {
-				// 	src: path.resolve(__dirname, 'app/assets/favicons/icon_152x152.svg'),
-				// 	size: '152x152',
-				// 	ios: true,
-				// },
-				// {
-				// 	src: path.resolve(__dirname, 'app/assets/favicons/icon_180x180.svg'),
-				// 	size: '180x180',
-				// 	ios: true,
-				// },
 				{
-					src: path.resolve(__dirname, 'app/assets/favicons/icon_192x192.svg'),
+					src: path.resolve(iconsPwa, 'icon-152x152.png'),
+					size: '152x152',
+					ios: true,
+				},
+				{
+					src: path.resolve(iconsPwa, 'icon-180x180.png'),
+					size: '180x180',
+					ios: true,
+				},
+				{
+					src: path.resolve(iconsPwa, 'icon-192x192.png'),
 					size: '192x192',
 					ios: true,
 				},
-				// {
-				// 	src: path.resolve(__dirname, 'app/assets/favicons/icon_384x384.svg'),
-				// 	size: '384x384',
-					// ios: true,
-				// },
 				{
-					src: path.resolve(__dirname, 'app/assets/favicons/icon_512x512.svg'),
+					src: path.resolve(iconsPwa, 'icon-384x384.png'),
+					size: '384x384',
+					ios: true,
+				},
+				{
+					src: path.resolve(iconsPwa, 'icon-512x512.png'),
 					size: '512x512',
-					ios: 'startup',
+					ios: true,
 				},
 			],
-			inject: true,
-			// publicPath: null,
-			// includeDirectory: true,
-			// ?crossorigin: 'use-credentials',
 		}),
-		// new MinifyPlugin(null, { sourceMap: false }),
+		new MinifyPlugin(null, { sourceMap: false }),
 	],
 
 	optimization: {
