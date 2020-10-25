@@ -22,9 +22,9 @@ func main() {
 		listenAndServe = http.ListenAndServe
 	}
 
-	http.HandleFunc(covid19api.Handler("/api/"))
-	http.HandleFunc(gototable.Handler("/tab/"))
-	http.HandleFunc(international.Handler("/int/"))
+	http.HandleFunc(covid19api.Handler("api/api/"))
+	http.HandleFunc(gototable.Handler("api/tab/"))
+	http.HandleFunc(international.Handler("api/int/"))
 
 	err := listenAndServe(portStr, nil)
 	if err != nil {
