@@ -19,7 +19,6 @@ export default {
 			commit('ARTICLES', articles);
 			commit('CATEGORIES', categories);
 		} catch (err) {
-			console.log(err);
 			throw err;
 		}
 	},

@@ -43,7 +43,6 @@
 						categories: proxyArrayProperties(data, `name`),
 					};
 				} catch (err) {
-					console.log(err)
 					this.err.message = this.$store.state.unexpectedErr;
 					this.err.timeout = setTimeout(() => {
 						this.chart();
