@@ -32,6 +32,12 @@
 						backgroundColor: '#FDFFFC',
 						alignTicks: false,
 						zoomType: 'x',
+						// events: {
+							// too
+						// }
+					},
+					tooltip: {
+						outside: true
 					},
 					credits: {
 						enabled: false,
@@ -41,6 +47,7 @@
 					},
 					xAxis: {
 						categories: this.chartData.categories,
+						// crosshair: true
 					},
 					yAxis: {
 						title: {
