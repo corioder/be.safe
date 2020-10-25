@@ -1,7 +1,7 @@
 <template>
 	<div class="noInternet">
 		<main>
-			<img src="@/assets/noInternet.svg" />
+			<img src="@/assets/noInternet.svg" alt="Ilustracja brak internetu" />
 			<h1>Ups!</h1>
 			<h2>Brak inernetu. <br />Sprawdź swoje połączenie.</h2>
 		</main>

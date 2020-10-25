@@ -1,6 +1,6 @@
 <template>
 	<nav>
-		<button class="hamburger" @click="toggle">
+		<button class="hamburger" @click="toggle" aria-label="otwórz menu">
 			<span class="box">
 				<span class="inner"></span>
 			</span>
@@ -15,6 +15,7 @@
 					:class="{ 'link--active': $route.name == to.component || ($route.name == 'fullArticle' && to.component == 'preventive') }"
 					:key="`${to.component}Link`"
 					@click.native="toggle"
+					:aria-label="`${to.component} link`"
 				>
 					<img
 						:src="
@@ -23,6 +24,7 @@
 								: require(`@/assets/icons/${to.component}--babyPowder.svg`)
 						"
 						:class="to.component"
+						:alt="'ikonka' + to.component"
 					/>
 					<span>
 						{{ to.component }}
@@ -157,8 +159,6 @@
 		}
 	}
 
-
-	
 	.hamburger--active {
 		transform: translateX(-155px);
 	}

@@ -166,7 +166,7 @@ module.exports = (env = {}) => ({
 			display: 'standalone',
 			ios: {
 				'apple-mobile-web-app-title': 'be.safe',
-				'apple-mobile-web-app-status-bar-style': 'black',
+				'apple-mobile-web-app-status-bar-style': '#011627',
 			},
 			icons: [
 				{

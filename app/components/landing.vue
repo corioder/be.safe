@@ -5,11 +5,11 @@
 		</h2>
 		<div class="container">
 			<div class="links">
-				<router-link to="/informed" class="informed" tag="button">informacja</router-link>
-				<router-link to="/aware" class="aware" tag="button">świadomość</router-link>
-				<router-link to="/preventive" class="preventive" tag="button">profilaktyka</router-link>
+				<router-link to="/informed" class="informed" tag="button" aria-label="informacja">informacja</router-link>
+				<router-link to="/aware" class="aware" tag="button" aria-label="świadomość">świadomość</router-link>
+				<router-link to="/preventive" class="preventive" tag="button" aria-label="profilaktyka">profilaktyka</router-link>
 			</div>
-			<img src="@/assets/landing.svg" />
+			<img src="@/assets/landing.svg" alt="Ilustracja be.safe" />
 		</div>
 	</div>
 </template>
