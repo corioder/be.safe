@@ -1,2 +1,2 @@
 GOBIN=$(pwd)/functions go install ./...
-# npm run produce
+npm run produce
