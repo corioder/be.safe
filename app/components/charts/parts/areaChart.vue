@@ -30,7 +30,6 @@
 						width: window.innerWidth - 50,
 						backgroundColor: '#FDFFFC',
 						alignTicks: false,
-						zoomType: 'x',
 					},
 					credits: {
 						enabled: false,
