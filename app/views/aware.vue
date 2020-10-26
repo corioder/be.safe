@@ -82,11 +82,12 @@
 		width: calc(100vw - 24px);
 		max-width: 500px;
 		input {
-			padding: 10px;
 			width: 100%;
+			padding: 10px;
 			background-color: $babyPowder;
 			border: none;
 			border-radius: 10px;
+			font-size: 16px;
 			box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 			transform: scale(1);
 			transition: transform 0.2s ease-in-out;
