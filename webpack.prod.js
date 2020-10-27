@@ -28,14 +28,13 @@ const iconsPwa = path.resolve(__dirname, 'app/assets/iconsPwa');
 const API = process.env.API || package.defaults.API;
 const STRAPI = process.env.STRAPI || package.defaults.STRAPI;
 
-let fileLoaderIndex = -1;
 module.exports = (env = {}) => ({
 	...common,
 	mode: 'production',
 
 	output: {
 		path: path.resolve(__dirname, 'dist'),
-		filename: '[id].js',
+		filename: '[contenthash].js',
 		publicPath: '/',
 		jsonpFunction: 'a',
 	},
@@ -82,10 +81,7 @@ module.exports = (env = {}) => ({
 						loader: 'file-loader',
 						options: {
 							outputPath: 'assets',
-							name: () => {
-								fileLoaderIndex++;
-								return `${fileLoaderIndex}.[ext]`;
-							},
+							name: '[contenthash].[ext]',
 							esModule: false,
 						},
 					},
@@ -100,10 +96,7 @@ module.exports = (env = {}) => ({
 				loader: 'file-loader',
 				options: {
 					outputPath: 'assets',
-					name: () => {
-						fileLoaderIndex++;
-						return `${fileLoaderIndex}.[ext]`;
-					},
+					name: '[contenthash].[ext]',
 					esModule: false,
 				},
 			},
@@ -124,7 +117,7 @@ module.exports = (env = {}) => ({
 			},
 		}),
 		new MiniCssExtractPlugin({
-			filename: '[id].css',
+			filename: '[contenthash].css',
 		}),
 		new OptimizeCssAssetsPlugin(),
 		new WebpackBar(),
@@ -138,6 +131,7 @@ module.exports = (env = {}) => ({
 			__VUE_PROD_DEVTOOLS__: false,
 		}),
 		new WorkboxPlugin.GenerateSW({
+			swDest: 'sw.js',
 			runtimeCaching: [
 				{
 					handler: 'CacheFirst',
@@ -160,7 +154,7 @@ module.exports = (env = {}) => ({
 			short_name: 'be.safe',
 			description: 'Bądź bezpieczny w czasie pandemii COVID-19',
 			background_color: '#ffffff',
-			theme_color: "#fdfffc",
+			theme_color: '#fdfffc',
 			filename: 'manifest.json',
 			orientation: 'portrait',
 			display: 'standalone',
@@ -172,8 +166,8 @@ module.exports = (env = {}) => ({
 			icons: [
 				{
 					src: path.resolve(iconsPwa, 'maskable_icon.png'),
-					sizes: "1024x1024",
-					purpose: "maskable"
+					sizes: '1024x1024',
+					purpose: 'maskable',
 				},
 				{
 					src: path.resolve(iconsPwa, 'icon-32x32.png'),
@@ -245,11 +239,10 @@ module.exports = (env = {}) => ({
 	],
 
 	optimization: {
+		minimize: true,
 		runtimeChunk: 'single',
 		splitChunks: {
 			chunks: 'all',
-			maxInitialRequests: Infinity,
-			minSize: 0,
 			cacheGroups: {
 				vendor: {
 					test: /[\\/]node_modules[\\/](.*?)([\\/]|$)/,
