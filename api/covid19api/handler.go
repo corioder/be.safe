@@ -53,6 +53,6 @@ func Handler(pattern string) (string, func(rw http.ResponseWriter, r *http.Reque
 }
 
 func activePerHoundredThousand(active float64) float64 {
-	const peopleInPolland = 37970000
-	return (100000 * active) / peopleInPolland
+	const peopleInPoland = 38354000
+	return (100000 * active) / peopleInPoland
 }
