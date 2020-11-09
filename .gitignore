@@ -1,6 +1,8 @@
-node_modules
-dist
-dev
-.DS_Store
-.env
-.prod.env
+**/node_modules
+**/dist
+**/dev
+**/.DS_Store
+**/.env
+**/.prod.env
+**/.vscode/launch.json
+**/__debug_bin
