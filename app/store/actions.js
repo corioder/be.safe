@@ -19,6 +19,9 @@ export default {
 			commit('ARTICLES', articles);
 			commit('CATEGORIES', categories);
 		} catch (err) {
+			if (__IS_DEV__) {
+				console.error(err);
+			}
 			throw err;
 		}
 	},

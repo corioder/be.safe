@@ -87,7 +87,7 @@ export default {
 			},
 		];
 		let categories = payload;
-		for (let i in payload) {
+		for (const i in payload) {
 			categories[i].isPositive = type[i].isPositive;
 			categories[i].displayOnHomepage = type[i].displayOnHomepage;
 			categories[i].name = type[i].name;
