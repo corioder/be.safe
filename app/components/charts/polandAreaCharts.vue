@@ -1,6 +1,11 @@
 <template>
 	<div class="charts">
-		<areaChart v-for="chart in charts" :chartData="$store.getters.getChartData(chart.getDataName)" :name="chart.name" :key="`${chart.getDataName}_chart`" />
+		<areaChart :chartData="$store.getters.getChartData(visibleChart.getDataName)" :name="visibleChart.name" />
+		<button @click="collapse = !collapse">{{ collapse ? 'pokaż więcej wykresów' : 'ukryj wykresy' }}</button>
+
+		<div v-show="!collapse">
+			<areaChart v-for="chart in charts" :chartData="$store.getters.getChartData(chart.getDataName)" :name="chart.name" :key="`${chart.getDataName}_chart`" />
+		</div>
 	</div>
 </template>
 
@@ -14,11 +19,12 @@
 		},
 		data() {
 			return {
+				collapse: true,
+				visibleChart: {
+					name: 'Potwierdzone przypadki w Polsce',
+					getDataName: 'confirmed',
+				},
 				charts: [
-					{
-						name: 'Potwierdzone przypadki w Polsce',
-						getDataName: 'confirmed',
-					},
 					{
 						name: 'Aktywne przypadki w Polsce',
 						getDataName: 'active',
@@ -69,8 +75,17 @@
 <style lang="scss" scoped>
 	@import '@/scss/mixins/_flex.scss';
 	@import '@/scss/vars/_colors.scss';
+
 	.charts {
 		@include flex(column);
 		background-color: $babyPowder;
+		button {
+			margin: 12px;
+			padding: 12px;
+			border: none;
+			background-color: $orange;
+			color: $babyPowder;
+			font-size: 16px;
+		}
 	}
 </style>
