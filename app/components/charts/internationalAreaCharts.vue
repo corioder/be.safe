@@ -45,7 +45,7 @@
 						getDataName: 'active',
 					},
 					{
-						name: 'Wyzdrowieli',
+						name: 'Ozdrowieńcy',
 						getDataName: 'recovered',
 					},
 					{

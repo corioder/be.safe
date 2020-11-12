@@ -28,7 +28,7 @@
 						getDataName: 'tests',
 					},
 					{
-						name: 'Wyzdrowieli w Polsce',
+						name: 'Ozdrowieńcy w Polsce',
 						getDataName: 'recovered',
 					},
 					{

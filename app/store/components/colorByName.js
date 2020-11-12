@@ -23,8 +23,8 @@ export default (text) => {
 			color = colors.cinnabar;
 			break;
 		case 'preventive':
-		case 'Wyzdrowieli w Polsce':
-		case 'Wyzdrowieli':
+		case 'Ozdrowieńcy w Polsce':
+		case 'Ozdrowieńcy':
 			color = colors.shamrockGreen;
 			break;
 		case 'Zgony w Polsce':
