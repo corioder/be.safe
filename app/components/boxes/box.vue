@@ -3,8 +3,8 @@
 		<p :class="[data.isPositive ? 'positive' : 'negative', 'amount']">{{ data.amount }}</p>
 		<p class="name">{{ data.name }}</p>
 		<div class="row">
-			<p class="amountOfNew">{{ data.amountOfNew >= 0 ? '+' + data.amountOfNew : data.amountOfNew }}</p>
-			<p>{{ data.percentChange >= 0 ? '+' + data.percentChange : data.percentChange }}%</p>
+			<p class="amountOfNew">{{ data.amountOfNew }}</p>
+			<p>{{ data.percentChange }}%</p>
 		</div>
 	</div>
 </template>

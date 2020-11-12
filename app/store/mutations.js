@@ -78,20 +78,40 @@ export default {
 				displayOnHomepage: false,
 				todayName: 'respirators',
 			},
-
 			{
 				name: 'aktywnych przypadków na 100 000 osób',
 				isPositive: false,
 				displayOnHomepage: false,
 				todayName: 'activePerHoundredThousand',
 			},
+			{
+				name: 'średnia nowych przypadków w ostatnim tygodniu',
+				isPositive: false,
+				displayOnHomepage: false,
+				todayName: 'activePerHoundredThousand',
+			},
+			{
+				name: 'średnia nowych przypadków w ostatnim tygodniu na 100 000 osób',
+				isPositive: false,
+				displayOnHomepage: false,
+				todayName: 'activePerHoundredThousand',
+			},
+			{
+				name: 'stosunek liczby testów wykonanych dzisiaj do dzisiejszej liczby nowych chorych',
+				isPositive: false,
+				displayOnHomepage: false,
+				todayName: 'activePerHoundredThousand',
+			},
 		];
 		let categories = payload;
-		for (const i in payload) {
+		for (const i in categories) {
 			categories[i].isPositive = type[i].isPositive;
 			categories[i].displayOnHomepage = type[i].displayOnHomepage;
 			categories[i].name = type[i].name;
 			categories[i].amount = spacesInNum(roundTo2Places(state.data.today[type[i].todayName] || payload[i].amount));
+			categories[i].amountOfNew = categories[i].amountOfNew >= 0 ? '+' + spacesInNum(categories[i].amountOfNew) : spacesInNum(categories[i].amountOfNew);
+			categories[i].percentChange =
+				categories[i].percentChange >= 0 ? '+' + spacesInNum(categories[i].percentChange) : spacesInNum(categories[i].percentChange);
 		}
 		state.categories = categories;
 	},
