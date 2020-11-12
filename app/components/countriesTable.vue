@@ -14,7 +14,7 @@
 					</thead>
 					<tbody>
 						<tr>
-							<button @click="collapse = !collapse">{{ collapse ? 'rozwiń' : 'zwiń' }}</button>
+							<button @click="collapse = !collapse">{{ collapse ? 'pokaż dane' : 'ukryj dane' }}</button>
 						</tr>
 						<tr v-show="!collapse" v-for="country in data" :key="`${country.name}Data`">
 							<td>{{ country.name }}</td>
@@ -118,7 +118,6 @@
 						width: 100%;
 						button {
 							margin: 12px;
-							// margin: 12px calc(100% - 12px - 120px) 12px 12px;
 							padding: 12px;
 							border: none;
 							background-color: $cinnabar;
