@@ -13,7 +13,10 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr v-for="country in data" :key="`${country.name}Data`">
+						<tr>
+							<button @click="collapse = !collapse">{{ collapse ? 'rozwiń' : 'zwiń' }}</button>
+						</tr>
+						<tr v-show="!collapse" v-for="country in data" :key="`${country.name}Data`">
 							<td>{{ country.name }}</td>
 							<td>{{ country.landborder }}</td>
 							<td>{{ country.airborder }}</td>
@@ -33,10 +36,11 @@
 	export default {
 		name: 'countriesTable',
 		components: {
-			loading
+			loading,
 		},
 		data() {
 			return {
+				collapse: true,
 				data: {},
 				loaded: false,
 				err: {
@@ -112,9 +116,22 @@
 					tr {
 						border-bottom: 1px solid #ddd;
 						width: 100%;
+						button {
+							margin: 12px;
+							// margin: 12px calc(100% - 12px - 120px) 12px 12px;
+							padding: 12px;
+							border: none;
+							background-color: $cinnabar;
+							color: $babyPowder;
+							border-radius: 10px;
+							width: 120px;
+						}
 						td {
 							padding: 12px;
 						}
+					}
+					tr:first-of-type {
+						border-bottom: none;
 					}
 					tr:nth-of-type(even) {
 						background-color: #fff;
