@@ -4,8 +4,14 @@
 			<box v-for="category in $store.getters.getCategoriesForHome" :key="`${category.name}boxHome`" :data="category" />
 			<boxButton @click.native="$router.push('/informed')" />
 		</div>
-		<div class="informedBoxes" v-else>
+		<div class="informedBoxes" v-else-if="isForToday">
 			<box v-for="category in $store.state.categories" :key="`${category.name}boxHome`" :data="category" />
+		</div>
+		<div class="container" v-else>
+			<input type="date" v-model="date" @change="getData()" min="2020-03-04" :max="today" />
+			<div class="notTodaysBoxes">
+				<box v-for="category in dateData" :key="`${category.name}boxHome`" :data="category" />
+			</div>
 		</div>
 	</div>
 </template>
@@ -24,11 +30,31 @@
 		data() {
 			return {
 				isHome: undefined,
+				date: '',
+				dateData: [],
 			};
 		},
 		created() {
 			if (this.$route.name == 'informed') this.isHome = false;
 			else this.isHome = true;
+		},
+		methods: {
+			getData() {
+				this.dateData = this.$store.getters.getDataForDate(this.date);
+			},
+		},
+		computed: {
+			today() {
+				const date = new Date();
+				return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+			},
+		},
+		props: {
+			isForToday: {
+				type: Boolean,
+				required: false,
+				default: true,
+			},
 		},
 	};
 </script>
@@ -36,18 +62,21 @@
 <style lang="scss" scoped>
 	@import '@/scss/mixins/_flex.scss';
 	@import '@/scss/mixins/_grid.scss';
-	.boxes {
+	.boxes,
+	.container {
 		max-width: calc(100vw - 24px);
 		@include flex(column);
 		.homeBoxes,
-		.informedBoxes {
+		.informedBoxes,
+		.notTodaysBoxes {
 			@include grid(1);
 			grid-gap: 32px;
 		}
 		.homeBoxes {
 			margin: 64px 0 0 0;
 		}
-		.informedBoxes {
+		.informedBoxes,
+		.notTodaysBoxes {
 			margin: 32px 0 64px 0;
 		}
 	}
@@ -55,7 +84,8 @@
 	@media (min-width: 768px) {
 		.boxes {
 			.informedBoxes,
-			.homeBoxes {
+			.homeBoxes,
+			.notTodaysBoxes {
 				grid-template-columns: repeat(2, 1fr);
 				grid-gap: 64px;
 			}
@@ -65,7 +95,8 @@
 	@media (min-width: 1048px) {
 		.boxes {
 			.informedBoxes,
-			.homeBoxes {
+			.homeBoxes,
+			.notTodaysBoxes {
 				grid-template-columns: repeat(3, 1fr);
 			}
 		}
