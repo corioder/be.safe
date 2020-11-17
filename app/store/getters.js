@@ -30,7 +30,6 @@ export default {
 			}
 
 			const calculateData = (days, type) => {
-				console.log(days);
 				let amount, amountYesterday, amountOfNew;
 				for (const i in type) {
 					amount = days[0][type[i].todayName] == undefined ? 0 : days[0][type[i].todayName];
