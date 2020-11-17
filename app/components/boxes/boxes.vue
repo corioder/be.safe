@@ -9,6 +9,7 @@
 		</div>
 		<div class="container" v-else>
 			<input type="date" v-model="date" @change="getData()" min="2020-03-05" :max="today" />
+			<p>{{ message }}</p>
 			<div class="notTodaysBoxes">
 				<box v-for="category in dateData" :key="`${category.name}boxHome`" :data="category" />
 			</div>
@@ -32,6 +33,7 @@
 				isHome: undefined,
 				date: '',
 				dateData: [],
+				message: '',
 			};
 		},
 		created() {
@@ -41,6 +43,10 @@
 		methods: {
 			getData() {
 				this.dateData = this.$store.getters.getDataForDate(this.date);
+				const date = new Date(this.date);
+				if (date.getFullYear() == 2020 && (date.getMonth() + 1 < 4 || (date.getMonth() + 1 == 4 && date.getDate() < 29)))
+					this.message = 'Niestety nie posiadamy danych o przetestowanych osobach sprzed 28.04.2020';
+				else this.message = '';
 			},
 		},
 		computed: {
