@@ -18,17 +18,30 @@ export default {
 		if (date != '') {
 			const stringDates = dateToArrOfStrings(date);
 			const days = [];
-			for (const i in stringDates) days.push(state.data.perday.find((day) => day.date == stringDates[i]));
-			for (let i = 0; i < 2; i++) days[i].activePerHoundredThousand = (days[i].active * 100000) / 38354000;
+			let day;
+			for (const i in stringDates) {
+				day = state.data.perday.find((day) => day.date == stringDates[i]);
+				days.push(day == undefined ? {} : day);
+			}
+
+			for (let i = 0; i < 2; i++) {
+				if (days[i]?.active == undefined) days[i].activePerHoundredThousand = 0;
+				else days[i].activePerHoundredThousand = (days[i].active * 100000) / 38354000;
+			}
 
 			const calculateData = (days, type) => {
+				console.log(days);
+				let amount, amountYesterday, amountOfNew;
 				for (const i in type) {
+					amount = days[0][type[i].todayName] == undefined ? 0 : days[0][type[i].todayName];
+					amountYesterday = days[1][type[i].todayName] == undefined ? 0 : days[1][type[i].todayName];
+					amountOfNew = amount - amountYesterday;
 					data[i] = {
 						name: type[i].name,
 						isPositive: type[i].isPositive,
-						amount: days[0][type[i].todayName],
-						amountOfNew: days[0][type[i].todayName] - days[1][type[i].todayName],
-						percentChange: (days[0][type[i].todayName] * 100) / days[1][type[i].todayName] - 100,
+						amount: amount,
+						amountOfNew: amount - amountYesterday,
+						percentChange: amount > 0 ? (amountOfNew == amount ? 100 : (amount * 100) / amountYesterday - 100) : 0,
 					};
 				}
 				return data;

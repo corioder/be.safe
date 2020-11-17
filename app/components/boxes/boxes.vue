@@ -8,7 +8,7 @@
 			<box v-for="category in $store.state.categories" :key="`${category.name}boxHome`" :data="category" />
 		</div>
 		<div class="container" v-else>
-			<input type="date" v-model="date" @change="getData()" min="2020-03-04" :max="today" />
+			<input type="date" v-model="date" @change="getData()" min="2020-03-05" :max="today" />
 			<div class="notTodaysBoxes">
 				<box v-for="category in dateData" :key="`${category.name}boxHome`" :data="category" />
 			</div>
