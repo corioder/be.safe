@@ -68,6 +68,7 @@
 <style lang="scss" scoped>
 	@import '@/scss/mixins/_flex.scss';
 	@import '@/scss/mixins/_grid.scss';
+	@import '@/scss/vars/_colors.scss';
 	.boxes,
 	.container {
 		max-width: calc(100vw - 24px);
@@ -84,6 +85,21 @@
 		.informedBoxes,
 		.notTodaysBoxes {
 			margin: 32px 0 64px 0;
+		}
+		input {
+			width: 400px;
+			padding: 10px;
+			background-color: $babyPowder;
+			border: none;
+			border-radius: 10px;
+			font-size: 16px;
+			box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+			transform: scale(1);
+			transition: transform 0.2s ease-in-out;
+		}
+		input:focus {
+			outline: none;
+			transform: scale(1.01);
 		}
 	}
 
