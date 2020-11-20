@@ -51,7 +51,6 @@ export default {
 				const yesterdayConfirmedPerTests = [days[1].confirmed, days[2].confirmed, days[1].tests, days[2].tests].some((el) => el == undefined)
 					? 0
 					: (days[1].confirmed - days[2].confirmed) / (days[1].tests - days[2].tests);
-				console.log(days[1].confirmed, days[2].confirmed, days[1].tests, days[2].tests);
 				data[data.length - 1].amount = confirmedPerTests;
 				data[data.length - 1].amountOfNew = confirmedPerTests - yesterdayConfirmedPerTests;
 				data[data.length - 1].percentChange = yesterdayConfirmedPerTests == 0 ? 100 : (confirmedPerTests * 100) / yesterdayConfirmedPerTests - 100;
