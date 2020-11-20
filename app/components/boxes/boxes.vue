@@ -8,8 +8,7 @@
 			<box v-for="category in $store.state.categories" :key="`${category.name}boxHome`" :data="category" />
 		</div>
 		<div class="container" v-else>
-			<h4>Dane z dnia</h4>
-			<label for="date">Data</label>
+			<label for="date">Dane z dnia</label>
 			<input name="date" type="date" v-model="date" @change="getData()" min="2020-03-05" :max="today" pattern="\d{4}-\d{2}-\d{2}" />
 			<p>{{ message }}</p>
 			<div class="notTodaysBoxes">
@@ -88,6 +87,9 @@
 		.notTodaysBoxes {
 			margin: 32px 0 64px 0;
 		}
+	}
+	.container {
+		margin-top: 64px;
 		input {
 			width: 400px;
 			margin-bottom: 32px;
