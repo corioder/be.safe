@@ -4,7 +4,7 @@
 			<div v-if="loaded" :key="countySelectd">
 				<areaChart v-for="chart in charts" :chartData="currentChartData[chart.getDataName]" :name="chart.name" :key="`${chart.getDataName}_int_chart`" />
 			</div>
-			<loading :err="err.message" v-else />
+			<loading :err="err.message" h="50" v-else />
 		</div>
 	</div>
 </template>
