@@ -105,6 +105,19 @@ func getCategories() (cachedData, error) {
 
 	categoriesData = append(categoriesData, meanForWeekMap, meanForWeekPerHoundredMap)
 
+	// =========================================================================
+	// tests per confirmed
+	testsPerConfirmedRatio := (today["confirmed"] - yesterday["confirmed"]) / (today["tests"] - yesterday["tests"])
+	oldTestsPerConfirmedRatio := (perdayData[len(perdayData)-3]["confirmed"] - perdayData[len(perdayData)-4]["confirmed"]) / (perdayData[len(perdayData)-3]["tests"] - perdayData[len(perdayData)-4]["tests"])
+
+	testsPerConfirmedMap := map[string]float32{
+		"amount":        float32(utils.RoundTo2DecimalPlaces(testsPerConfirmedRatio)),
+		"amountOfNew":   float32(utils.RoundTo2DecimalPlaces(testsPerConfirmedRatio - oldTestsPerConfirmedRatio)),
+		"percentChange": float32(utils.RoundTo2DecimalPlaces(float64(100 - (float32((oldTestsPerConfirmedRatio * 100)) / float32(testsPerConfirmedRatio))))),
+	}
+
+	categoriesData = append(categoriesData, testsPerConfirmedMap)
+
 	d, err := json.Marshal(categoriesData)
 	if err != nil {
 		return nilCachedData, err
