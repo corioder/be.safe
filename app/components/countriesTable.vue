@@ -26,7 +26,7 @@
 				</table>
 			</div>
 		</div>
-		<loading :err="err.message" v-else />
+		<loading :err="err.message" h="50" v-else />
 	</div>
 </template>
 

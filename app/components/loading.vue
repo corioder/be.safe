@@ -1,5 +1,5 @@
 <template>
-	<div class="loading">
+	<div class="loading" :style="`height:${h}vh`">
 		<div class="lds-roller">
 			<div></div>
 			<div></div>
@@ -21,6 +21,10 @@
 			err: {
 				required: false,
 			},
+			h: {
+				required: false,
+				default: 100,
+			},
 		},
 	};
 </script>
@@ -31,7 +35,6 @@
 	.loading {
 		@include flex(column);
 		justify-content: center;
-		height: 100vh;
 		h5 {
 			font-size: 16px;
 			text-align: center;

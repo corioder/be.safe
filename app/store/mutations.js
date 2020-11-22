@@ -1,6 +1,6 @@
 import preloadImgs from '@/utils/preloadImgs';
 import proxyArrayProperties from '@/utils/proxyArrayProperties';
-import spacesInNum from '@/store/components/spacesInNum';
+import spacesInNum from '@/utils/spacesInNum';
 import roundTo2Places from '@/utils/roundTo2Places';
 import smallPhoto from '@/utils/smallPhoto';
 
@@ -97,10 +97,10 @@ export default {
 				todayName: 'activePerHoundredThousand',
 			},
 			{
-				name: 'stosunek liczby testów wykonanych dzisiaj do dzisiejszej liczby nowych chorych',
+				name: 'stosunek dzisiejszej liczby nowych chorych do liczby testów wykonanych dzisiaj',
 				isPositive: false,
 				displayOnHomepage: false,
-				todayName: 'activePerHoundredThousand',
+				todayName: 'confirmedPerTests',
 			},
 		];
 		let categories = payload;

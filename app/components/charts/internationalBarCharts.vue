@@ -3,7 +3,7 @@
 		<div v-if="loaded">
 			<barChart :chartData="chartData" name="Aktywne przypadki na 100 tysięcy mieszkańców" />
 		</div>
-		<loading :err="err.message" v-else />
+		<loading :err="err.message" h="50" v-else />
 	</div>
 </template>
 
