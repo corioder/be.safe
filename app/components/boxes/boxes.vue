@@ -91,7 +91,8 @@
 	.container {
 		margin-top: 64px;
 		input {
-			width: 400px;
+			max-width: 400px;
+			width: 80vw;
 			margin-bottom: 32px;
 			padding: 10px;
 			background-color: $babyPowder;
