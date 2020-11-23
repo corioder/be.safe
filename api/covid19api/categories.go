@@ -62,7 +62,7 @@ func getCategories() (cachedData, error) {
 	for _, key := range categoriesPerDayDataEntries {
 		propsMap := map[string]float32{
 			"amountOfNew":   float32(utils.RoundTo2DecimalPlaces(today[key] - yesterday[key])),
-			"percentChange": float32(utils.RoundTo2DecimalPlaces(float64(100 - (float32((yesterday[key] * 100)) / float32(today[key]))))),
+			"percentChange": float32(utils.RoundTo2DecimalPlaces(float64((float32((today[key] * 100)) / float32(yesterday[key])) - 100))),
 		}
 
 		if key == "activePerHoundredThousand" {
@@ -91,7 +91,7 @@ func getCategories() (cachedData, error) {
 	meanForWeekMap := map[string]float32{
 		"amount":        float32(utils.RoundTo2DecimalPlaces(meanForWeek)),
 		"amountOfNew":   float32(utils.RoundTo2DecimalPlaces(meanForWeek - oldMeanForWeek)),
-		"percentChange": float32(utils.RoundTo2DecimalPlaces(float64(100 - (float32((oldMeanForWeek * 100)) / float32(meanForWeek))))),
+		"percentChange": float32(utils.RoundTo2DecimalPlaces(float64((float32((meanForWeek * 100)) / float32(oldMeanForWeek)) - 100))),
 	}
 
 	meanForWeekPerHoundredThousand := activePerHoundredThousand(meanForWeek)
@@ -100,7 +100,7 @@ func getCategories() (cachedData, error) {
 	meanForWeekPerHoundredMap := map[string]float32{
 		"amount":        float32(utils.RoundTo2DecimalPlaces(meanForWeekPerHoundredThousand)),
 		"amountOfNew":   float32(utils.RoundTo2DecimalPlaces(meanForWeekPerHoundredThousand - oldMeanForWeekPerHoundredThousand)),
-		"percentChange": float32(utils.RoundTo2DecimalPlaces(float64(100 - (float32((oldMeanForWeekPerHoundredThousand * 100)) / float32(meanForWeekPerHoundredThousand))))),
+		"percentChange": float32(utils.RoundTo2DecimalPlaces(float64((float32((meanForWeekPerHoundredThousand * 100)) / float32(oldMeanForWeekPerHoundredThousand)) - 100))),
 	}
 
 	categoriesData = append(categoriesData, meanForWeekMap, meanForWeekPerHoundredMap)
@@ -108,12 +108,12 @@ func getCategories() (cachedData, error) {
 	// =========================================================================
 	// tests per confirmed
 	testsPerConfirmedRatio := (today["confirmed"] - yesterday["confirmed"]) / (today["tests"] - yesterday["tests"])
-	oldTestsPerConfirmedRatio := (perdayData[len(perdayData)-3]["confirmed"] - perdayData[len(perdayData)-4]["confirmed"]) / (perdayData[len(perdayData)-3]["tests"] - perdayData[len(perdayData)-4]["tests"])
+	oldTestsPerConfirmedRatio := (perdayData[len(perdayData)-2]["confirmed"] - perdayData[len(perdayData)-3]["confirmed"]) / (perdayData[len(perdayData)-2]["tests"] - perdayData[len(perdayData)-3]["tests"])
 
 	testsPerConfirmedMap := map[string]float32{
 		"amount":        float32(utils.RoundTo2DecimalPlaces(testsPerConfirmedRatio)),
 		"amountOfNew":   float32(utils.RoundTo2DecimalPlaces(testsPerConfirmedRatio - oldTestsPerConfirmedRatio)),
-		"percentChange": float32(utils.RoundTo2DecimalPlaces(float64(100 - (float32((oldTestsPerConfirmedRatio * 100)) / float32(testsPerConfirmedRatio))))),
+		"percentChange": float32(utils.RoundTo2DecimalPlaces(float64((float32((testsPerConfirmedRatio * 100)) / float32(oldTestsPerConfirmedRatio)) - 100))),
 	}
 
 	categoriesData = append(categoriesData, testsPerConfirmedMap)
