@@ -1,5 +1,12 @@
 {
   "files.exclude": {
     "dev/*.map": true
-  }
+  },
+  "path-intellisense.mappings": {
+		"@": "${workspaceRoot}/app"
+  },
+  "cSpell.enableFiletypes": [
+    "!plaintext",
+    "vue"
+  ]
 }

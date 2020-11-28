@@ -9,8 +9,7 @@
 </template>
 
 <script>
-	import smallPhoto from "@/utils/smallPhoto"
-
+	import smallPhoto from '@/utils/smallPhoto';
 	export default {
 		name: 'articlePreview',
 		props: {
