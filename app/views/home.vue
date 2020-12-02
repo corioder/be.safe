@@ -5,7 +5,9 @@
 		<coronaDescription />
 		<articlePreview v-if="$store.state.articles.length > 0" :article="$store.state.articles[Math.floor($store.state.articles.length * Math.random())]" />
 		<phoneNumbers />
-		<footer></footer>
+		<footer>
+			<router-link to="/faq" class="link">faq</router-link>
+		</footer>
 	</div>
 </template>
 
@@ -40,6 +42,15 @@
 			@include flex(column);
 			justify-content: center;
 			padding: 12px;
+			.link {
+				text-decoration: none;
+				color: $babyPowder;
+				background-color: $littleBoyBlue;
+				display: inline-block;
+				padding: 0 5px;
+				margin: 0;
+				line-height: 150%;
+			}
 		}
 	}
 </style>
