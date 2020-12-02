@@ -1,0 +1,10 @@
+@import '@/scss/vars/_colors.scss';
+@mixin a {
+	text-decoration: none;
+	color: $babyPowder;
+	background-color: $littleBoyBlue;
+	display: inline-block;
+	padding: 0 5px;
+	margin: 0;
+	line-height: 150%;
+}

@@ -31,8 +31,8 @@
 </script>
 
 <style lang="scss" scoped>
-	@import '@/scss/vars/_colors.scss';
 	@import '@/scss/mixins/_flex.scss';
+	@import '@/scss/mixins/_a.scss';
 	.home {
 		margin-top: 32px;
 		@include flex(column);
@@ -43,13 +43,7 @@
 			justify-content: center;
 			padding: 12px;
 			.link {
-				text-decoration: none;
-				color: $babyPowder;
-				background-color: $littleBoyBlue;
-				display: inline-block;
-				padding: 0 5px;
-				margin: 0;
-				line-height: 150%;
+				@include a;
 			}
 		}
 	}

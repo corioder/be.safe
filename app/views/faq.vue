@@ -39,8 +39,8 @@
 </script>
 
 <style lang="scss" scoped>
-	@import '@/scss/vars/_colors.scss';
 	@import '@/scss/mixins/_flex.scss';
+	@import '@/scss/mixins/_a.scss';
 	.faq {
 		width: 100vw;
 		margin: 0;
@@ -66,13 +66,7 @@
 		}
 		.newQuestion {
 			a {
-				text-decoration: none;
-				color: $babyPowder;
-				background-color: $littleBoyBlue;
-				display: inline-block;
-				padding: 0 5px;
-				margin: 0;
-				line-height: 150%;
+				@include a;
 			}
 		}
 	}
@@ -91,16 +85,10 @@
 	}
 </style>
 <style lang="scss">
-	@import '@/scss/vars/_colors.scss';
+	@import '@/scss/mixins/_a.scss';
 	.a {
 		a {
-			text-decoration: none;
-			color: $babyPowder;
-			background-color: $littleBoyBlue;
-			display: inline-block;
-			padding: 0 5px;
-			margin: 0;
-			line-height: 150%;
+			@include a;
 		}
 	}
 </style>

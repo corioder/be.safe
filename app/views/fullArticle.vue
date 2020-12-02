@@ -113,6 +113,7 @@
 </style>
 <style lang="scss">
 	@import '@/scss/mixins/_flex.scss';
+	@import '@/scss/mixins/_a.scss';
 	@import '@/scss/vars/_colors.scss';
 	.article {
 		@include flex(column, flex-start);
@@ -127,13 +128,7 @@
 			text-align: left;
 		}
 		a {
-			text-decoration: none;
-			color: $babyPowder;
-			background-color: $shamrockGreen;
-			display: inline-block;
-			padding: 0 5px;
-			margin: 0;
-			line-height: 150%;
+			@include a;
 		}
 		a:visited {
 			color: $babyPowder;
