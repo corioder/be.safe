@@ -90,6 +90,9 @@
 	}
 	.container {
 		margin-top: 64px;
+		label {
+			margin-bottom: 8px;
+		}
 		input {
 			max-width: 400px;
 			width: 80vw;
