@@ -5,13 +5,6 @@
 		<coronaDescription />
 		<articlePreview v-if="$store.state.articles.length > 0" :article="$store.state.articles[Math.floor($store.state.articles.length * Math.random())]" />
 		<phoneNumbers />
-		<footer>
-			<div>
-				<a href="https://www.linkedin.com/in/maciej-gornicki/" class="API">API</a>
-				<a href="https://tilda.cc">Ikonki</a>
-			</div>
-			<p>aktywne przypadki - różnica między zakażonymi a wyzdrowiałymi i zmarłymi, liczona jako ogólna pula</p>
-		</footer>
 	</div>
 </template>
 
@@ -36,33 +29,8 @@
 
 <style lang="scss" scoped>
 	@import '@/scss/mixins/_flex.scss';
-	@import '@/scss/vars/_colors.scss';
 	.home {
 		margin-top: 32px;
 		@include flex(column);
-	}
-	footer {
-		@include flex;
-		div {
-			@include flex(column);
-			margin-right: 4px;
-			a {
-				font-size: 10px;
-
-				text-decoration: none;
-				color: $babyPowder;
-				background-color: $littleBoyBlue;
-				display: inline-block;
-				padding: 0 5px;
-				margin: 0;
-				line-height: 150%;
-			}
-			.API {
-				margin-bottom: 4px;
-			}
-		}
-		p {
-			font-size: 10px;
-		}
 	}
 </style>

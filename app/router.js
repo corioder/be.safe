@@ -40,6 +40,11 @@ const routes = [
 		component: fullArticle,
 	},
 	{
+		path: '/faq',
+		name: 'faq',
+		component: () => import('@/views/faq.vue'),
+	},
+	{
 		path: '/noInternet',
 		name: 'noInternet',
 		component: noInternet,
