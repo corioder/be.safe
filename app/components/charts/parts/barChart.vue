@@ -49,6 +49,7 @@
 						title: {
 							text: '',
 						},
+						// top: '-100.5%',
 					},
 					series: [
 						{
@@ -58,9 +59,10 @@
 					],
 					colors: [this.$store.getters.getColorByName(this.name)],
 					plotOptions: {
-						area: {
-							marker: {
-								enabled: false,
+						bar: {
+							dataLabels: {
+								enabled: true,
+								color: '#011627',
 							},
 						},
 					},
