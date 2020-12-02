@@ -27,6 +27,7 @@
 		font-weight: 600;
 		font-size: 14px;
 		color: $richBlack;
+		background-color: $babyPowder;
 		margin: 0;
 		transition: transform 0.2s ease-in-out;
 		height: 133px;
