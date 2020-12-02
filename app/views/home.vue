@@ -5,6 +5,7 @@
 		<coronaDescription />
 		<articlePreview v-if="$store.state.articles.length > 0" :article="$store.state.articles[Math.floor($store.state.articles.length * Math.random())]" />
 		<phoneNumbers />
+		<footer></footer>
 	</div>
 </template>
 
@@ -28,9 +29,17 @@
 </script>
 
 <style lang="scss" scoped>
+	@import '@/scss/vars/_colors.scss';
 	@import '@/scss/mixins/_flex.scss';
 	.home {
 		margin-top: 32px;
 		@include flex(column);
+		footer {
+			width: 100%;
+			height: 100px;
+			@include flex(column);
+			justify-content: center;
+			padding: 12px;
+		}
 	}
 </style>
