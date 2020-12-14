@@ -129,6 +129,7 @@
 		}
 		a {
 			@include a;
+			background-color: $shamrockGreen;
 		}
 		a:visited {
 			color: $babyPowder;
