@@ -132,6 +132,7 @@
 			background-color: $shamrockGreen;
 		}
 		a:visited {
+			color: $babyPowder;
 			background-color: $shamrockGreen;
 		}
 	}
