@@ -13,7 +13,6 @@ export default {
 		TAB_ENPOINT: 'tab/',
 		INT_ENPOINT: 'int/',
 		API: __API__, // webpack will resolve this, use .env API=apiUrl
-		STRAPI: __STRAPI__, // webpack will resolve this, use .env STRAPI=strapiUrl
 	},
 	data: {
 		perday: [],
@@ -21,7 +20,6 @@ export default {
 		yesterday: {},
 	},
 	table: {},
-	articles: [],
 	international: {},
 	internationalAPHT: [],
 };

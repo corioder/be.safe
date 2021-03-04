@@ -110,18 +110,9 @@ export default {
 			categories[i].name = type[i].name;
 			categories[i].amount = spacesInNum(roundTo2Places(state.data.today[type[i].todayName] || payload[i].amount));
 			categories[i].amountOfNew = categories[i].amountOfNew >= 0 ? '+' + spacesInNum(categories[i].amountOfNew) : spacesInNum(categories[i].amountOfNew);
-			categories[i].percentChange =
-				categories[i].percentChange >= 0 ? '+' + spacesInNum(categories[i].percentChange) : spacesInNum(categories[i].percentChange);
+			categories[i].percentChange = categories[i].percentChange >= 0 ? '+' + spacesInNum(categories[i].percentChange) : spacesInNum(categories[i].percentChange);
 		}
 		state.categories = categories;
-	},
-	ARTICLES(state, payload) {
-		const articles = payload.sort((a, b) => new Date(b.date) - new Date(a.date));
-		state.articles = articles;
-		try {
-			preloadImgs(proxyArrayProperties(state.articles, 'mainphoto.url', (url) => `${state.APIS.STRAPI}${url}`));
-			preloadImgs(proxyArrayProperties(state.articles, 'mainphoto.url', (url) => `${state.APIS.STRAPI}${smallPhoto(url)}`));
-		} catch (err) {}
 	},
 	NAVOPEN(state) {
 		state.isNavOpened = !state.isNavOpened;
