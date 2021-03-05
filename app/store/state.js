@@ -6,7 +6,7 @@ export default {
 		{ component: 'home', path: '/' },
 		{ component: 'informed', path: '/informed' },
 		{ component: 'aware', path: '/aware' },
-		{ component: 'preventive', path: '/preventive' },
+		// { component: 'preventive', path: '/preventive' },
 	],
 	APIS: {
 		API_ENPOINT: 'api/',
