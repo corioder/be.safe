@@ -3,7 +3,7 @@
 		<landing />
 		<boxes />
 		<coronaDescription />
-		<articlePreview v-if="$store.state.articles.length > 0" :article="$store.state.articles[Math.floor($store.state.articles.length * Math.random())]" />
+		<!-- <articlePreview v-if="$store.state.articles.length > 0" :article="$store.state.articles[Math.floor($store.state.articles.length * Math.random())]" /> -->
 		<phoneNumbers />
 		<footer>
 			<router-link to="/faq" class="link">faq</router-link>
@@ -15,7 +15,7 @@
 	import landing from '@/components/landing.vue';
 	import boxes from '@/components/boxes/boxes.vue';
 	import coronaDescription from '@/components/coronaDescription.vue';
-	import articlePreview from '@/components/articlePreview.vue';
+	// import articlePreview from '@/components/articlePreview.vue';
 	import phoneNumbers from '@/components/phoneNumbers.vue';
 
 	export default {
@@ -24,7 +24,7 @@
 			landing,
 			boxes,
 			coronaDescription,
-			articlePreview,
+			// articlePreview,
 			phoneNumbers,
 		},
 	};
