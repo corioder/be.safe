@@ -19,6 +19,7 @@ export default {
 			const stringDates = dateToArrOfStrings(date);
 			const days = [];
 			let day;
+			console.log(JSON.stringify( state.data.perday, null, 2))
 			for (const i in stringDates) {
 				day = state.data.perday.find((day) => day.date == stringDates[i]);
 				days.push(day == undefined ? {} : day);
